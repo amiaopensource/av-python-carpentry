@@ -1,5 +1,5 @@
 ---
-title: "Finding Out About Files"
+title: "Finding Out About AV Files"
 teaching: 20
 exercises: 10
 questions:
