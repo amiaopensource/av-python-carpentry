@@ -105,7 +105,19 @@ os.listdir()
 
 `os.listdir()` prints the names of files and folders in the current directory as a list.
 
-We can also try listing folders in the root directory.
+We can also try listing folders in the video file directory.
+
+On macOS:
+~~~
+video_dir = '/Users/username/Desktop/amia19'
+~~~
+{: .language-python}
+
+On Windows:
+~~~
+video_dir = 'C:\Users\username\Desktop\amia19'
+~~~
+{: .language-python}
 
 ~~~
 os.listdir('/')
@@ -120,6 +132,7 @@ os.listdir('/')
 ~~~
 {: .output}
 
+
 > ## Python Syntax: Strings and Lists
 >
 > In order to parse our input, Python has rules about how it should be written.
@@ -129,9 +142,28 @@ os.listdir('/')
 > Characters that you want Python to interpret as single piece of text need to be quoted.
 > This is called a string.
 > Single-quotes `'` and double-quotes `"` are both valid as long as you use the same symbol at the beginning and end of the string.
-> ### Lists
-> An unordered series of data, a list, starts with a square bracket `[` , separates list items with commas `,`, and ends with a square bracket `]`. 
-> The items in a list can be any other type of data, including other lists.
+{: .callout}
+
+> ## Python Syntax: `=`
+>
+> In Python, the equals sign `=` works a little differently than in a math class.
+> `=` assigns a value to variable, like this:
+> 
+> ~~~
+> variable = value
+> ~~~
+> {: .language-python}
+>
+> A variable is an object that can hold any value.
+> We can update the value of the variable
+> ~~~
+> variable = 'qckitty.gif'
+> ~~~
+> {: .language-python}
+>
+> We can also create new variables.
+> A variable name can include any character except space ` `, and it can't begin with a number.
+> myFavoriteFilename = 'qckitty.gif'
 {: .callout}
 
 ## Importing modules
@@ -299,28 +331,6 @@ We can use our QCKitty absolute path to walk through a few of the ways that `os.
 kittypath = '/Users/benjaminturkus/Desktop/CoolStuff/qckitty.gif'
 ~~~
 {: .language-python}
-
-> ## Python Syntax: `=`
->
-> In Python, the equals sign `=` works a little differently than in a math class.
-> `=` assigns a value to variable, like this:
-> 
-> ~~~
-> variable = value
-> ~~~
-> {: .language-python}
->
-> A variable is an object that can hold any value.
-> We can update the value of the variable
-> ~~~
-> variable = 'qckitty.gif'
-> ~~~
-> {: .language-python}
->
-> We can also create new variables.
-> A variable name can include any character except space ` `, and it can't begin with a number.
-> myFavoriteFilename = 'qckitty.gif'
-{: .callout}
 
 We can find out if the file path is for a file or folder.
 ~~~
@@ -657,6 +667,20 @@ If you're thinking, "If I have the power of `glob.glob` in one line, when should
 > > It can't do other jobs, like count the number of subdirectories or find all the files that don't match a particular pattern.
 > {: .solution}
 {: .challenge}
+
+
+
+Expanding upon our previous efforts to gather up Quicktime files, we can amend our earlier os.walk and use what’s called a tuple to add a bunch of different media-specific file extensions to our endswith if statement.
+
+media_list = [ ]
+
+for root, dirs, files in os.walk(mydir):
+    for file in files:
+        if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
+            item_path = os.path.join(root, file)
+            media_list.append(item_path)
+
+And from here, our steps will largely be the same as before; we’ll use a new for loop, and the os.stat method, to print out the file size of each file.
 
 
 
