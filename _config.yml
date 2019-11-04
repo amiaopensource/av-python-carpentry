@@ -7,14 +7,14 @@
 # dc: Data Carpentry
 # lc: Library Carpentry
 # cp: Carpentries (to use for instructor traning for instance)
-carpentry: "swc"
+carpentry: "na"
 
 # Overall title for pages.
-title: "Lesson Title"
+title: "Python for AV"
 
 # Life cycle stage of the lesson
 # possible values: "pre-alpha", "alpha", "beta", "stable"
-life_cycle: "pre-alpha"
+life_cycle: "beta"
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
@@ -26,10 +26,10 @@ kind: "lesson"
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
 # Please don't change it: <USERNAME>/<PROJECT> is correct.
-repository: <USERNAME>/<PROJECT>
+repository: "nkrabben/av-python-carpentry"
 
 # Email address, no mailto:
-email: "team@carpentries.org"
+email: "nickkrabbenhoeft@nypl.org"
 
 # Sites.
 amy_site: "https://amy.software-carpentry.org/workshops"
@@ -62,7 +62,7 @@ instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post
 
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 0
+start_time: 480
 
 # Specify that things in the episodes collection should be output.
 collections:
