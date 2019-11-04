@@ -386,33 +386,13 @@ Or use [named links][data_carpentry].
   </div>
 </div>
 
-> ## Creating Lists in Markdown
->
-> Create a nested list in a Markdown cell in a notebook that looks like this:
->
-> 1.  Find files.
-> 2.  Do work.
->     *   Transcode.
->     *   Collect Duration.
->     *   Find Metadata.
-> 3.  Report results.
-> 4.  Preserve.
-> 
-> > ## Solution
-> >
-> > This challenge integrates both the numbered list and bullet list. 
-> > Note that the bullet list is indented 2 spaces so that it is inline with the items of the numbered list.
-> > ~~~
-> > 1.  Find files.
-> > 2.  Do work.
-> >     *   Transcode.
-> >     *   Collect Duration.
-> >     *   Find Metadata.
-> > 3.  Report results.
-> > 4.  Preserve.
-> > ~~~
-> {: .solution}
-{: .challenge}
+### The Notebook will evaluate code and display results
+* Running a line of code can have several outcomes:
+  * Loading data for use in future code
+  * Changing the state of the code environment
+  * Storing information for use in future code
+  * Returning the results without storing them
+* Jupyter will display the results of the final line of code in a cell after executing that cell.
 
 > ## Running Python Cells
 >
@@ -432,7 +412,7 @@ Or use [named links][data_carpentry].
 > > ~~~
 > > '/Users/your_username'
 > > ~~~
-> > {: .language-python}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -448,6 +428,46 @@ Or use [named links][data_carpentry].
 > > ## Solution
 > >
 > > Python returns the output of the last line. In this case the last line assigned a value to a variable and did not have output.
+> {: .solution}
+{: .challenge}
+
+> ## Running Even More Python Cells
+>
+> How would you display the data stored as cwd?
+> 
+> > ## Solution
+> > ~~~
+> > cwd
+> > ~~~
+> > {: .language-python}
+> > ~~~
+> > '/Users/your_username'
+> > ~~~
+> > {: .output}
+> > Python returns the output of the last line. In this case the last line assigned a value to a variable and did not have output.
+> {: .solution}
+{: .challenge}
+
+> ## Running the Last Python Cell for this Lesson
+>
+> What information is stored as cwd when this cell is executed?
+>
+> ~~~
+> os.chdir('Downloads')
+> cwd = os.getcwd()
+> ~~~
+> {: .language-python}
+> 
+> > ## Solution
+> > ~~~
+> > cwd
+> > ~~~
+> > {: .language-python}
+> > ~~~
+> > '/Users/your_username/Downloads'
+> > ~~~
+> > {: .output}
+> > After changing directories, `os.getcwd()` returns a different value
 > {: .solution}
 {: .challenge}
 
