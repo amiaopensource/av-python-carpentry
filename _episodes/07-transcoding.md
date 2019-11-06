@@ -11,23 +11,23 @@ keypoints:
 - "Collecting filepaths is often the first step of any AV script"
 ---
 
-Alice had 3 tasks she wanted to finish.
+Alice (remember Alice??) had 3 tasks she wanted to complete.
 
-1. create service copy MP4's for all of the files on the drive
-2. share the duration of each video with a cataloger
+1. create service copy MP4s for all of the files on her hard drive
+2. share the duration of each video file with a cataloger
 3. preserve the files
 
-She'll need to create a transcoding script to do the first step.
-You might have noticed that the "120th Anniversary" project included service files.
+She'll need to create a transcoding script to take care of the first step.
+You may have noticed that the "120th Anniversary" project included service files.
 So why not take advantage of that work first?
 
 ## Moving Files
 
-Unfortunately, when we look at the folders that those files are in, it looks like they're all in BagIt bags.
-Moving the files out of the bags would render the bag invalid.
-To avoid that issue, we can make a copy of those files.
+Unfortunately, when we look at the folders where those service files reside, it looks as if they're all in BagIt bags.
+Moving the files out of the bags would render the bags invalid.
+To avoid that issue, we can make a copy of those service files.
 
-For any kind of local file moving or copying, the `shutil` module is a good starting place.
+For any kind of local file moving or copying, the `shutil` module is a good starting point.
 Let's import that.
 
 ~~~
@@ -81,7 +81,7 @@ if not os.path.exists(service_folder):
 ~~~
 {: .language-python}
 
-And now that the destination actually exists, we should be able to copy files there.
+And now that the destination directory actually exists, we should be able to copy files there.
 
 ~~~
 shutil.copy(qckitty_path, service_folder)
@@ -99,14 +99,14 @@ os.listdir(service_folder)
 ~~~
 {: .language-python}
 
-That's a big chunk of the task done for minimal work.
-For the next part we'll need to invoke some transcoding.
+That's a big chunk of Alice's task performed with a minimal amount of work.
+For the next part, we'll need to invoke some transcoding.
 
 ## Using ffmpeg from Python
 
-Some command-line tools like MediaInfo have Python module that make them easier to use in a script.
-Unfortunately, `ffmpeg` the workhorse utility for media transcoding doesn't.
-However, we can still Python to work with `ffmpeg` or any command line program using the `subprocess` module.
+Some command-line tools like MediaInfo have a Python module that makes them easier to use in a script.
+Unfortunately, `ffmpeg`, the workhorse utility for media transcoding, does not.
+However, we can still use Python to work with `ffmpeg` or any other command line program  by using the `subprocess` module.
 
 ~~~
 import subprocess
@@ -143,7 +143,7 @@ We can turn that into a list.
 ~~~
 {: .language-python}
 
-Just like with `shutil.copy()`, we need to provide two source and destination paths to this command.
+Just like with `shutil.copy()`, we need to provide source and destination paths for this command to function properly.
 Again, the source will be taken from `media_list`.
 For the destination, we can use the `service_folder`, but `ffmpeg` requires a path with a filename.
 
@@ -161,7 +161,7 @@ napl1777.mov
 {: .output}
 
 That's a good start.
-We now need the filename to have an 'mp4' extension instead of 'mov'.
+Now we need the filename to have an 'mp4' extension instead of 'mov'.
 For that, we can use the `replace()` function for strings.
 
 ~~~
@@ -175,7 +175,7 @@ napl1777.mp4
 ~~~
 {: .output}
 
-For a final step, we can join the new filename to the `service_folder` path, all in the context of the `ffmpeg` command and `subprocess` call.
+For a final step, we can join the new filename to the `service_folder` path, all within the context of the `ffmpeg` command and `subprocess` call.
 
 ~~~
 subprocess.call(['ffmpeg', '-i', media_list[0], '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', os.path.join(service_folder, os.path.basename(media_list[0]).replace('mov', 'mp4'))])
@@ -189,9 +189,9 @@ subprocess.call(['ffmpeg', '-i', media_list[0], '-c:v', 'libx264', '-pix_fmt', '
 
 ## Looking Before You Transcode
 
-It might be tempting to wrap this all in a `for` loop and celebrate, but let's think through what might happen when we run this code across all the files in `media_list`
+It might be tempting to wrap this all in a `for` loop and celebrate, but let's think through what might happen when we run this code across all the files in `media_list`.
 
-> ## Problems with Transcoding Everythin
+> ## Problems with Transcoding Everything
 > What issues would face if you tried to transcode every file in `media_list` right now?
 > What steps would you take to avoid those issues?
 > > You would transcode files that you already have service files for, like `napl1777.mov`.
@@ -201,7 +201,7 @@ It might be tempting to wrap this all in a `for` loop and celebrate, but let's t
 {: .challenge} 
 
 
-Let's just focus on untranscoded mov's.
+Let's just focus on untranscoded movs.
 
 ~~~
 for item in media_list:
