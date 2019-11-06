@@ -84,8 +84,7 @@ But a small bit of knowledge gets you a long way, and we’ll cover those essent
 Alice Riley, an AV Archivist, has just started a new job at the New Amsterdam Public Library. On her first day, she is given a hard drives of old digitization projects and asked to:
 1. create service copy MP4's for all of the files on the drive
 2. share the duration of each video with a cataloger
-3. make sure each file has metadata
-4. preserve the files
+3. preserve the files
 
 After mounting the hard drives, Alice finds out that NAPL has completed quite a few digitization projects.
 She estimates that there are probably 400 video files.
