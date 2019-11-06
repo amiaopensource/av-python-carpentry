@@ -15,9 +15,9 @@ keypoints:
 
 ## Asking questions about a list of files
 
-Alice now has a digital shelflist of the the files she wants to work with. Before she decides what to do, she wants to understand the files better.
+Alice now has a digital shelflist of the the files she wants to work with. Before she decides what to do with her files, she wants to understand them better.
 
-While learning how to create file-paths, we created our first few building blocks.
+While learning how to create filepaths, we created our first few building blocks:
 * building lists of files and folders
 * using `for` loops
 
@@ -29,10 +29,10 @@ Frequently, these two tasks go hand in hand. We may generate monthly/quarterly/a
 
 > ## Metadata about Quicktime files
 >
-> If we want to make MP4's from the Quicktime files, what are some of the key pieces of media-specific information that we’ll want to ascertain before doing anything else?
+> If we want to make MP4s from the Quicktime files, what are some of the key pieces of time based media-specific information that we’ll want to ascertain before doing anything else?
 > 
 > > ## Solution
-> >
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -74,7 +74,7 @@ for item in media_list:
 ~~~
 {: .language-python}
 
-A random sequence of numbers is more useful if we know which number is associated with which file. One way to do this is using string formatting.
+A random sequence of numbers is more useful if we know which number is associated with which file. One way to do this is by using string formatting.
 
 ~~~
 for item in media_list:
@@ -82,7 +82,7 @@ for item in media_list:
 ~~~
 {: .language-python}
 
-But even better than descriptive print statements is gaining an aggregate sense of the data we have on-hand. To accomplish that, we need to save the file size instead of immediately printing them out. 
+But even better than descriptive print statements is gaining an aggregate sense of the data we have on-hand. To accomplish that, we need to save the file size, instead of immediately printing them out. 
 
 ~~~
 size_list = [ ]
@@ -101,7 +101,7 @@ sum(size_list)
 
 While os.stat provides us with the size (number of bytes as integers) of our files, it can be very hard to tell if you're working with terabytes (`1000000000000`) or 100's of gigabytes (`100000000000`).
 
-In writing we use commas to help with this problem, but computers don't need or want the help of commas. If we want to express the total numbers of bytes as terabytes, we need to ask for that ourselves.
+In writing, we use commas to help with this problem, but computers don't need or want the help of commas. If we want to express the total number of bytes as terabytes, we need to ask for that ourselves.
 
 For example:
 
@@ -120,7 +120,7 @@ Here, `**` is the Python notation for an exponent, so `1000 ** 4` means 1,000,00
 
 
 ### TB vs. TiB (sidetrackkkkkkkk)
-If you're wondering why we're using `1000` instead of `1024` for our math, it's a good question. And the answer is a long, and honestly quite dumb, history, but it is worth us taking a quick tangent.
+If you're wondering why we're using `1000` instead of `1024` for our math, you're asking good question. And the answer points to a long, and honestly, quite dumb history, but it is worth taking a quick tangent.
 
 The tl; dr is: computer scientists really love binary systems and think `2 ** 10` or `1024` is a convenient large group.
 Engineers really love base-10 systems and think `10 ** 3` or `1000` is a really useful group.
@@ -157,11 +157,11 @@ totalsize/(1024 ** 4)
 
 1.62 TB seemingly shrank down to 1.47 TiB.
 It didn't really shrink, but the units that we used to measure can change our perception.
-If this is all feeling a little rabbit-holey and inane, just know: how you communicate about data does matter, especially given this inexplicably long-standing historical confusion. 
+If this is all feeling a little rabbit-holey and inane, just know: how you communicate about data does matter, especially given this long-standing historical confusion. 
 If your storage provider sells storage by the TB while you calculate by the TiB, you might be surprised by your bill.
 Clarity is Queen!
 
-But as we’re working in and with Python, we should recognize that we have both monster data crunching analysis/power at our fingertips and a community that has faced similar issues as us. Often, someone else has already created the tool/package we’re in need of. So in this sense, Python could be thought of as a thieves paradise.
+But as we’re working in and with Python, we should recognize that we have monster data crunching analysis/power at our fingertips, and a built-in community that has already faced similar issues. Often, someone else has already created the tool/package that we’re in need of, so in this sense, Python could be thought of as a thieves paradise.
 
 Instead of remembering the history of binary and base-10 number systems, we can outsource this labor by installing a package (hurry.filesize) that will do the heavy lifting for us.
 
@@ -233,7 +233,7 @@ size(totalsize, system=si)
 {: .language-python}
 
 ~~~
-1.T62
+1.62T
 ~~~
 {: .output}
 
@@ -254,7 +254,7 @@ Underneath the hood, hurry.filesize does the same math we did above, divide our 
 
 ## pymediainfo and collecting duration information
 
-Let’s turn from data to duration, another key piece of information that we’ll often be asked to aggregate when we begin to work at scale (average duration by format can serve a critical role when forecasting anticipated needs).
+Let’s turn from data to duration, another key piece of information that we’ll often be asked to aggregate when we begin to work at scale (average duration by format can help when forecasting anticipated needs).
 
 Here, we’ll call upon another python package: pymediainfo, a python wrapper for the open source technical metadata tool MediaInfo. pymediainfo is the shit, and though there are other ways (repeated subprocess calls) to incorporate MediaInfo into our python code, pymediainfo is elegant and has a relatively low bar to entry.
 
@@ -265,7 +265,7 @@ pip3 install pymediainfo
 ~~~
 {: .language-python}
 
-Is an obvious good first step; from there, things get a bit more complicated, as we’ll need to understand how pymediainfo creates a special class for MediaInfo track-related information. 
+Is a  good first step; from there, things get a bit more complicated, as we’ll need to understand how pymediainfo creates a special class for MediaInfo track-related information. 
 
 We won’t be going deep on classes today, but the important thing to keep in mind is that to use pymediainfo correctly, we need to first be able to direct it to the information we’re trying to gather. It’s essentially a weird syntax issue, but good news: we’re gonna get you started!
 
@@ -371,7 +371,7 @@ for track in media_info.tracks:
 ~~~
 {: .output}
 
-This undoubtedly for a more human-readable option, but when we try to sum up the entire collection that human-readability can be a liability.
+This undoubtedly makes for a more human-readable option, but when we try to sum up the entire collection, that human-readability can be a liability.
 
 ~~~
 durations = []
@@ -412,7 +412,7 @@ sum(durations)
 
 > ## Python Syntax: Finding help for python functions
 >
-> If you run into an error,Python offers built-in help pages that can yield real insight into the inner-workings of different modules, classes, functions, etc. Google/Stack Exchange are always a good place for additional information, but sometimes it’s super handy to get the lowdown directly from the source itself.
+> If you run into an error, Python offers built-in help pages that can yield real insight into the inner-workings of different modules, classes, functions, etc. Google/Stack Exchange are always a good place for additional information, but sometimes it’s super handy to get the lowdown directly from the source itself.
 >
 > So let’s use the sum function as our example, and walk through how to pull up Python’s help pages.
 > Type the word ‘help’ and follow it with the item about which you’d like more information, contained within parentheses:
@@ -437,9 +437,9 @@ sum(durations)
 > quit()
 {: .callout}
 
-So calculating is easier with in milliseconds (integers), but reading is easier in in HH:MM:SS:MS (strings).
-Our challenge is to do all the calculating with milliseconds and then printing the final result as HH:MM:SS.
-Now, this being the wide world of python, there is a module (called datetime) that we could use to transform our HH:MM:SS into a shape (called a datetime object) that could be manipulated, but, for now, let’s stick to a more manageable solution.
+While calculating is easier with milliseconds (integers), reading is far easier to do in HH:MM:SS:MS (strings).
+Our challenge is to do all of the calculating with milliseconds and then printing the final result as HH:MM:SS.
+Now, this being the wide world of python, there is a module (called datetime) that we could use to transform our HH:MM:SS into a shape (called a datetime object) that could be manipulated, but for now, let’s stick to a more manageable solution.
 
 As with our summing of bytes, we can easily make a few small changes to our code to add our individual durations to a new list:
 
@@ -492,7 +492,7 @@ print(sum(durations)/len(durations))
 
 ## Putting it all together
 
-And we can put all of the pieces together, using hurry.filesize, pymediainfo, a slew of for loops, multiple lists, os.walk, endswith statements, and a formatted print statement to result in a script that will comb through our directory, count up all of the relevant media files, and let us know: (1) the total number of files, (2) the average duration in human readable form, and (3) the average file size, in the SI system.
+We can put all of the pieces together, using hurry.filesize, pymediainfo, a slew of for loops, multiple lists, os.walk, endswith statements, and a formatted print statement to result in a script that will comb through our directory, count up all of the relevant media files, and let us know: (1) the total number of files, (2) the average duration in human readable form, and (3) the average file size, in the SI system.
 
 ~~~
 media_list = [ ]
