@@ -12,18 +12,18 @@ objectives:
 keypoints:
 - "Collecting filepaths is often the first step of any AV script"
 - "The import statement allows you to expand Python's functionality by loading modules with specialized functions"
-- "Standard distribution modules are installed with Python. Other modules must be installed."
+- "Standard distribution modules are installed with Python. Other modules must be installed"
 - "Two common modules for listing files with Python are `os` and `glob`"
 - "The filepath is the sequence of parent folders that define the location of a particular file or directory"
 ---
 
 ## The First Step: Finding Files
 
-Before Alice can do anything with any file in Python, she needs to be able to refer to files in Python.
+Before Alice can do anything with any file in Python, she first needs to be able to refer Python to the location that file.
 
 ## Navigating filenames, file paths, and file systems
 
-Gaining a basic understanding of file systems is the first step to learn how to find and work with files. File systems provide a structured method for arranging data on a storage device. If you've ever formatted a hard drive using Disk Utility (macOS) or Disk Management (Windows), you've applied some form of file system to your device. That file system allows is what makes it possible to create files and folders on your storage device.
+Gaining a basic understanding of file systems is the first step in learning how to find and work with files. File systems provide a structured method for arranging data on a storage device. If you've ever formatted a hard drive using Disk Utility (macOS) or Disk Management (Windows), you've applied some form of file system to your device. That file system is what makes it possible to create files and folders on your storage device.
 
 File systems have different rules, regulations, and ways of behaving; in your work as AV archivists, you'll most likely encounter a few common acronyms:
 
@@ -33,15 +33,15 @@ File systems have different rules, regulations, and ways of behaving; in your wo
 * HFS+ (old macOS, aka Mac OS Extended)
 * APFS (new macOS as of 2019)
 
-If you have used a program like Windows Explorer or macOS Finder, you probably have an intuitive sense of how to navigate within a file system by using a mouse to click or double-click on folders or file icons. When we use scripts, we use the same kind of logic to express the location of a particular object within the larger hierarchical system structure, the file path.
+If you've used a program like Windows Explorer or macOS Finder, you probably have an intuitive sense of how to navigate within a file system by using a mouse to click or double-click on folders or file icons. When we use scripts, we use a similar logic to express the location of a particular object within the larger hierarchical system structure -- the file path.
 
-File paths are a series of text-based breadcrumbs, that describe the location of a particular file or directory. There are two types of file paths: 
+File paths are a series of text-based breadcrumbs that describe the location of a particular file or directory. There are two types of file paths: 
 * absolute, or full file paths, which include what's called the root directory, or the top-most level of your file system
 * relative file paths, which provide a file's location in relation to your current working directory.
 
 Alice uses macOS. For her, the root directory is the slash character `/`. Every absolute file path will start with `/`.
 
-The absolute file path to a cool file on her desktop would be: `/Users/alice/Desktop/CoolStuff/qckitty.gif` That path will always lead to that file no matter where you're working from.
+The absolute file path to a cool file on her desktop would be: `/Users/alice/Desktop/CoolStuff/qckitty.gif` That path will always lead to that file, no matter where she's working from (her current working directory).
 
 > ## Root Directories on Windows vs Mac/Linux
 >
@@ -51,13 +51,13 @@ The absolute file path to a cool file on her desktop would be: `/Users/alice/Des
 > And `C:\` generally refers to the root directory that contains user files, programs, and windows itself.
 >
 > On Mac/Linux, the operating system defines a single file system for all devices.
-> The root folder is '\'.
-> If you plug in an external drive, it is probably mounted as a folder in '\Volumes\'.
+> The root folder is '/'.
+> If you plug in an external drive, it is probably mounted as a folder in '/Volumes/'.
 {: .callout}
 
-Some portions of that path like `Desktop` may be familiar as folders you might see in a GUI.
-A file path encodes the same heirarchy of folders that we click through, expressing it as folder names divided by slashes.
-We know `CoolStuff` is a subdirectory stored inside of `Desktop`.
+Some portions of that path, for example, `Desktop`, might be as familiar to you as the folders you see in a GUI.
+A file path encodes the same hierarchy of folders that we click through, expressing it as series of folder names divided by slashes.
+We know that `CoolStuff` is a subdirectory stored inside of `Desktop`.
 We can also see that `Desktop` is a subdirectory of `alice`, which is a subdirectory of `Users` which is a subdirectory of root.
 
 ____diagram of folders____
@@ -65,8 +65,8 @@ ____diagram of folders____
 You may not see folders like `Users` on a regular basis.
 As computer users, we spend more time working from a folder like `Desktop` and thinking about the locations of files relative to that folder.
 The relative file path to `qckitty.gif` from Alice's `Desktop` is `CoolStuff/qckitty.gif`.
-That path only works relative from the `Desktop` folder.
-If we try to access `CoolStuff/qckitty.gif` from the root folder, our computer will report an error that it can find anything at that path.
+That path only works in relation to the `Desktop` folder.
+If we try to access `CoolStuff/qckitty.gif` from the root folder, our computer will report an error, explaining that it cannot find anything at that path.
 
 This distinction will become particularly important as we begin using Python to find and do things to different kinds of files.
 Our first step will always be gathering up file paths based upon a chosen quality such as filename extension.
@@ -105,7 +105,7 @@ os.listdir()
 
 `os.listdir()` prints the names of files and folders in the current directory as a list.
 
-We can also try listing folders in the video file directory.
+We can also try listing folders in one of our video file directories.
 
 On macOS:
 ~~~
@@ -167,7 +167,7 @@ os.listdir('/')
 {: .callout}
 
 ## Importing modules
-To start listing files, we had to run two lines of code. The first was to import a module.
+To start listing files, Alice had to run two lines of code. The first was to import a module.
 
 Modules, or code libraries designed to expand Python's functionality, can be, at times, a little tricky. There are different kinds of modules in Python: 
 * standard distribution modules, which are built into Python itself;
@@ -183,7 +183,7 @@ help('modules')
 
 The base python environment has very few functions built-in.
 In order to power yourself up, you need to import modules with the functions you need.
-You only need to load a module once per script, so to make sure we load every module that we need, we typically put all import statements at the very top of a script.
+You only need to load a module once per script and, to make sure we load every module that we need, we typically put all of our import statements at the very top of a script.
 
 > ## Python Syntax: Modules and `.`
 >
@@ -247,7 +247,7 @@ help(os.walk)
 ~~~
 {: .language-python}
 
-From the help text, we can see that os.walk works through a directory tree structure and for each folder that it finds, it generates:
+From the help text, we can see that os.walk works through a directory tree structure and, for each folder that it finds, it generates:
 * the relative path to the folder (dirpath)
 * a list of subfolders in the folder (dirnames)
 * a list of files in the folder (filenames)
@@ -291,7 +291,7 @@ for root, subdirs, files in os.walk('.'):
 ~~~
 {: .language-python}
 
-Comparing the output, for each folder name from the first command, there is a corresponding list of files in the second command.
+Comparing the outputs, for each folder name from the first command there is a corresponding list of files in the second command.
 
 > ## Printing, `for` loops, and Jupyter
 >
@@ -311,9 +311,9 @@ Comparing the output, for each folder name from the first command, there is a co
  
 ### A trip down the os.path, with a sidetrack to strings
 
-If we want to activate Python in this "do things" sense, we need provide it with a clear sense of where exactly our files are located within our system.
-To achieve this, we will need to combines the folder names and file names that we generated above.
-For that we'll take a stroll down the `os.path`, the piece of the os module that allows for pathname manipulation.
+If we want to activate Python in this "do things" sense, we need give it with a clear sense of where exactly our files are located within our system.
+To achieve this, we will need to combine the folder names and file names that we generated above.
+For that, we'll take a stroll down the `os.path`, the piece of the os module that allows for pathname manipulation.
 
 Functions in `os.path` try to understand any string as a filepath. 
 
@@ -328,7 +328,7 @@ Functions in `os.path` try to understand any string as a filepath.
 We can use our QCKitty absolute path to walk through a few of the ways that `os.path` can process a string into information about out filesystem:
 
 ~~~
-kittypath = '/Users/benjaminturkus/Desktop/CoolStuff/qckitty.gif'
+kittypath = '/Users/username/Desktop/CoolStuff/qckitty.gif'
 ~~~
 {: .language-python}
 
@@ -360,7 +360,7 @@ os.path.splitext(kittypath)
 {: .language-python}
 
 ~~~
-('/Users/benjaminturkus/Desktop/CoolStuff/qckitty', '.gif')
+('/Users/username/Desktop/CoolStuff/qckitty', '.gif')
 ~~~
 {: .output}
 
@@ -382,7 +382,7 @@ os.path.abspath(relpath)
 {: .language-python}
 
 ~~~
-/Users/benjaminturkus/Desktop/CoolStuff/qckitty.gif
+/Users/username/Desktop/CoolStuff/qckitty.gif
 ~~~
 {: .output}
 
@@ -397,25 +397,25 @@ qckitty.gif
 ~~~
 {: .output}
 
-We can find the folder that hold the last piece of the filepath.
+We can find the folder that holds the last piece of the filepath.
 ~~~
 os.path.dirname(kittypath)
 ~~~
 {: .language-python}
 
 ~~~
-/Users/benjaminturkus/Desktop/CoolStuff
+/Users/username/Desktop/CoolStuff
 ~~~
 {: .output}
 
-We can do both of the last two actions at once. 
+We can perform both of the last two actions at once. 
 ~~~
 os.path.split(kittypath)
 ~~~
 {: .language-python}
 
 ~~~
-('/Users/benjaminturkus/Desktop/CoolStuff', 'qckitty.gif')
+('/Users/username/Desktop/CoolStuff', 'qckitty.gif')
 ~~~
 {: .output}
 
@@ -427,7 +427,7 @@ os.path.join(dirpath, 'nonexistant_file.gif')
 {: .language-python}
 
 ~~~
-('/Users/benjaminturkus/Desktop/CoolStuff/qckitty.gif')
+('/Users/username/Desktop/CoolStuff/qckitty.gif')
 ~~~
 {: .output}
 
@@ -476,7 +476,7 @@ The reason for taking this extra step—joining together path elements to create
 
 Now that we've figured out how to print full file paths for all of the files located within our chosen directory, we'll move on to the next piece of using Python for AV file management: gathering those paths into a list, one of Python's main collection data types. 
 
-Each of Python's four collection data types—lists, tuples, sets, and dictionaries—have different rules governing their behavior, and different ways of operating. Knowing these rules, and knowing when to choose one type over the other, is an important step in advancing one's Python knowledge. But as this workshop is geared toward showing, not telling, we'll continue to be selective in our review of the basics.
+Each of Python's four collection data types—lists, tuples, sets, and dictionaries—have different rules governing their behavior and different ways of operating. Knowing these rules, and knowing when to choose one type over the other, is an important step in advancing one's Python knowledge. But as this workshop is geared toward showing, not telling, we'll continue to be selective in our review of the basics.
 
 We've already seen lists created by other functions, but we haven't talked about what makes them different or useful.
 In Python, lists are indicated by comma-separated items that are contained within square brackets:
@@ -563,7 +563,7 @@ print(kittylist)
 ~~~
 {: .output}
 
-And, as we've done a few time now and will continue to do, we can use `for` loops to perform repetitive actions on each item contained within a list:
+And, as we've already done a few times, we can use `for` loops to perform repetitive actions on each item contained within a list:
 
 ~~~
 for animal in kittylist:
@@ -590,7 +590,7 @@ mov_list = [ ]
 ~~~
 {: .language-python}
 
-Then, we'll use os.walk, a for loop, an if statement, the endswith string method, and the os.path join method, to find all the files, filter one for the ones we need, and store their paths in our list:
+Then, we'll use os.walk, a for loop, an if statement, the endswith string method, and the os.path join method, to find all the files, filter for the ones we need, and store their paths in our list:
 
 ~~~
 for root, dirs, files in os.walk(mydir):
@@ -613,7 +613,7 @@ for root, dirs, files in os.walk(mydir):
 {: .callout}
 
 
-To confirm that this has gone down in the way that we imagined, we can use the print statement to ensure that our list contains Quicktime (and only Quicktime) file paths:
+To confirm that this has gone down in the way we imagined, we can use the print statement to ensure that our list contains Quicktime (and only Quicktime) file paths:
 
 ~~~
 mov_list
@@ -636,7 +636,7 @@ mov_list
 
 `os.walk()` is not the only way to make a file list.
 Earlier, we loaded the glob module.
-`glob` includes functions that do a lot of the `for` looping and path glueing that we just did for us.
+`glob` includes functions that do a lot of the `for` looping and path gluing that we just did for ourselves.
 
 The `glob.glob` function understands filepaths like `os.walk` except it interprets special characters as wildcards. For example:
 
@@ -647,16 +647,16 @@ mov_list = glob.glob(os.path.join(mydir, "**", "*mov"), recursive=True)
 ~~~
 {: .language-python}
 
-Here, we're asking glob to behave in a fashion similar to os.walk, and recursively dig through directories to identify any Quicktime file located within. In fact, underneath the hood the glob module is join the forces of two other Python modules: os.scandir (a cousin of os.walk) and fnmatch.fnmatch (a module devoted to pattern matching).
+Here, we're asking glob to behave in a fashion similar to os.walk, and recursively dig through directories to identify any Quicktime file located within. In fact, underneath the hood the glob module is joining the forces of two other Python modules: os.scandir (a cousin of os.walk) and fnmatch.fnmatch (a module devoted to pattern matching).
 
-And we can use more powerful, filtering patters. Say, Alice want to find the files that use her institution's file naming system, which uses a three-digit pattern. We could do this with glob in a quick and easy way:
+We can create even more powerful filtering pattern matching. Say, for example, that Alice wants to find the files oh her hard drive that match her institution's file naming system, which uses a three-digit pattern. We could do this with glob in a quick and easy way:
 
 ~~~
 goodfn_mov_list = [file for file in glob.glob(mydir + "**/*[0-9][0-9][0-9]*mov", recursive=True)]
 ~~~
 {: .language-python}
 
-If you're thinking, "If I have the power of `glob.glob` in one line, when should I write all the looping of `os.walk`?" you're asking a good question.
+If you're thinking, "If I have the power of `glob.glob` in one line, why should I bother writing all the looping of `os.walk`?" you're asking a good question.
 
 > ## Finding out how many Quicktime files
 >
