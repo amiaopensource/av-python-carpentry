@@ -22,11 +22,11 @@ At a high level, computers do four things:
 * communicate with each other, and
 * interact with us
 
-Computers can interact with us in many different ways, such as through a keyboard and mouse, touch screen interfaces, or using speech recognition systems. While touch and voice interfaces are becoming more commonplace, most interaction is still peformed using traditional screens, mice, touchpads and keyboards.
+Computers can interact with us in many different ways, such as through a keyboard and mouse, touch screen interfaces, or using speech recognition systems. While touch and voice interfaces are becoming more commonplace, most interaction is still peformed using traditional screens, mice, touchpads, and keyboards.
 
-The graphical user interface (GUI) is the most widely used way to interact with personal computers. We provide instructions (to run a program, to copy a file, to create a new folder/directory) with the convenience of a few mouse clicks. This way of interacting with a computer is intuitive and very easy to learn. But it scales very poorly if we need to perform an action repeatedly, or in slightly different circumstances. For example, if we wanted to create 100 MP4s from 100 preservation videos stored in 100 directories, it would be a distinct challenge.
+The graphical user interface (GUI) is the most widely used way of interacting with personal computers. We provide instructions (to run a program, copy a file, create a new folder/directory) with the convenience of just a few mouse clicks. This way of interacting with a computer is intuitive and very easy to learn. But it scales very poorly if we need to perform an action repeatedly, or in slightly different circumstances. For example, if we wanted to create 100 MP4s from 100 preservation master videos stored in 100 directories, it would be a distinct challenge.
 
-This is where we take advantage of the Python - a programming language designed to make repetitive tasks consistent and automated. It can take a single instruction and repeat it as is, or, with some modification, as many times as we would like. The script for the task described above can be written in a few minutes.
+This is where we take advantage of the Python - a programming language designed to make repetitive tasks consistent and automated. It can take a single instruction and perform a set task, or, with some slight modifications, in a repetetive manner as many times as we would like. The script for the task described above (generating derivative video files) can be written in a few minutes.
 
 > ## Bash and Python
 >
