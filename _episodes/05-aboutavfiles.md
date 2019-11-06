@@ -70,7 +70,7 @@ for item in media_list:
 ~~~
 {: .language-python}
 
-We can, with some adjustments, build out this script to collect the full list of the technical attributes described above:
+With some adjustments, we can build this script out to collect the full list of the technical attributes described above:
 
 ~~~
 media_list = [ ]
@@ -117,10 +117,10 @@ for item in media_list:
 ~~~
 {: .language-python}
 
-This may look wildly intimidating, but we’re expanding on what our previous efforts.
+This may look wildly intimidating, but we’re really just making a small expansion on our previous efforts.
 First, we've used lists to collect a single piece information about a bunch of files.
 Now, we're collecting multiple pieces of information, so we store all of that information for each file that we survey in a list.
-In the end, we create a `all_file_data`, “multi-dimensional container,” a list that contains a list for each file. 
+In the end, we create `all_file_data`, a “multi-dimensional container,” or a list that contains wihin it a list for each file. 
 
 Let's print each item in `all_file_data` to see what this looks like.
 
@@ -142,19 +142,19 @@ for item in sorted(all_file_data):
 ~~~
 {: .output}
 
-For each file, we generated technical metadata with pymediainfo and then stored selected pieces of that metadata in a list (a group of comma-separated values contained in brackets).
+For each file, we generated technical metadata with pymediainfo and then stored select pieces of metadata in a list (a group of comma-separated values contained in brackets).
 
 Because MediaInfo organizes technical metadata by track, we had to collect each piece of metadata from the appropriate track whether “General,” “Video,"" and “Audio”.
 Before, we just a single `if` test to see if our loop was looking at the "General" track.
-Now we added in additional tests with `elif`.
+Now we added in additional tests with `elif` (or if).
 If our loop wasn't looking at the "General" track, maybe it was looking at a "Video" or "Audio" track.
 
-When we were looking at the right track, we then collect our data from that track in a list, either `general_data`, `video_data`, and `audio_data`.
-Once our loop has looked at all of the tracks, we combine `general_data`, `video_data`, and `audio_data`.
+When we were looking at the one of these tracks, we were collecting data from that track into a list, either `general_data`, `video_data`, and `audio_data`.
+And once our loop has looked at all of these tracks, we combine `general_data`, `video_data`, and `audio_data`.
 In Python, we can make a single long list out of multiple smaller lists by using the `+`.
 The new trifecta-combo list is appended to our master list of lists `all_file_data`.
 
-It’s complicated, no doubt, but our goal should be clear: we not only want to gather MediaInfo data, but we want to do so in a way that creates a structured data set that can be easily exported to allow for further analysis.
+It’s complicated, no doubt, but our goal should be clear: we not only want to gather MediaInfo data, but we want to do so in a way that creates a structured data set that can easily be exported to allow for further analysis.
 
 The fields we gathered in the code above may or may not meet your needs.
 You may need to gather less.
@@ -162,7 +162,7 @@ If so, delete those lines.
 You may need to gather other pieces of metadata that MediaInfo collects.
 
 In that case, you'll need to figure out what that field's name is in `pymediainfo`.
-A good strategy for this, as for many questions, is to print out an entire `pymediainfo` report. So, for example, if we ask python print out the “General” attributes, we’ll receive the following:
+A good strategy for this, as for many questions, is to print out an entire `pymediainfo` report. So, for example, if we ask python to print out the “General” attributes, we’ll receive the following:
 
 ~~~
 for item in media_list:
@@ -177,7 +177,7 @@ for track in media_info.tracks:
 ~~~
 {: .output}
 
-It’s yet another long and wordy list, but knowing how pymediainfo organizes information is an important first step in figuring out how to get specific information out of it.
+It’s yet another long and wordy list, but again, knowing how pymediainfo organizes information is an important first step in figuring out how to get specific information out of it.
 
 > ## What are possible flaws in this approach?
 > Think about your experience with AV files and compare that to the data we generated for each file.
@@ -189,10 +189,10 @@ It’s yet another long and wordy list, but knowing how pymediainfo organizes in
 
 ### Trapping errors/exceptions and anticipating diverse collections
 
-The eagle-eyed among you might be beginning to wonder: this code gives us the results we’re after—when surveying a controlled set of PAL and NTSC Quicktime files—but what about when we broaden the pool, and start to survey media files of different types and different specs?
+The eagle-eyed among you might be beginning to wonder: this code gives us the results we’re after—when surveying a controlled set of PAL and NTSC Quicktime files—but what about when we broaden the pool and start to survey media files of different types and different specs?
 Video files that don’t contain audio tracks, audio files that don’t contain video tracks, ISOs of DVDs that contain neither—all of these things will reveal that the code we’ve written is brittle, liable to break down when encountering a less-anticipated situation.
 
-To avoid potential problems, we’ll need to enter the realm of error handling, and more specifically, we’ll need to use what’s called a `try` and `except` block to skip over files that don’t match our “ideal” state.
+To avoid potential problems, we’ll need to enter the realm of error handling; specifically, we’ll need to use what’s called a `try` and `except` block to skip over files that don’t match our “ideal” state.
 
 ~~~
 for item in media_list:
@@ -256,13 +256,13 @@ CSV, or comma separated values, is one of many tabular data structures that pyth
 
 Because we made the effort to create a structured yet accommodating MediaInfo data set within our script (the “list of lists” all_file_data), which, to remind ourselves, looks like this:
 
-...
+~~~
 ['test21', 'mov', 'MPEG-4', 36773291, 1318, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
 ['test22', 'mov', 'MPEG-4', 49968309, 1773, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
 ['test23', 'mov', 'MPEG-4', 26394991, 935, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
 ['test24', 'mov', 'MPEG-4', 11312141, 401, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
 ['test25', 'mov', 'MPEG-4', 65053469, 2311, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
-...
+~~~
 
 We can easily envision how this will port over to something that would look good in Google Sheets or Microsoft Excel.  But to get from inside our jupyter notebook or terminal/cmd window to a separate standalone file, we’ll need to “open” a new CSV file object and “write” data to it.
 
@@ -303,7 +303,7 @@ with open('/Users/benjaminturkus/Desktop/kittydata.csv', 'w') as f:
 {% include links.md %}
 
 > ## List Comprehensions
-> In this workshop we use the following pattern a lot.
+> In this workshop we use the following pattern a lot:
 > ~~~
 > results = []
 > for item in list_of_items:
