@@ -497,6 +497,7 @@ kittylist
 
 ~~~
 ['emu', 'cat', 'dog']
+~~~
 {: .output}
 
 We can calculate the length of a list:
