@@ -179,12 +179,13 @@ pip --version
 {: .language-bash}
 
 ~~~
-pip 19.1.1 from /usr/local/lib/python3.7/site-packages/pip (python 3.7)
+pip 19.1.1 from /usr/local/lib/pytpip 19.3.1 from /opt/anaconda3/envs/amia19/lib/python3.7/site-packages/pip (python 3.7)
+Note: you may need to restart the kernel to use updated packages.hon3.7/site-packages/pip (python 3.7)
 ~~~
 {: .output}
 
 
-pip offers a lot of features, but the ones most relevant to us are related to this process of searching for, installing/uninstalling, and listing packages located in what’s called the Python Package Index, or PyPI (remember too that pip3 -h will direct you to handy help pages).
+pip offers a lot of features, but the ones most relevant to us are related to this process of searching for, installing/uninstalling, and listing packages located in what’s called the Python Package Index, or PyPI (remember too that pip -h will direct you to handy help pages).
 
 Let’s begin our pipping with a search, specifically a search for the hurry.filesize package, which alleviates that very annoying bytes-->something more understandable issue we were grappling with a moment ago.
 
