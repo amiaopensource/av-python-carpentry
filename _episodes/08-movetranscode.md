@@ -94,7 +94,7 @@ Now we can unleash a loop on this problem.
 ~~~
 for item in media_list:
 	if item.endswith('mp4'):
-		shutil(item, service_folder)
+		shutil.copy(item, service_folder)
 
 os.listdir(service_folder)
 ~~~
