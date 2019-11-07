@@ -281,9 +281,9 @@ for track in media_info.tracks:
 {: .language-python}
 
 ~~~
-'General' 4190
-'Audio' 4190
-'Video' 4190
+General 468
+Video 468
+Audio 465
 ~~~
 {: .output}
 
@@ -327,9 +327,14 @@ for item in media_list:
 {: .language-python}
 
 ~~~
-Duration: 4.19 sec.
-Duration: 4.19 sec.
-Duration: 4.19 sec.
+Duration: 0.468 sec.
+Duration: 0.111 sec.
+Duration: 0.267 sec.
+Duration: 0.568 sec.
+Duration: 1.085 sec.
+Duration: 0.337 sec.
+Duration: 0.935 sec.
+...
 ~~~
 {: .output}
 
@@ -350,9 +355,7 @@ for track in media_info.tracks:
 {: .language-python}
 
 ~~~
-['4 s 190 ms', '4 s 190 ms', '4 s 190 ms', '00:00:04.190', '00:00:04:06', '00:00:04.190 (00:00:04:06)']
-['4 s 190 ms', '4 s 190 ms', '4 s 190 ms', '00:00:04.190', '00:00:04:06', '00:00:04.190 (00:00:04:06)']
-['4 s 190 ms', '4 s 190 ms', '4 s 190 ms', '00:00:04.190', '00:00:04:06', '00:00:04.190 (00:00:04:06)']
+['317 ms', '317 ms', '317 ms', '00:00:00.317', '00:00:00;09', '00:00:00.317 (00:00:00;09)']
 ~~~
 {: .output}
 
@@ -366,9 +369,7 @@ for track in media_info.tracks:
 {: .language-python}
 
 ~~~
-00:00:04.190
-00:00:04.190
-00:00:04.190
+00:00:00.317
 ~~~
 {: .output}
 
@@ -457,6 +458,11 @@ sum(durations)
 ~~~
 {: .language-python}
 
+~~~
+69327
+~~~
+{: .output}
+
 To create something more human readable, we could perform a series of equations to transform this value into HH:MM:SS:MS:
 
 ~~~
@@ -473,7 +479,7 @@ human_duration
 {: .language-python}
 
 ~~~
-00:00:09.751
+'00:01:09.327'
 ~~~
 {: .output}
 
@@ -501,9 +507,9 @@ sizes = []
 durations = []
 
 for root, dirs, files in os.walk(mydir):
-    for item in files:
-        if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
-            item_path = os.path.join(root, item)
+    for file in files:
+        if file.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
+            file_path = os.path.join(root, file)
             media_list.append(item_path)
 
 for item in media_list:
@@ -526,7 +532,7 @@ print("Total Number of Files: {} ; Average Duration: {}; Average Size: {}".forma
 {: .language-python}
 
 ~~~ 
-Total Number of Files: 8 ; Average Duration: 00:00:09.751; Average Size: 191M
+Total Number of Files: 135 ; Average Duration: 00:00:00.513; Average Size: 9Mi
 ~~~
 {: .output}
 
