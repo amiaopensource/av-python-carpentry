@@ -6,7 +6,7 @@ questions:
 - "How can you use Python and pymediainfo to learn more about your media files?"
 Objectives:
 - "Use pymediainfo to collect additional (and multiple) pieces of technical metadata"
-- "Use the csv module to export metadata to a file"
+- "Use the csv module to export that metadata to a file"
 keypoints:
 - "Domain specific functions will often require custom tools"
 ---
@@ -55,7 +55,7 @@ media_list = []
 sizes = []
 durations = []
 
-for root, dirs, files in os.walk(mydir):
+for root, dirs, files in os.walk(video_dir):
     for item in files:
         if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
             item_path = os.path.join(root, item)
@@ -76,7 +76,7 @@ With some adjustments, we can build this script out to collect the full list of 
 media_list = [ ]
 all_file_data = []
 
-for root, dirs, files in os.walk(mydir):
+for root, dirs, files in os.walk(video_dir):
     for item in files:
         if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
             item_path = os.path.join(root, item)
@@ -120,7 +120,7 @@ for item in media_list:
 This may look wildly intimidating, but we’re really just making a small expansion on our previous efforts.
 First, we've used lists to collect a single piece information about a bunch of files.
 Now, we're collecting multiple pieces of information, so we store all of that information for each file that we survey in a list.
-In the end, we create `all_file_data`, a “multi-dimensional container,” or a list that contains wihin it a list for each file. 
+In the end, we create `all_file_data`, a “multi-dimensional container,” or a list that contains wihin it a series of lists, one for each file. 
 
 Let's print each item in `all_file_data` to see what this looks like.
 
@@ -132,29 +132,30 @@ for item in sorted(all_file_data):
 
 
 ~~~
-['test12', 'mov', 'MPEG-4', 44700433, 1604, 'v210', 221184000, 720, 576, ['4:3'], '1.067', '25.000', 'PAL', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
-['test13', 'mov', 'MPEG-4', 88623253, 3149, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
-['test14', 'mov', 'MPEG-4', 30173889, 1084, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
-['test15', 'mov', 'MPEG-4', 44315235, 1585, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
-['test16', 'mov', 'MPEG-4', 33526895, 1207, 'v210', 221184000, 720, 576, ['4:3'], '1.067', '25.000', 'PAL', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
-['test17', 'mov', 'MPEG-4', 11316269, 408, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
-['test18', 'mov', 'MPEG-4', 31111805, 1102, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_0642_pres', 'mov', 'MPEG-4', 13199199, 468, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_1777_pres', 'mov', 'MPEG-4', 2832743, 111, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_0171_pres', 'mov', 'MPEG-4', 7541223, 267, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_1464_pres', 'mov', 'MPEG-4', 16023615, 568, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_0458_pres', 'mov', 'MPEG-4', 30174111, 1085, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_0411_pres', 'mov', 'MPEG-4', 9429613, 337, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_0708_pres', 'mov', 'MPEG-4', 26396185, 935, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+...
 ~~~
 {: .output}
 
 For each file, we generated technical metadata with pymediainfo and then stored select pieces of metadata in a list (a group of comma-separated values contained in brackets).
 
 Because MediaInfo organizes technical metadata by track, we had to collect each piece of metadata from the appropriate track whether “General,” “Video,"" and “Audio”.
-Before, we just a single `if` test to see if our loop was looking at the "General" track.
-Now we added in additional tests with `elif` (or if).
+Before, we used a single `if` test to see if our loop was looking at the "General" track.
+Now, we added additional tests with `elif` (or if).
 If our loop wasn't looking at the "General" track, maybe it was looking at a "Video" or "Audio" track.
 
 When we were looking at the one of these tracks, we were collecting data from that track into a list, either `general_data`, `video_data`, and `audio_data`.
-And once our loop has looked at all of these tracks, we combine `general_data`, `video_data`, and `audio_data`.
+And once our loop has looked at all of these tracks, we combined `general_data`, `video_data`, and `audio_data`.
 In Python, we can make a single long list out of multiple smaller lists by using the `+`.
 The new trifecta-combo list is appended to our master list of lists `all_file_data`.
 
-It’s complicated, no doubt, but our goal should be clear: we not only want to gather MediaInfo data, but we want to do so in a way that creates a structured data set that can easily be exported to allow for further analysis.
+It’s complicated, no doubt, but our goal should be clear: we not only do we want to gather MediaInfo data, but we want to do so in a way that creates a structured data set that can easily be exported to allow for further analysis.
 
 The fields we gathered in the code above may or may not meet your needs.
 You may need to gather less.
@@ -162,7 +163,7 @@ If so, delete those lines.
 You may need to gather other pieces of metadata that MediaInfo collects.
 
 In that case, you'll need to figure out what that field's name is in `pymediainfo`.
-A good strategy for this, as for many questions, is to print out an entire `pymediainfo` report. So, for example, if we ask python to print out the “General” attributes, we’ll receive the following:
+A good strategy for this, as for many questions, is to print out an entire `pymediainfo` report. So, for example, if we ask python to print out the stream attributes, we’ll receive the following:
 
 ~~~
 for item in media_list:
@@ -173,7 +174,9 @@ for track in media_info.tracks:
 {: .language-python}
 
 ~~~
-'General', dict_keys(['track_type', 'count', 'count_of_stream_of_this_kind', 'kind_of_stream', 'other_kind_of_stream', 'stream_identifier', 'count_of_video_streams', 'count_of_audio_streams', 'video_format_list', 'video_format_withhint_list', 'codecs_video', 'audio_format_list', 'audio_format_withhint_list', 'audio_codecs', 'complete_name', 'folder_name', 'file_name_extension', 'file_name', 'file_extension', 'format', 'other_format', 'format_extensions_usually_used', 'commercial_name', 'format_profile', 'internet_media_type', 'codec_id', 'other_codec_id', 'codec_id_url', 'codecid_version', 'codecid_compatible', 'file_size', 'other_file_size', 'duration', 'other_duration', 'overall_bit_rate_mode', 'other_overall_bit_rate_mode', 'overall_bit_rate', 'other_overall_bit_rate', 'frame_rate', 'other_frame_rate', 'frame_count', 'stream_size', 'other_stream_size', 'proportion_of_this_stream', 'headersize', 'datasize', 'footersize', 'isstreamable', 'file_last_modification_date', 'file_last_modification_date__local', 'writing_application', 'other_writing_application'])
+General dict_keys(['track_type', 'count', 'count_of_stream_of_this_kind', 'kind_of_stream', 'other_kind_of_stream', 'stream_identifier', 'count_of_video_streams', 'count_of_audio_streams', 'video_format_list', 'video_format_withhint_list', 'codecs_video', 'video_language_list', 'audio_format_list', 'audio_format_withhint_list', 'audio_codecs', 'audio_language_list', 'complete_name', 'folder_name', 'file_name_extension', 'file_name', 'file_extension', 'format', 'other_format', 'format_extensions_usually_used', 'commercial_name', 'format_profile', 'internet_media_type', 'codec_id', 'other_codec_id', 'codec_id_url', 'codecid_version', 'codecid_compatible', 'file_size', 'other_file_size', 'duration', 'other_duration', 'overall_bit_rate_mode', 'other_overall_bit_rate_mode', 'overall_bit_rate', 'other_overall_bit_rate', 'frame_rate', 'other_frame_rate', 'frame_count', 'stream_size', 'other_stream_size', 'proportion_of_this_stream', 'headersize', 'datasize', 'footersize', 'isstreamable', 'file_last_modification_date', 'file_last_modification_date__local', 'writing_application', 'other_writing_application'])
+Video dict_keys(['track_type', 'count', 'count_of_stream_of_this_kind', 'kind_of_stream', 'other_kind_of_stream', 'stream_identifier', 'streamorder', 'track_id', 'other_track_id', 'format', 'other_format', 'commercial_name', 'codec_id', 'codec_id_hint', 'duration', 'other_duration', 'bit_rate_mode', 'other_bit_rate_mode', 'bit_rate', 'other_bit_rate', 'width', 'other_width', 'clean_aperture_width', 'other_clean_aperture_width', 'height', 'other_height', 'clean_aperture_height', 'other_clean_aperture_height', 'pixel_aspect_ratio', 'clean_aperture_pixel_aspect_ratio', 'display_aspect_ratio', 'other_display_aspect_ratio', 'clean_aperture_display_aspect_ratio', 'other_clean_aperture_display_aspect_ratio', 'rotation', 'frame_rate_mode', 'other_frame_rate_mode', 'frame_rate', 'other_frame_rate', 'framerate_num', 'framerate_den', 'frame_count', 'standard', 'color_space', 'chroma_subsampling', 'other_chroma_subsampling', 'bit_depth', 'other_bit_depth', 'scan_type', 'other_scan_type', 'compression_mode', 'other_compression_mode', 'bits__pixel_frame', 'stream_size', 'other_stream_size', 'proportion_of_this_stream', 'language', 'other_language'])
+Audio dict_keys(['track_type', 'count', 'count_of_stream_of_this_kind', 'kind_of_stream', 'other_kind_of_stream', 'stream_identifier', 'streamorder', 'track_id', 'other_track_id', 'format', 'other_format', 'commercial_name', 'format_settings', 'format_settings__endianness', 'format_settings__sign', 'codec_id', 'codec_id_url', 'duration', 'other_duration', 'bit_rate_mode', 'other_bit_rate_mode', 'bit_rate', 'other_bit_rate', 'channel_s', 'other_channel_s', 'channel_positions', 'channel_layout', 'sampling_rate', 'other_sampling_rate', 'samples_count', 'bit_depth', 'other_bit_depth', 'stream_size', 'other_stream_size', 'proportion_of_this_stream', 'language', 'other_language', 'default', 'other_default', 'alternate_group', 'other_alternate_group'])
 ~~~
 {: .output}
 
@@ -189,7 +192,7 @@ It’s yet another long and wordy list, but again, knowing how pymediainfo organ
 
 ### Trapping errors/exceptions and anticipating diverse collections
 
-The eagle-eyed among you might be beginning to wonder: this code gives us the results we’re after—when surveying a controlled set of PAL and NTSC Quicktime files—but what about when we broaden the pool and start to survey media files of different types and different specs?
+The eagle-eyed among you may be wondering: this code gives us the results we’re after—when surveying a controlled set of PAL and NTSC Quicktime files—but what about when we broaden the pool and start to survey media files of different types and different specs?
 Video files that don’t contain audio tracks, audio files that don’t contain video tracks, ISOs of DVDs that contain neither—all of these things will reveal that the code we’ve written is brittle, liable to break down when encountering a less-anticipated situation.
 
 To avoid potential problems, we’ll need to enter the realm of error handling; specifically, we’ll need to use what’s called a `try` and `except` block to skip over files that don’t match our “ideal” state.
@@ -270,6 +273,7 @@ There are, as usual, a number of ways to perform this action, but one common app
 
 But before we do any of that, we’ll first want to give our CSV file a header row with our attributes in named order (this will give us the ability to work with this data in an easier way down the road):
 
+~~~
 with open('/Users/benjaminturkus/Desktop/kittydata.csv', 'w') as f:
     md_csv = csv.writer(f)
     md_csv.writerow([
@@ -297,7 +301,7 @@ with open('/Users/benjaminturkus/Desktop/kittydata.csv', 'w') as f:
         'audio_samplingrate'
     ])
     md_csv.writerows(sorted(all_file_data))
-
+~~~
 
 
 {% include links.md %}
