@@ -653,7 +653,7 @@ Here, we're asking glob to behave in a fashion similar to os.walk, and recursive
 We can create even more powerful filtering pattern matching. Say, for example, that Alice wants to find the files oh her hard drive that match her institution's file naming system, which uses a three-digit pattern. We could do this with glob in a quick and easy way:
 
 ~~~
-goodfn_mov_list = [file for file in glob.glob(video_dir + "**/*[0-9][0-9][0-9]*mov", recursive=True)]
+goodfn_mov_list = [file for file in glob.glob(video_dir + "/**/*[0-9][0-9][0-9]*mov", recursive=True)]
 ~~~
 {: .language-python}
 
