@@ -59,38 +59,8 @@ does not require an internet connection.
 ## Starting JupyterLab
 
 ### Mac OS X
-To start the JupyterLab server you will need to access the command line through the Terminal. 
-There are two ways to open Terminal on Mac.
+In this workshop, we start JupyterLab from Anaconda Navigator.
 
-1. In your Applications folder, open Utilities and double-click on Terminal
-2. Press <kbd>Command</kbd> + <kbd>spacebar</kbd> to launch Spotlight. Type `Terminal` and then 
-double-click the search result or hit <kbd>Enter</kbd>
-
-After you have launched Terminal, type the command to launch the JupyerLab server.
-
-~~~
-$ jupyter lab
-~~~
-{: .bash}
-
-### Windows Users
-To start the JupyterLab server you will need to access the command line through the Command 
-Prompt. Use the shortcut keys <kbd>Windows Logo Key</kbd> + <kbd>R</kbd> to launch the Run window, 
-then type in `cmd` and press Enter.
-
-After you have launched the Command Prompt, type the command:
-
-~~~
-$ jupyter lab
-~~~
-{: .bash}
-
-Below is a screenshot of a similar JupyterLab landing page to the one that should open in your 
-default web browser after starting the JupyterLab server on wither Mac OS X or Windows.
-
-<p align='center'>
-  <img alt="JupyterLab landing page" src="../fig/0_jupyterlab_landing_page.png" width="750"/>
-</p>
 
 ## The JupyterLab Interface
 
@@ -274,117 +244,6 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
     Markdown.
 *   Turn the current cell into a Code cell by entering the Command mode (<kbd>Esc</kbd>/gray) and 
     press the <kbd>Y</kbd> key.
-
-### Markdown does most of what HTML does.
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-~~~
-*   Use asterisks
-*   to create
-*   bullet lists.
-~~~
-  </div>
-  <div class="col-md-6" markdown="1">
-*   Use asterisks
-*   to create
-*   bullet lists.
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-~~~
-1.  Use numbers
-1.  to create
-1.  numbered lists.
-~~~
-  </div>
-  <div class="col-md-6" markdown="1">
-1.  Use numbers
-1.  to create
-1.  numbered lists.
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-~~~
-*  You can use indents
-	*  To create sublists 
-	*  of the same type
-*  Or sublists
-	1. Of different
-	1. types
-~~~
-  </div>
-  <div class="col-md-6" markdown="1">
-*  You can use indents
-	*  To create sublists
-	*  of the same type
-*  Or sublists
-	1. Of different
-	1. types
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-~~~
-# A Level-1 Heading
-~~~
-  </div>
-  <div class="col-md-6" markdown="1">
-# A Level-1 Heading
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-~~~
-## A Level-2 Heading (etc.)
-~~~
-  </div>
-  <div class="col-md-6" markdown="1">
-## A Level-2 Heading (etc.)
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-~~~
-Line breaks
-don't matter.
-
-But blank lines
-create new paragraphs.
-~~~
-  </div>
-  <div class="col-md-6" markdown="1">
-Line breaks
-don't matter.
-
-But blank lines
-create new paragraphs.
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-~~~
-[Create links](http://software-carpentry.org) with `[...](...)`.
-Or use [named links][data_carpentry].
-
-[data_carpentry]: http://datacarpentry.org
-~~~
-  </div>
-  <div class="col-md-6" markdown="1">
-[Create links](http://software-carpentry.org) with `[...](...)`.
-Or use [named links][data_carpentry].
-
-[data_carpentry]: http://datacarpentry.org
-  </div>
-</div>
 
 ### The Notebook will evaluate code and display results
 * Running a line of code can have several outcomes:
