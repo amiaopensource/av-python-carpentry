@@ -506,7 +506,7 @@ media_list = [ ]
 sizes = []
 durations = []
 
-for root, dirs, files in os.walk(mydir):
+for root, dirs, files in os.walk(video_dir):
     for file in files:
         if file.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
             file_path = os.path.join(root, file)
