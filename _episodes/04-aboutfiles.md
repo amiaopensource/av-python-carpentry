@@ -106,17 +106,17 @@ In writing, we use commas to help with this problem, but computers don't need or
 For example:
 
 ~~~
-totalsize = 1625593276037
+totalsize = 16255932760371
 totalsize/(1000 ** 4)
 ~~~
 {: .language-python}
 
 ~~~
-1.625593276037
+1.6255932760371
 ~~~
 {: .output}
 
-Here, `**` is the Python notation for an exponent, so `1000 ** 4` means 1,000,000,000,000 and `1.625593276037` is the number of terabytes
+Here, `**` is the Python notation for an exponent, so `1000 ** 4` means 1,000,000,000,000 and `16.255932760371` is the number of terabytes
 
 
 ### TB vs. TiB (sidetrackkkkkkkk)
@@ -134,28 +134,28 @@ Unfortunately, this didn't really settle the debate, and you can still find mark
 And as our collections grow bigger, it's more and more important to be aware of this.
 
 ~~~
-totalsize = 1625593276037
+totalsize = 16255932760371
 totalsize/(1000 ** 4)
 ~~~
 {: .language-python}
 
 ~~~
-1.625593276037
+16.255932760371
 ~~~
 {: .output}
 
 ~~~
-totalsize = 1625593276037
+totalsize = 16255932760371
 totalsize/(1024 ** 4)
 ~~~
 {: .language-python}
 
 ~~~
-1.4784684717938
+14.784684717934397
 ~~~
 {: .output}
 
-1.62 TB seemingly shrank down to 1.47 TiB.
+16.2 TB seemingly shrank down to 14.7 TiB.
 It didn't really shrink, but the units that we used to measure can change our perception.
 If this is all feeling a little rabbit-holey and inane, just know: how you communicate about data does matter, especially given this long-standing historical confusion. 
 If your storage provider sells storage by the TB while you calculate by the TiB, you might be surprised by your bill.
@@ -171,10 +171,10 @@ We’re still stuck (for the moment) in numbersland, but we’re getting to the 
 
 This is the realm of package management, and if any macOS users are familiar with Homebrew, the program pip plays a similar role within Python, allowing users to install “packages,” or specialized code libraries designed to perform specific, not-handled-by-default tasks.
 
-So we’re back to importing modules, as it were, though these outside modules first require a separate installation step (via pip) before we can import and use them in our code. As we’ve all installed python3 via Anaconda, we’ll have pip3 (the version of pip created for python3) available to us. But, to check our installation, we can type the following:
+So we’re back to importing modules, as it were, though these outside modules first require a separate installation step (via pip) before we can import and use them in our code. As we’ve all installed python3 via Anaconda, we’ll have pip available to us. But, to check our installation, we can type the following:
 
 ~~~
-pip3 --version
+pip --version
 ~~~
 {: .language-bash}
 
@@ -189,7 +189,7 @@ pip offers a lot of features, but the ones most relevant to us are related to th
 Let’s begin our pipping with a search, specifically a search for the hurry.filesize package, which alleviates that very annoying bytes-->something more understandable issue we were grappling with a moment ago.
 
 ~~~
-pip3 search hurry.filesize
+pip search hurry.filesize
 ~~~
 {: .language-bash}
 
@@ -201,14 +201,14 @@ hurry.filesize (0.9)  - A simple Python library for human readable file sizes (o
 And to install hurry.filesize, we do the obvious:
 
 ~~~
-pip3 install hurry.filesize
+pip install hurry.filesize
 ~~~
 {: .language-bash}
 
-To check that we’ve installed hurry.filesize properly, we can list all of the packages that we’ve installed via pip3:
+To check that we’ve installed hurry.filesize properly, we can list all of the packages that we’ve installed via pip:
 
 ~~~
-pip3 list
+pip list
 ~~~
 {: .language-bash}
 
@@ -233,19 +233,19 @@ size(totalsize, system=si)
 {: .language-python}
 
 ~~~
-1.62T
+16.2T
 ~~~
 {: .output}
 
 Or if we need to know the binary equivalent:
 
 ~~~
-size(totalsize, system=si)
+size(totalsize, system=iec)
 ~~~
 {: .language-python}
 
 ~~~
-1.47Ti
+14.7Ti
 ~~~
 {: .output}
 
@@ -261,7 +261,7 @@ Here, we’ll call upon another python package: pymediainfo, a python wrapper fo
 We’ll touch upon many of the different ways that python + MediaInfo can assist with AV file management, but let’s start with installation and the process of gathering up the durations of our files.
 
 ~~~
-pip3 install pymediainfo
+pip install pymediainfo
 ~~~
 {: .language-python}
 
