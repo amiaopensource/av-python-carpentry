@@ -117,7 +117,7 @@ import subprocess
 We'll use the `subprocess.call()` function.
 
 ~~~
-help(subprocess.call())
+help(subprocess.call)
 ~~~
 {: .language-python}
 
