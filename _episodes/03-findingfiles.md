@@ -673,6 +673,7 @@ If you're thinking, "If I have the power of `glob.glob` in one line, why should 
 
 Expanding upon our previous efforts to gather up Quicktime files, we can amend our earlier os.walk and use what’s called a tuple to add a bunch of different media-specific file extensions to our endswith if statement.
 
+~~~
 media_list = [ ]
 
 for root, dirs, files in os.walk(video_dir):
@@ -680,6 +681,8 @@ for root, dirs, files in os.walk(video_dir):
         if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
             item_path = os.path.join(root, file)
             media_list.append(item_path)
+ ~~~
+ {: .language-python}
 
 And from here, our steps will largely be the same as before; we’ll use a new for loop, and the os.stat method, to print out the file size of each file.
 
