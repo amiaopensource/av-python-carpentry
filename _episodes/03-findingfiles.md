@@ -594,7 +594,7 @@ mov_list = [ ]
 Then, we'll use os.walk, a for loop, an if statement, the endswith string method, and the os.path join method, to find all the files, filter for the ones we need, and store their paths in our list:
 
 ~~~
-for root, dirs, files in os.walk(mydir):
+for root, dirs, files in os.walk(video_dir):
     for file in files:
         if file.endswith('.mov'):
             item_path = os.path.join(root, file)
@@ -644,7 +644,7 @@ The `glob.glob` function understands filepaths like `os.walk` except it interpre
 * `*` is a wildcard for part or all of a file name or folder
 * `**` is a wildcard for nested folders
 ~~~
-mov_list = glob.glob(os.path.join(mydir, "**", "*mov"), recursive=True)
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 ~~~
 {: .language-python}
 
@@ -675,7 +675,7 @@ Expanding upon our previous efforts to gather up Quicktime files, we can amend o
 
 media_list = [ ]
 
-for root, dirs, files in os.walk(mydir):
+for root, dirs, files in os.walk(video_dir):
     for file in files:
         if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
             item_path = os.path.join(root, file)
