@@ -3,7 +3,8 @@ title: "Finding Out About AV Files"
 teaching: 20
 exercises: 10
 questions:
-- "How can I use Python and pymediainfo to learn more about media files?"
+- "How can I use Python to collect more technical metadata?"
+- "How can I use Python to create CSVs?"
 Objectives:
 - "Use pymediainfo to collect additional (and multiple) pieces of technical metadata"
 - "Use the csv module to export that metadata to a file"
