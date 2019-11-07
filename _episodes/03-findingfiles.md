@@ -422,7 +422,7 @@ os.path.split(kittypath)
 We can create a path based on components, and let `os.path` handle the syntax.
 ~~~
 dirpath, filename = os.path.split(kittypath)
-os.path.join(dirpath, 'nonexistant_file.gif')
+os.path.join(dirpath, 'nonexistent_file.gif')
 ~~~
 {: .language-python}
 
@@ -432,7 +432,7 @@ os.path.join(dirpath, 'nonexistant_file.gif')
 {: .output}
 
 ~~~
-badpath = os.path.join(dirpath, 'nonexistant_file.gif')
+badpath = os.path.join(dirpath, 'nonexistent_file.gif')
 os.path.isfile(badpath)
 ~~~
 {: .language-python}
