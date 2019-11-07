@@ -3,7 +3,8 @@ title: "Creating a Script"
 teaching: 15
 exercises: 15
 questions:
-- "How do you go from experimentation to production?"
+- "How can I create a Python script to run outside of Jupyter?"
+- "How can I use command-line arguments?"
 objectives:
 - "Use argparse"
 - "Transform Jupyter notebook code into a script"

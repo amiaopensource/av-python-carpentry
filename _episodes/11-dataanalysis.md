@@ -3,7 +3,7 @@ title: "Analysis and Visualization"
 teaching: 20
 exercises: 10
 questions:
-- "How do you use command line utilities in Python?"
+- "How can I use Python to analyze my question?"
 objectives:
 - "Use pandas"
 - "Use seaborn"
