@@ -208,7 +208,7 @@ Let's just focus on untranscoded movs.
 for item in media_list:
 	if item.endswith('mov'):
 		output_file = os.path.join(service_folder, os.path.basename(item).replace('mov', 'mp4'))
-		if os.path.exists(output_file):
+		if not os.path.exists(output_file):
 			subprocess.call(['ffmpeg', '-i', item, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', output_file])
 
 os.listdir(service_folder)
