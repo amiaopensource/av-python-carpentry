@@ -427,7 +427,7 @@ os.path.join(dirpath, 'nonexistent_file.gif')
 {: .language-python}
 
 ~~~
-('/Users/username/Desktop/CoolStuff/qckitty.gif')
+('/Users/username/Desktop/CoolStuff/nonexistent_file.gif')
 ~~~
 {: .output}
 
