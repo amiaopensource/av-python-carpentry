@@ -7,7 +7,7 @@ title: Setup
 ## Introduction
 Every computer is different and every computer user sets up their computer differently. To create a shared environment for all of us, this workshop uses Anaconda to install python, ffmpeg, and the other tools we'll be using, without affecting other parts of your computer.
 
-It’s important to take a little time to set up your computer before this workshop. It will take at 30-60 minutes with a fast Internet connection. If you run into errors, please contact your workshop coordinators.
+It’s important to take a little time to set up your computer before this workshop. It will take about 30-60 minutes with a fast Internet connection. If you run into errors, please contact your workshop coordinators.
 
 If you already have Anaconda installed, jump down to the cloning, virtual environment setup and testing towards the bottom of the page.
 
