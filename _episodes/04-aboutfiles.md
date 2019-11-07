@@ -29,10 +29,11 @@ Frequently, these two tasks go hand in hand. We may generate monthly/quarterly/a
 
 > ## Metadata about Quicktime files
 >
-> If we want to make MP4s from the Quicktime files, what are some of the key pieces of time based media-specific information that we’ll want to ascertain before doing anything else?
+> If we want to make MP4s from the Quicktime files, what are some of the key pieces of information that we’ll want to ascertain before doing anything else?
 > 
 > > ## Solution
-> > 
+
+> > TOTAL NUMBER OF FILES! SIZE! DURATION!
 > {: .solution}
 {: .challenge}
 
@@ -414,9 +415,9 @@ sum(durations)
 
 > ## Python Syntax: Finding help for python functions
 >
-> If you run into an error, Python offers built-in help pages that can yield real insight into the inner-workings of different modules, classes, functions, etc. Google/Stack Exchange are always a good place for additional information, but sometimes it’s super handy to get the lowdown directly from the source itself.
+> If you run into an error, Python offers built-in help pages that can yield insight into the inner-workings of different modules, classes, functions, etc. Google/Stack Exchange are always a good place for additional information, but sometimes it’s most handy to get the lowdown directly from the source itself.
 >
-> So let’s use the sum function as our example, and walk through how to pull up Python’s help pages.
+> So let’s use the sum function, and walk through how to pull up Python’s help pages.
 > Type the word ‘help’ and follow it with the item about which you’d like more information, contained within parentheses:
 >
 > ~~~
@@ -440,8 +441,8 @@ sum(durations)
 {: .callout}
 
 While calculating is easier with milliseconds (integers), reading is far easier to do in HH:MM:SS:MS (strings).
-Our challenge is to do all of the calculating with milliseconds and then printing the final result as HH:MM:SS.
-Now, this being the wide world of python, there is a module (called datetime) that we could use to transform our HH:MM:SS into a shape (called a datetime object) that could be manipulated, but for now, let’s stick to a more manageable solution.
+Our challenge is to do all of the calculating with milliseconds and then print the final result as HH:MM:SS:MS.
+Now, this being the wide world of python, there is a module (called datetime) that we could use to transform our HH:MM:SS:MS into a shape (called a datetime object) that could be manipulated, but for now, let’s stick to a more manageable solution.
 
 As with our summing of bytes, we can easily make a few small changes to our code to add our individual durations to a new list:
 
@@ -484,18 +485,31 @@ human_duration
 {: .output}
 
 
-#### Challenge
-How would you find the average duration of the files?
+> ## Challenge
+>
+> How would you find the average duration of the files?
+>
+> > ## Solution
+>> ~~~
+>> print(sum(durations)/len(durations))
+>> ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
-~~~
-print(sum(durations)/len(durations))
-~~~
-{: .language-python}
 
-~~~
-9751
-~~~
-{: .output}
+> ## Metadata about Quicktime files
+>
+> If we want to make MP4s from the Quicktime files, what are some of the key pieces of information that we’ll want to ascertain before doing anything else?
+> 
+> > ## Solution
+> > TOTAL NUMBER OF FILES! SIZE! DURATION!
+> {: .solution}
+{: .challenge}
+
+
+
+
 
 ## Putting it all together
 
