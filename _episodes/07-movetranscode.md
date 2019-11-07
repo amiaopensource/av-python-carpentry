@@ -3,7 +3,8 @@ title: "Moving and Transcoding Files"
 teaching: 10
 exercises: 20
 questions:
-- "How do you use command line utilities in Python?"
+- "How do you I use Python to move files from one place to another?"
+- "How do you I use Python to run ffmpeg?"
 objectives:
 - "Use shutil to copy and move files"
 - "Use subprocess to call ffmpeg"

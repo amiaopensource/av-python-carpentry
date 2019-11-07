@@ -1,9 +1,10 @@
 ---
-title: "Making Decisions with Metadata"
+title: "Lossless Compression and Codec Decisions"
 teaching: 15
 exercises: 15
 questions:
-- "How do you use information to perform different actions?"
+- "How can I use Python to losslessly compress files?
+- "How can I use Python to move files by codec?"
 objectives:
 - "Use conditionals to perform different actions"
 keypoints:

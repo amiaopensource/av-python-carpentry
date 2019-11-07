@@ -3,7 +3,8 @@ title: "Finding Out About Files"
 teaching: 20
 exercises: 10
 questions:
-- "How do you report on files while using Python?"
+- "How can I use Python to collect more technical metadata?"
+- "How can I use Python to create CSV's?"
 objectives:
 - “Use for loops on lists of objects”
 - “Use os.stat to get file size”

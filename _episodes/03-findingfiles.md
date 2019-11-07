@@ -3,7 +3,7 @@ title: "Finding Files"
 teaching: 20
 exercises: 10
 questions:
-- "How can you use Python to find different types of files?"
+- "How can I use Python to find different types of files?"
 
 objectives:
 - "Import modules to add functions to a Python script"
