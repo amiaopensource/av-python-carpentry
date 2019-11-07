@@ -59,8 +59,11 @@ does not require an internet connection.
 ## Starting JupyterLab
 
 ### Mac OS X
-In this workshop, we start JupyterLab from Anaconda Navigator.
+For this workshop, we start JupyterLab from Anaconda Navigator.
 
+On Windows, click on Start and then Anaconda Navigator in the program list (or search for Anaconda in the search bar and select Anaconda Navigator). On a Mac, open up the finder, and in the Applications folder, double click on Anaconda-Navigator.
+
+At the top of the screen, change the environment from `base` to `amia19`. Then click `Launch` on the JupyterLab tile.
 
 ## The JupyterLab Interface
 
