@@ -32,7 +32,6 @@ Frequently, these two tasks go hand in hand. We may generate monthly/quarterly/a
 > If we want to make MP4s from the Quicktime files, what are some of the key pieces of information that we’ll want to ascertain before doing anything else?
 > 
 > > ## Solution
-
 > > TOTAL NUMBER OF FILES! SIZE! DURATION!
 > {: .solution}
 {: .challenge}
@@ -496,19 +495,6 @@ human_duration
 > > {: .language-python}
 > {: .solution}
 {: .challenge}
-
-
-> ## Metadata about Quicktime files
->
-> If we want to make MP4s from the Quicktime files, what are some of the key pieces of information that we’ll want to ascertain before doing anything else?
-> 
-> > ## Solution
-> > TOTAL NUMBER OF FILES! SIZE! DURATION!
-> {: .solution}
-{: .challenge}
-
-
-
 
 
 ## Putting it all together
