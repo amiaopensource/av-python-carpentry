@@ -173,15 +173,30 @@ To shut down Jupyter notebook, just close the tabs in your browser containing th
 
 You’ll then have to hit "y" and return to confirm that you want to close down Jupyter notebook.
 
-## Setting up the Conda Environment
+## Setting up the Conda Virtual Environment
 
-In Anaconda Navigator, click on the Environment tab on left side of the window.
+As you do programming projects, you will spend a lot of your time using pre-written libraries to speed up your development. Examples include pymediainfo, bagit-python, and pandas. As you work on different projects, you may also find that you end up using different versions of different libraries for different projects.
 
-Click on the Play button next to `base (root)` and select 'Open Terminal'.
+Occasionally, code that works in an old version of a library won’t work in a newer version. So if you open up a new project and install the dependencies, it’s possible that your old project won’t work any more.
 
-Then type (or better still, cut and paste) `conda install -c conda-forge ffmpeg`
+To avoid that problem, a best practice is to use “virtual environments”. Virtual environments allow you to have different versions of Python and different versions of the various libraries you use, so you can install a new version of a library for one project but still use the old version for another project. It’s almost as if you have multiple computers that you can swap between, each having a different setup and configuration, just by running a couple of commands.
 
-When the command console asks to proceed, type `y` then press Enter.
+There is a build in virtual environment feature in Python, but we’re going to use the more flexible virtual environments provided by conda as part of the Anaconda distribution you installed.
+
+First, download the environment setup file for your operating system for this workshop. Right-click the appropriate link below and select save-as.
+
+* [Windows](files/win_env.yaml) 
+* [MacOS/Linux/Unix](files/mac_env.yaml)
+
+Then in Anaconda Navigator, click on the Environment tab on left side of the window.
+
+Click on the `Import` tile at the bottom.
+
+Name the environment `amia19`.
+
+Browse to the environment file you downloaded. It will probably be in your Downloads folders as `***_env.yaml`.
+
+Click the Import button wait while Anaconda Navigator downloads and installs the packages for the workshop.
 
 ## Summary
 
