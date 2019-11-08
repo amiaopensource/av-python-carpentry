@@ -71,7 +71,10 @@ shutil.copy(qckitty_path, service_folder)
 ERROR: something
 ~~~
 {: .output}
-As there wasn't a landing directory ready for our QCKitty, we ended up with a strange malformed "service" file of exactly the same size as our giuf (8.7 MB). We could add an extension and rename the file to0 salvage things, but clearly this wasn't a workable file copying scenario. Let's delete that "service" file and do things the right way. 
+
+As there wasn't a landing directory ready for our QCKitty, we ended up with a strange malformed "service" file that was exactly the same size as our gif (8.7 MB). We could add an extension and rename the file to salvage things, but clearly this wasn't a very workable solution. 
+
+Let's delete that "service" file and do things the right way. 
 With the `os` module, we can use Python to make this folder.
 But, before doing that, it's good practice to make sure the folder doesn't already exist.
 Among python users, this is called Looking Before You Leap (LBYP).
