@@ -167,10 +167,10 @@ In that case, you'll need to figure out what that field's name is in `pymediainf
 A good strategy for this, as for many questions, is to print out an entire `pymediainfo` report. So, for example, if we ask python to print out the stream attributes, we’ll receive the following:
 
 ~~~
-for item in media_list:
-media_info = MediaInfo.parse(media_list[0])
-for track in media_info.tracks:
-    print(track.track_type, track.to_data().keys())
+for file in media_list:
+    media_info = MediaInfo.parse(media_list[0])
+    for track in media_info.tracks:
+        print(track.track_type, track.to_data().keys())
 ~~~
 {: .language-python}
 
