@@ -19,7 +19,7 @@ For this workshop, we'll experiment with transcoding video to FFV1 and rewrappin
 First, we'll mirror the setup for service files.
 
 ~~~
-mkv_folder = os.path.join('Desktop/ami19/mkv')
+mkv_folder = os.path.join('Desktop/amia19/mkv')
 if not os.path.exists(mkv_folder):
 	os.makedirs(mkv_folder)
 ~~~
