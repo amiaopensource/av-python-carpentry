@@ -76,15 +76,13 @@ To do lossless encoding, we'll need to check the format of the original.
 
 ~~~
 for item in media_list:
-	if item.endswith('mov'):
-		output_file = os.path.join(mkv_folder, os.path.basename(item).replace('mov', 'mkv'))
-		media_info = MediaInfo.parse(item)
-		for track in media_info.tracks:
-	       	if track.track_type == "General":
-	            if not track.format == "DV":
-					subprocess.call(['ffmpeg', '-i', media_list[12], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv])
-
-os.listdir(mkv_folder)
+    if item.endswith('mov'):
+        output_file = os.path.join(mkv_folder, os.path.basename(item).replace('mov', 'mkv'))
+        media_info = MediaInfo.parse(item)
+        for track in media_info.tracks:
+            if track.track_type == "General":
+                if not track.format == "DV":
+                    print(output_file, item)
 ~~~
 {: language-python}
 
