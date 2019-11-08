@@ -24,7 +24,7 @@ So why not take advantage of that work first?
 
 ## Moving Files
 
-Unfortunately, when we look at the folders where those service files reside, it looks as if they're all in BagIt bags.
+Unfortunately, when we review the folders where those service files live, it looks like they're all located in [BagIt](https://en.wikipedia.org/wiki/BagIt) bags.
 Moving the files out of the bags would render the bags invalid.
 To avoid that issue, we can make a copy of those service files.
 
@@ -71,9 +71,9 @@ shutil.copy(qckitty_path, service_folder)
 ERROR: something
 ~~~
 {: .output}
-
-Using the `os` module, we can use Python to make this folder.
-Before doing that, it's good practice to make sure the folder doesn't already exist.
+As there wasn't a landing directory ready for our QCKitty, we ended up with a strange malformed "service" file of exactly the same size as our giuf (8.7 MB). We could add an extension and rename the file to0 salvage things, but clearly this wasn't a workable file copying scenario. Let's delete that "service" file and do things the right way. 
+With the `os` module, we can use Python to make this folder.
+But, before doing that, it's good practice to make sure the folder doesn't already exist.
 Among python users, this is called Looking Before You Leap (LBYP).
 
 ~~~
@@ -101,7 +101,7 @@ os.listdir(service_folder)
 {: .language-python}
 
 That's a big chunk of Alice's task performed with a minimal amount of work.
-For the next part, we'll need to invoke some transcoding.
+For the next part, she'll need to do some transcoding.
 
 ## Using ffmpeg from Python
 
