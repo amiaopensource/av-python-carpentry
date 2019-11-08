@@ -115,7 +115,7 @@ video_dir = '/Users/username/Desktop/amia19'
 
 On Windows:
 ~~~
-video_dir = 'C:\Users\username\Desktop\amia19'
+video_dir = 'C:\\Users\\username\\Desktop\\amia19'
 ~~~
 {: .language-python}
 
