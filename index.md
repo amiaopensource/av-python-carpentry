@@ -3,6 +3,7 @@ layout: lesson
 root: .  # Is the only page that doesn't follow the pattern /:path/index.html
 permalink: index.html  # Is the only page that doesn't follow the pattern /:path/index.html
 ---
+
 Python is often referred to as the “swiss army knife” of computer programming languages, capable of meeting the needs of nearly any task with its characteristic ease-of-use, simplicity, and efficiency.
 In this half-day workshop, Nick Krabbenhoeft and Ben Turkus, two members of NYPL’s Research Libraries, will go full Leatherman, introducing participants to all of the ways  Python can have a transformative effect on media digitization workflows. 
 
