@@ -180,14 +180,16 @@ Audio dict_keys(['track_type', 'count', 'count_of_stream_of_this_kind', 'kind_of
 ~~~
 {: .output}
 
+
 It’s yet another long and wordy list, but again, knowing how pymediainfo organizes information is an important first step in figuring out how to get specific information out of it.
+
 
 > ## What are possible flaws in this approach?
 > Think about your experience with AV files and compare that to the data we generated for each file.
 > What types of files would be represented incorrectly with our code?
 > > Files with multiple video or audio tracks.
 > > Files missing some of the fields we asking for.
-> {: .solution}
+>> {: .solution}
 {: .challenge}
 
 ### Using the python CSV module
