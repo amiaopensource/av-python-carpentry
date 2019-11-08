@@ -33,7 +33,7 @@ In this case, let's not look before we leap.
 ~~~
 # /federal_grant/napl_0368_pres.mov
 test_mkv = os.path.join(mkv_folder, os.path.basename(media_list[12]).replace('mov', 'mkv')
-subprocess.call(['ffmpeg', '-i', media_list[12], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv])
+subprocess.call(['ffmpeg', '-i', media_list[12], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv]))
 ~~~
 {: .language-python}
 
