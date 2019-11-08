@@ -228,7 +228,7 @@ Then in our code, we only have to write `function()`.
 There is no right or wrong here, but there is a simplicity to not having to type as much every time we use a module.
 
 ~~~
-from hurry import filesize
+from hurry.filesize import size, si, iec
 size(totalsize, system=si)
 ~~~
 {: .language-python}
