@@ -181,7 +181,7 @@ Occasionally, code that works in an old version of a library won’t work in a n
 
 To avoid that problem, a best practice is to use “virtual environments”. Virtual environments allow you to have different versions of Python and different versions of the various libraries you use, so you can install a new version of a library for one project but still use the old version for another project. It’s almost as if you have multiple computers that you can swap between, each having a different setup and configuration, just by running a couple of commands.
 
-There is a build in virtual environment feature in Python, but we’re going to use the more flexible virtual environments provided by conda as part of the Anaconda distribution you installed.
+There is a built-in virtual environment feature in Python, but we’re going to use the more flexible virtual environments provided by conda as part of the Anaconda distribution you installed.
 
 First, download the environment setup file for your operating system for this workshop. Right-click the appropriate link below and select save-as.
 
@@ -197,6 +197,10 @@ Name the environment `amia19`.
 Browse to the environment file you downloaded. It will probably be in your Downloads folders as `***_env.yaml`.
 
 Click the Import button wait while Anaconda Navigator downloads and installs the packages for the workshop.
+
+## Downloading the Workshop Files
+
+Download all of the files from this [Google Drive](https://drive.google.com/drive/u/0/folders/1QqII7T8oRvwAVdBmZjcNh5DlDc93tR6s), unzip them, and move them to your Desktop.
 
 ## Summary
 
