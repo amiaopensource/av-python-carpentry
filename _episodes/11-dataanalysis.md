@@ -94,26 +94,26 @@ for item in media_list:
 > >
 > > Annoying, to be sure, but to get the results we're after, we'll need to take another os.walk around the block.
 > > 
+> > ~~~
+> > mkv_list = [ ]
+> > 
+> > for root, dirs, files in os.walk(new_mkv_folder):
+> >    for file in files:
+> >       if file.endswith('.mkv'):
+> >            file_path = os.path.join(root, file)
+> >            mkv_list.append(file_path)
+> >
+> > len(mkv_list)
+> > ~~~
+> > {: .language-python}
+> >
+> > ~~~
+> > 102
+> > ~~~
+> > {: .output}
+> >
 > {: .solution}
 {: .challenge}
-
-~~~
-mkv_list = [ ]
-
-for root, dirs, files in os.walk(new_mkv_folder):
-    for file in files:
-        if file.endswith('.mkv'):
-            file_path = os.path.join(root, file)
-            mkv_list.append(file_path)
-
-len(mkv_list)
-~~~
-{: .language-python}
-
-~~~
-102
-~~~
-{: .output}
 
 
 ## The DataFrame--the core data structure of pandas 
@@ -181,18 +181,18 @@ df
 {: .language-python}
 
 ~~~
-filename	origsize	new_size
-0	napl0154	10373547	4941973
-1	napl0202	12261877	385272
-2	napl0259	8489273	325594
-3	napl0408	6603097	2803794
-4	napl0497	11313821	179603
+filename	             origsize	             new_size
+0	napl0154	            10373547	           4941973
+1	napl0202	            12261877	           385272
+2	napl0259	            8489273	             325594
+3	napl0408	            6603097	             2803794
+4	napl0497	            11313821	           179603
 ...	...	...	...
-97	stantonrequest_0162	7544373	1884151
-98	stantonrequest_0196	6597103	181551
-99	stantonrequest_0284	9426295	345124
-100	stantonrequest_1407	7543563	279693
-101	stantonrequest_1882	10366815	378965
+97	stantonrequest_0162	7544373	             1884151
+98	stantonrequest_0196	6597103	             181551
+99	stantonrequest_0284	9426295	             345124
+100	stantonrequest_1407	7543563	             279693
+101	stantonrequest_1882	10366815             378965
 102 rows × 3 columns
 ~~~
 {: .output}
