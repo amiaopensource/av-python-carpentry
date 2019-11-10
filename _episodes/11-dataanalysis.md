@@ -195,7 +195,7 @@ df
 {: .language-python}
 
 ~~~
-filename	    origsize	new_size
+filename	      origsize	    new_size
 0	napl0154	10373547	4941973
 1	napl0202	12261877	385272
 2	napl0259	8489273   	325594
