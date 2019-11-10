@@ -239,12 +239,10 @@ plt.scatter(df['origsize'], (df['new_size'] / df['origsize']), edgecolors='r', c
 plt.savefig('/Users/username/Desktop/scatter.png', dpi=300, bbox_inches='tight')
 ~~~
 {: .language-python}
-
+~~~
 ![Final-Lossless-Scatter](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/gh-pages/assets/img/final-lossless-scatter.png)
-
-![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
-
-
+~~~
+{: .output}
 
 for item in media_list:
     media_info = MediaInfo.parse(item)
