@@ -217,7 +217,9 @@ plt.scatter(df['origsize'], (df['new_size'] / df['origsize']))
 ~~~
 {: .language-python}
 
+
 ![First-Lossless-Scatter](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/gh-pages/assets/img/first-lossless-scatter.png)
+
 
 From here, we can create an image with a bit more pizzazz by adding a title, labels to the X- and Y-axes, color-coding our scatter dots, and incorporating a special Seaborn "darkgrid" style.
 
