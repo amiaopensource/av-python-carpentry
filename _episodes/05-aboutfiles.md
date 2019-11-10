@@ -509,7 +509,7 @@ durations = []
 for root, dirs, files in os.walk(video_dir):
     for file in files:
         if file.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
-            file_path = os.path.join(root, file)
+            item_path = os.path.join(root, file)
             media_list.append(item_path)
 
 for item in media_list:
