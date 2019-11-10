@@ -77,6 +77,20 @@ for item in media_list:
 ~~~
 {: .language-python}
 
+For reference, to identify our DV-encoded Quicktime files, we could easily use a series of nested for loops and if statements:
+
+~~~
+
+for item in media_list:
+    media_info = MediaInfo.parse(item)
+    for track in media_info.tracks:
+        if track.track_type == "Video":
+            if track.format == "DV":
+                print(item)
+~~~
+{: .language-python}
+
+
 > ## Checking our work
 >
 > If we wanted to see if we had an equal count of MOVs and MKVs, how would we do so?
@@ -247,10 +261,14 @@ plt.savefig('/Users/username/Desktop/scatter.png', dpi=300, bbox_inches='tight')
 
 ![Final-Lossless-Scatter](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/gh-pages/assets/img/final-lossless-scatter.png)
 
-for item in media_list:
-    media_info = MediaInfo.parse(item)
-    for track in media_info.tracks:
-        if track.track_type == "Video":
-            if track.format == "DV":
-                print(item)
+If the scatterplot is feeling a little "what is happening here?" to you, know that pandas and matplotlib can be used in more straightforward applications.
+
+Here, for example, is a breakdown of objects digitized by format:
+
+![Piechart-FormatBreakdown](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/gh-pages/assets/img/pie-formatbreakdown.png)
+
+And here's a line graph of objects digitzed per month:
+
+![Linegraph-ObjectsPerMonth](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/gh-pages/assets/img/linegraph-objectsdigitzed.png)
+
 
