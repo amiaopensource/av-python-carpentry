@@ -195,11 +195,11 @@ df
 {: .language-python}
 
 ~~~
-filename	origsize	new_size
+filename	    origsize	new_size
 0	napl0154	10373547	4941973
 1	napl0202	12261877	385272
-2	napl0259	8489273	325594
-3	napl0408	6603097	2803794
+2	napl0259	8489273   	325594
+3	napl0408	6603097   	2803794
 4	napl0497	11313821	179603
 ...	...	...	..
 102 rows × 3 columns
