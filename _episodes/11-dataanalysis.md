@@ -30,7 +30,7 @@ But Alice has realized that while doing the work is one thing, being able to ana
 > * concatenating or joining or grouping by category
 > * visualization 
 >
-> And pandas is really excellent at: reading/writing to a range of metadata formats, including Excel,CSV, JSON, and more!
+> And pandas is really excellent at: reading/writing to a range of metadata formats, including Excel, CSV, JSON, and more!
 > 
 {: .callout}
 
@@ -83,9 +83,15 @@ for item in media_list:
 > 
 > > ## Solution
 > > len(media_list) returns 102
+> >
 > > len(new_mkv_folder) returns 23
+> >
 > > What gives?
-> > The len of media_list counts the list of full file paths that we created for the MOVs; the len of new_mkv_folder returns the number of characters in the relative path 'Desktop/amia19/new_mkvs'.
+> >
+> > The len of media_list counts the list of full file paths that we created for the MOVs.
+> >
+> > The len of new_mkv_folder returns the number of characters in the relative path 'Desktop/amia19/new_mkvs'
+> >
 > > Annoying, to be sure, but to get the results we're after, we'll need to take another os.walk around the block.
 > > 
 > {: .solution}
