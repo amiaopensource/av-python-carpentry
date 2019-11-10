@@ -239,6 +239,7 @@ plt.scatter(df['origsize'], (df['new_size'] / df['origsize']), edgecolors='r', c
 plt.savefig('/Users/username/Desktop/scatter.png', dpi=300, bbox_inches='tight')
 ~~~
 {: .language-python}
+
 ~~~
 ![Final-Lossless-Scatter](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/gh-pages/assets/img/final-lossless-scatter.png)
 ~~~
