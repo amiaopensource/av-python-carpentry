@@ -192,7 +192,7 @@ It’s yet another long and wordy list, but again, knowing how pymediainfo organ
 > > ## Solution
 > >
 > > Files with multiple video or audio tracks.
->> Files missing some of the fields we asking for.
+> > Files missing some of the fields we asking for.
 > {: .solution}
 {: .challenge}
 
@@ -219,7 +219,7 @@ There are, as usual, a number of ways to perform this action, but one common app
 But before we do any of that, we’ll first want to give our CSV file a header row with our attributes in named order (this will give us the ability to work with this data in an easier way down the road):
 
 ~~~
-with open('/Users/benjaminturkus/Desktop/kittydata.csv', 'w') as f:
+with open('/Users/amia19/Desktop/kittydata.csv', 'w') as f:
     md_csv = csv.writer(f)
     md_csv.writerow([
         'filename',

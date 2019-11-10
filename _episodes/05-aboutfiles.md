@@ -489,9 +489,9 @@ human_duration
 > How would you find the average duration of the files?
 >
 > > ## Solution
->> ~~~
->> print(sum(durations)/len(durations))
->> ~~~
+> > ~~~
+> > print(sum(durations)/len(durations))
+> > ~~~
 > > {: .language-python}
 > {: .solution}
 {: .challenge}
