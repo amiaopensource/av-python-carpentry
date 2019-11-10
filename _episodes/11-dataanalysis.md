@@ -240,6 +240,7 @@ plt.savefig('/Users/username/Desktop/scatter.png', dpi=300, bbox_inches='tight')
 ~~~
 {: .language-python}
 
+![alt text](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/tree/gh-pages/assets/img/final-lossless-scatter.png)
 
 
 
