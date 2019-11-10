@@ -105,12 +105,98 @@ for root, dirs, files in os.walk(new_mkv_folder):
         if file.endswith('.mkv'):
             file_path = os.path.join(root, file)
             mkv_list.append(file_path)
-mkv_list
+
+len(mkv_list)
 ~~~
 {: .language-python}
 
+~~~
+102
+~~~
+{: .output}
 
-## The DataFrame--pandas 
+
+## The DataFrame--the core data structure of pandas 
+
+Before we make some cool looking charts, we've first gotta gather up the information we're hoping visualize. 
+To do this, we're going to pull some MediaInfo and feed it into a "dataframe," which is essentially a spreadsheet written into pyhton/pandas memory.
+The precise definition of a DataFrame (from geeksforgeeks.com) is "a two-dimensional, size-mutable, potentially heterogenous tabular data structure with labeled axes (rows and columns)." It might make you shudder, but again, think of it as a spreadsheet.
+
+Step 1: we'll gather up file names and file sizes from our original set of Quicktime files.
+~~~
+all_file_data = []
+
+for item in media_list:
+    media_info = MediaInfo.parse(item)
+    for track in media_info.tracks:
+        if track.track_type == "General":
+            general_data = [
+                track.file_name,
+                track.file_size]
+    all_file_data.append(general_data)
+~~~
+{: .language-python}
+
+Step 2: we'll feed that information into a dataframe, and we'll name the columns.
+
+~~~
+import pandas as pd
+df = pd.DataFrame(all_file_data, columns = ['filename' , 'origsize']) 
+df
+~~~
+{: .language-python}
+
+~~~
+	filename	origsize
+0	napl0154	10373547
+1	napl0202	12261877
+2	napl0259	8489273
+3	napl0408	6603097
+4	napl0497	11313821
+...	...	...
+97	stantonrequest_0162	7544373
+98	stantonrequest_0196	6597103
+99	stantonrequest_0284	9426295
+100	stantonrequest_1407	7543563
+101	stantonrequest_1882	10366815
+102 rows × 2 columns
+~~~
+{: .output}
+
+Step 3: we'll gather the file sizes of our MKVs, and we'll add them to our dataframe by simply declaring a list as a new column.
+
+~~~
+mkv_sizes = []
+for item in mkv_list:
+    media_info = MediaInfo.parse(item)
+    for track in media_info.tracks:
+        if track.track_type == "General":
+            mkv_sizes.append(track.file_size)
+
+
+df['new_size'] = mkv_sizes
+
+df
+~~~
+{: .language-python}
+
+~~~
+filename	origsize	new_size
+0	napl0154	10373547	4941973
+1	napl0202	12261877	385272
+2	napl0259	8489273	325594
+3	napl0408	6603097	2803794
+4	napl0497	11313821	179603
+...	...	...	...
+97	stantonrequest_0162	7544373	1884151
+98	stantonrequest_0196	6597103	181551
+99	stantonrequest_0284	9426295	345124
+100	stantonrequest_1407	7543563	279693
+101	stantonrequest_1882	10366815	378965
+102 rows × 3 columns
+~~~
+{: .output}
+
 
 
 ~~~
