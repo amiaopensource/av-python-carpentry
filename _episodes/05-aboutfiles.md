@@ -42,6 +42,19 @@ Let’s begin by reviewing a few ways Python can be used to determine some of th
 * How big are they individually and cumulatively
 * What is the duration of each file/our set of files?
 
+Just to make sure, here is the code for creating our digital shelflist.
+
+~~~
+media_list = [ ]
+
+for root, dirs, files in os.walk(video_dir):
+    for file in files:
+        if file.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
+            item_path = os.path.join(root, file)
+            media_list.append(item_path)
+~~~
+{: .language-python}
+
 
 ## Finding the total size of all AV files in a directory
 
@@ -50,7 +63,9 @@ Let’s begin by reviewing a few ways Python can be used to determine some of th
 A good place to start is with os.stat, a piece of the os module that provides information on the “status” of a file.
 The stat module offers a wealth of detail related to ownership, permissions, location, creation/modification times, but for our purposes, we’ll be using it to determine file sizes.
 
-First, let's see how it works.
+Our end goal is to write a `for` loop that collects the size of each file.
+A good strategy to build towards the `for` loop is to apply the code to a single element of our list.
+Let's see how `os.stat` works on the first path in `media_list`.
 
 ~~~
 os.stat(media_list[0]).st_size
@@ -61,10 +76,22 @@ The result is a number. It's important to notice that it doesn't have quote mark
 
 > ## Python Syntax: Integers
 >
-> In python, integers consist of numbers `0` through `9` and nothing else. No decimal points. No quotation marks.
+> In Python, integers consist of numbers `0` through `9` and nothing else.
+> No decimal points.
+> No quotation marks.
 > You can do math with an integer: `2 + 2 = 4`
-> If an integer is used as a string, the math glues the strings together instead of calculating a new number: `'2' + '2' = '22'`
+> But, if you do the same math with strings, you will get a very different result: `'2' + '2' = '22'`
 {: .callout}
+
+> ## Numbers that don't act like numbers
+>
+> What are examples of numbers that you use that you wouldn't want to do math with?
+> 
+> > ## Solution
+> > Barcodes often consist of numbers, but it wouldn't make sense to add 2 barcodes together, or compare them to see if one is larger than the other.
+> > It can be much easer to store barcodes as strings, despite how much they look like integers.
+> {: .solution}
+{: .challenge}
 
 We can adapt this code into a `for` loop to look at all of the files.
 
@@ -74,7 +101,8 @@ for item in media_list:
 ~~~
 {: .language-python}
 
-A random sequence of numbers is more useful if we know which number is associated with which file. One way to do this is by using string formatting.
+This list would be more useful if we know which number is associated with which file.
+One way to do this is by using string formatting.
 
 ~~~
 for item in media_list:
@@ -82,7 +110,8 @@ for item in media_list:
 ~~~
 {: .language-python}
 
-But even better than descriptive print statements is gaining an aggregate sense of the data we have on-hand. To accomplish that, we need to save the file size, instead of immediately printing them out. 
+But even better than descriptive print statements is gaining an aggregate sense of the data we have on-hand.
+To accomplish that, we will save the sizes to a list, instead of immediately printing them out. 
 
 ~~~
 size_list = [ ]
@@ -92,16 +121,17 @@ for item in media_list:
 ~~~
 {: .language-python}
 
-Now, with our newly populated file size list, we can use the sum function to add our numbers together.
+Now, with our file size list, we can add our numbers together with the `sum` function.
 
 ~~~
 sum(size_list)
 ~~~
 {: .language-python}
 
-While os.stat provides us with the size (number of bytes as integers) of our files, it can be very hard to tell if you're working with terabytes (`1000000000000`) or 100's of gigabytes (`100000000000`).
+While os.stat provides us with the size (number of bytes as integers) of our files, it can be very hard to tell if you're working with 10's of terabytes (`10000000000000`) or 100's of gigabytes (`100000000000`).
 
-In writing, we use commas to help with this problem, but computers don't need or want the help of commas. If we want to express the total number of bytes as terabytes, we need to ask for that ourselves.
+In writing, we use commas to help with this problem, but computers don't need or want the help of commas.
+If we want to express the total number of bytes as terabytes, we need to ask for that ourselves.
 
 For example:
 
@@ -120,7 +150,8 @@ Here, `**` is the Python notation for an exponent, so `1000 ** 4` means 1,000,00
 
 
 ### TB vs. TiB (sidetrackkkkkkkk)
-If you're wondering why we're using `1000` instead of `1024` for our math, you're asking good question. And the answer points to a long, and honestly, quite dumb history, but it is worth taking a quick tangent.
+If you're wondering why we're using `1000` instead of `1024` for our math, you're asking good question.
+And the answer points to a long, and honestly, quite dumb history, but it is worth taking a quick tangent.
 
 The tl; dr is: computer scientists really love binary systems and think `2 ** 10` or `1024` is a convenient large group.
 Engineers really love base-10 systems and think `10 ** 3` or `1000` is a really useful group.
@@ -130,11 +161,10 @@ A computer scientist would talk about a kilobyte with 1,024 bytes and an enginne
 In the 90s, they "settled" their dispute.
 To talk about base-10 numbers, you should use the familiar SI (International System of Units) prefixes: kilo- (k), mega- (M), giga- (G), tera- (T), etc.)
 To talk about binary numbers, you should use the binary prefixes: kibi- (ki), mebi- (Mi), gibi- (Gi), tebi- (Ti), etc.
-Unfortunately, this didn't really settle the debate, and you can still find marketing materials that mix the two up.
-And as our collections grow bigger, it's more and more important to be aware of this.
+Unfortunately, they didn't really settle the debate, and you can still find marketing materials that mix the two up.
+For us, it's an important distinction as our collections grow bigger.
 
 ~~~
-totalsize = 16255932760371
 totalsize/(1000 ** 4)
 ~~~
 {: .language-python}
@@ -145,7 +175,6 @@ totalsize/(1000 ** 4)
 {: .output}
 
 ~~~
-totalsize = 16255932760371
 totalsize/(1024 ** 4)
 ~~~
 {: .language-python}
@@ -161,7 +190,8 @@ If this is all feeling a little rabbit-holey and inane, just know: how you commu
 If your storage provider sells storage by the TB while you calculate by the TiB, you might be surprised by your bill.
 Clarity is Queen!
 
-But as we’re working in and with Python, we should recognize that we have monster data crunching analysis/power at our fingertips, and a built-in community that has already faced similar issues. Often, someone else has already created the tool/package that we’re in need of, so in this sense, Python could be thought of as a thieves paradise.
+But as we’re working in and with Python, we should recognize that we have monster data crunching analysis/power at our fingertips, and a built-in community that has already faced similar issues.
+Often, someone else has already created the tool/package that we’re in need of, so in this sense, Python could be thought of as a thieves paradise.
 
 Instead of remembering the history of binary and base-10 number systems, we can outsource this labor by installing a package (hurry.filesize) that will do the heavy lifting for us.
 
@@ -171,7 +201,16 @@ We’re still stuck (for the moment) in numbersland, but we’re getting to the 
 
 This is the realm of package management, and if any macOS users are familiar with Homebrew, the program pip plays a similar role within Python, allowing users to install “packages,” or specialized code libraries designed to perform specific, not-handled-by-default tasks.
 
-So we’re back to importing modules, as it were, though these outside modules first require a separate installation step (via pip) before we can import and use them in our code. As we’ve all installed python3 via Anaconda, we’ll have pip available to us. But, to check our installation, we can type the following:
+So we’re back to importing modules, as it were, though these outside modules first require a separate installation step (via pip) before we can import and use them in our code.
+As we’ve all installed Python3 via Anaconda, we’ll have pip available to us.
+But, to check our installation, we can do the following.
+First, open a console Terminal tab by clicking on the `+` sign in the sidebar and clicking on the `Terminal` tiles in the main area.
+
+<p align='center'>
+    <img alt="JupyterLab Main Work Area" src="../fig/0_jupyterlab_main_work_area.png" width="750"/>
+</p>
+
+Then type the following:
 
 ~~~
 pip --version
@@ -187,7 +226,7 @@ Note: you may need to restart the kernel to use updated packages.hon3.7/site-pac
 
 pip offers a lot of features, but the ones most relevant to us are related to this process of searching for, installing/uninstalling, and listing packages located in what’s called the Python Package Index, or PyPI (remember too that pip -h will direct you to handy help pages).
 
-Let’s begin our pipping with a search, specifically a search for the hurry.filesize package, which alleviates that very annoying bytes-->something more understandable issue we were grappling with a moment ago.
+Let’s begin our pipping with a search, specifically a search for the `hurry.filesize` package, which alleviates that very annoying bytes-->something more understandable issue.
 
 ~~~
 pip search hurry.filesize
@@ -206,17 +245,21 @@ pip install hurry.filesize
 ~~~
 {: .language-bash}
 
-To check that we’ve installed hurry.filesize properly, we can list all of the packages that we’ve installed via pip:
+To check that we’ve installed `hurry.filesize` properly, we can list all of the packages that we’ve installed via pip:
 
 ~~~
 pip list
 ~~~
 {: .language-bash}
 
+> ## Already installed
+> Your `pip install` command may report that hurry.filesize has already been installed.
+> We weren't sure how well the Internet would work during this workshop, so we pre-installed it during the setup.
+{: .callout}
 
 #### Incorporating a package (hurry.filesize) into our code
 
-Now that we’ve got hurry.filesize installed, how do we take advantage of the power that it offers?
+Now that we’ve got `hurry.filesize` installed, how do we take advantage of the power that it offers?
 By importing, that’s how!
 
 But we’ll import in a slightly different way, with a `from X, import Y` statement at the start of our code.
@@ -250,25 +293,26 @@ size(totalsize, system=iec)
 ~~~
 {: .output}
 
-Underneath the hood, hurry.filesize does the same math we did above, divide our number by powers of 1,000 or 1,024:
+Underneath the hood, `hurry.filesize` does the same math we did above, divide our number by powers of 1,000 or 1,024.
 
 
 ## pymediainfo and collecting duration information
 
-Let’s turn from data to duration, another key piece of information that we’ll often be asked to aggregate when we begin to work at scale (average duration by format can help when forecasting anticipated needs).
+Let’s turn from bytes to duration, another key piece of information that we’ll often be asked to aggregate when we begin to work at scale (average duration by format can help when forecasting anticipated needs).
 
-Here, we’ll call upon another python package: pymediainfo, a python wrapper for the open source technical metadata tool MediaInfo. pymediainfo is the shit, and though there are other ways (repeated subprocess calls) to incorporate MediaInfo into our python code, pymediainfo is elegant and has a relatively low bar to entry.
+Here, we’ll call upon another Python package: `pymediainfo`, a Python wrapper for the open source technical metadata tool MediaInfo. 
+`pymediainfo` is the shit, and though there are other ways to incorporate MediaInfo into our Python code, pymediainfo is elegant and has a relatively low bar to entry.
 
-We’ll touch upon many of the different ways that python + MediaInfo can assist with AV file management, but let’s start with installation and the process of gathering up the durations of our files.
+We’ll touch upon many of the different ways that Python + MediaInfo can assist with AV file management, but let’s start with installation and the process of gathering up the durations of our files.
 
 ~~~
 pip install pymediainfo
 ~~~
 {: .language-python}
 
-Is a  good first step; from there, things get a bit more complicated, as we’ll need to understand how pymediainfo creates a special class for MediaInfo track-related information. 
+To use `pymediainfo` we’ll need to understand how pymediainfo creates a special class for MediaInfo track-related information. 
 
-We won’t be going deep on classes today, but the important thing to keep in mind is that to use pymediainfo correctly, we need to first be able to direct it to the information we’re trying to gather. It’s essentially a weird syntax issue, but good news: we’re gonna get you started!
+We won’t be going deep on classes today, but the important thing to keep in mind is that to use `pymediainfo` correctly, we need to first be able to direct it to the information we’re trying to gather. It’s essentially a weird syntax issue, but good news: we’re gonna get you started!
 
 ~~~
 from pymediainfo import MediaInfo
@@ -289,7 +333,7 @@ Audio 465
 
 If we break this down into discrete units, we’ve got four key steps:
 
-* the import statement, which calls up pymediainfo;
+* the `import` statement, which calls up `pymediainfo`;
 * running and parsing the output of MediaInfo on a single file, then storing that technical metadata to a for us to retrieve;
 * looping through the `tracks` that MediaInfo reported on
 * printing out, in our Jupyter notebook, the name of each track and its duration.
@@ -304,7 +348,10 @@ for track in media_info.tracks:
 ~~~
 {: .language-python}
 
-We could, for example, have our print statement be more descriptive in nature by using python’s print formatting function.
+By default, pymediainfo returns the time in milliseconds.
+This is frustrating, in that we generally don't talk about a time in milliseconds.
+
+We could, for example, have our print statement be more descriptive in nature by using Python’s print formatting function.
 
 ~~~
 for track in media_info.tracks:
@@ -313,7 +360,7 @@ for track in media_info.tracks:
 ~~~
 {: .language-python}
 
-So here, we ask python to do two additional things: (1) format the print statement to read, “Duration: X sec.”; and (2) divide the milliseconds value by 1000, to return seconds.
+So here, we ask Python to do two additional things: (1) format the print statement to read, “Duration: X sec.”; and (2) divide the milliseconds value by 1000, to return seconds.
 
 Finally, we can use a `for` loop to get this information for every file.
 
@@ -338,9 +385,6 @@ Duration: 0.935 sec.
 ~~~
 {: .output}
 
-By default, pymediainfo returns the time in milliseconds.
-This is frustrating, in that we generally don't talk about a time in milliseconds.
-
 As an alternative, we could take advantage of MediaInfo’s already verbose output, and if we recall, when we ask MediaInfo for a “full” report (mediainfo -F my_movie.mov), we receive a few different expressions of the same value:
 
 In its own roundabout way, pymediainfo allows us to access these various options:
@@ -359,7 +403,7 @@ for track in media_info.tracks:
 ~~~
 {: .output}
 
-If we wanted to select a single choice from this list output, we could subscript in the following way (while keeping in mind that python is always zero-indexed):
+If we wanted to select a single choice from this list output, we could subscript in the following way (while keeping in mind that Python is always zero-indexed):
 
 ~~~
 for track in media_info.tracks:
@@ -408,11 +452,11 @@ sum(durations)
 > * `unsupported operand type(s) for +` - the function specifically can't use `+` for the data provided
 > * `'int' and 'str'` - `+` cannot be used for a mixture of integers and strings
 >
-> Programmers don't always right understandable error message, but copying-and-pasting your error message to a search engine can often help you find people asking the same questions.
+> Programmers don't always write understandable error message, but copying-and-pasting your error message to a search engine can often help you find people asking the same questions and getting better explanations.
 >
 {: .callout}
 
-> ## Python Syntax: Finding help for python functions
+> ## Python Syntax: Finding help for Python functions
 >
 > If you run into an error, Python offers built-in help pages that can yield insight into the inner-workings of different modules, classes, functions, etc. Google/Stack Exchange are always a good place for additional information, but sometimes it’s most handy to get the lowdown directly from the source itself.
 >
@@ -441,7 +485,7 @@ sum(durations)
 
 While calculating is easier with milliseconds (integers), reading is far easier to do in HH:MM:SS:MS (strings).
 Our challenge is to do all of the calculating with milliseconds and then print the final result as HH:MM:SS:MS.
-Now, this being the wide world of python, there is a module (called datetime) that we could use to transform our HH:MM:SS:MS into a shape (called a datetime object) that could be manipulated, but for now, let’s stick to a more manageable solution.
+Now, this being the wide world of Python, there is a module (called datetime) that we could use to transform our HH:MM:SS:MS into a shape (called a datetime object) that could be manipulated, but for now, let’s stick to a more manageable solution.
 
 As with our summing of bytes, we can easily make a few small changes to our code to add our individual durations to a new list:
 
@@ -490,7 +534,7 @@ human_duration
 >
 > > ## Solution
 > > ~~~
-> > print(sum(durations)/len(durations))
+> > sum(durations)/len(durations)
 > > ~~~
 > > {: .language-python}
 > {: .solution}
@@ -499,7 +543,7 @@ human_duration
 
 ## Putting it all together
 
-We can put all of the pieces together, using hurry.filesize, pymediainfo, a slew of for loops, multiple lists, os.walk, endswith statements, and a formatted print statement to result in a script that will comb through our directory, count up all of the relevant media files, and let us know: (1) the total number of files, (2) the average duration in human readable form, and (3) the average file size, in the SI system.
+We can put all of the pieces together, using `hurry.filesize`, `pymediainfo`, a slew of `for` loops, multiple lists, `os.walk`, `endswith` statements, and a formatted print statement to result in a script that will comb through our directory, count up all of the relevant media files, and let us know: (1) the total number of files, (2) the average duration in human readable form, and (3) the average file size, in the SI system.
 
 ~~~
 media_list = [ ]
@@ -527,12 +571,12 @@ seconds = (avg_duration % 60000) // 1000
 ms = avg_duration % 1000
 human_duration = "{:0>2}:{:0>2}:{:0>2}.{:0>3}".format(hours, minutes, seconds, ms)
 
-print("Total Number of Files: {} ; Average Duration: {}; Average Size: {}".format(len(media_list), human_duration, size(sum(sizes)/len(media_list), system=iec)))
+print("Total Number of Files: {} ; Average Duration: {}; Average Size: {}".format(len(media_list), human_duration, size(sum(sizes)/len(media_list), system=si)))
 ~~~
 {: .language-python}
 
 ~~~ 
-Total Number of Files: 135 ; Average Duration: 00:00:00.513; Average Size: 9Mi
+Total Number of Files: 135 ; Average Duration: 00:00:00.513; Average Size: 9M
 ~~~
 {: .output}
 

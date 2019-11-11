@@ -18,7 +18,6 @@ keypoints:
 - "The Notebook has Command and Edit modes."
 - "Use the keyboard and mouse to select and edit cells."
 - "The Notebook will turn Markdown into pretty-printed documentation."
-- "Markdown does most of what HTML does."
 ---
 
 ## Getting Started with JupyterLab
@@ -58,7 +57,6 @@ does not require an internet connection.
 
 ## Starting JupyterLab
 
-### Mac OS X
 For this workshop, we start JupyterLab from Anaconda Navigator.
 
 On Windows, click on Start and then Anaconda Navigator in the program list (or search for Anaconda in the search bar and select Anaconda Navigator). On a Mac, open up the finder, and in the Applications folder, double click on Anaconda-Navigator.
@@ -270,7 +268,7 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 > 
 > > ## Solution (for Mac)
 > >
-> > Python returns the output of only the last line.
+> > Jupyter returns the output of only the last line.
 > > ~~~
 > > '/Users/your_username'
 > > ~~~
@@ -280,7 +278,7 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 
 > ## Running More Python Cells
 >
-> Why do you think this nothing is displayed when this cell is executed?
+> Why do you think that nothing is displayed when this cell is executed?
 >
 > ~~~
 > cwd = os.getcwd()
@@ -289,7 +287,7 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 > 
 > > ## Solution
 > >
-> > Python returns the output of the last line. In this case the last line assigned a value to a variable and did not have output.
+> > Jupyter prints the output of the last line. In this case the last line assigned a value to a variable and did not have output.
 > {: .solution}
 {: .challenge}
 
@@ -306,7 +304,7 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 > > '/Users/your_username'
 > > ~~~
 > > {: .output}
-> > Python returns the output of the last line. In this case the last line assigned a value to a variable and did not have output.
+> >
 > {: .solution}
 {: .challenge}
 
@@ -329,7 +327,8 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 > > '/Users/your_username/Downloads'
 > > ~~~
 > > {: .output}
-> > After changing directories, `os.getcwd()` returns a different value
+> > After changing directories, `os.getcwd()` returns a different value than before.
+> > This value is than stored in the variable `cwd`.
 > {: .solution}
 {: .challenge}
 

@@ -75,7 +75,7 @@ Our first step will always be gathering up file paths based upon a chosen qualit
 >
 > On Windows, the backward slash `\` is used to separate parts of a path.
 > This can be frustrating when moving back and forth between operating systems.
-> We will be using Python to remove some of these frustrations and make scripts that are more universal.
+> We will be using Python to remove some of these frustrations and write code that is more portable.
 > 
 > If you find code in this workshop that doesn't work because it uses the wrong kind of slashes for your operating system, please let us know.
 {: .callout}
@@ -120,24 +120,25 @@ video_dir = 'C:\\Users\\username\\Desktop\\amia19'
 {: .language-python}
 
 ~~~
-os.listdir('/')
+os.listdir(video_dir)
 ~~~
 {: .language-python}
 
 ~~~
-['home',
- 'usr',
- 'Applications',
-...
+['120th anniversary',
+ 'federal_grant',
+ 'on_demand'
+]
 ~~~
 {: .output}
 
 
-> ## Python Syntax: Strings and Lists
+> ## Python Syntax: Strings
 >
 > In order to parse our input, Python has rules about how it should be written.
 > We can use these same rules when reading code to understand what is happening.
 > As different syntaxes appear, we will point them out in these callout boxes.
+> 
 > ### Strings
 > Characters that you want Python to interpret as single piece of text need to be quoted.
 > This is called a string.
@@ -157,13 +158,19 @@ os.listdir('/')
 > A variable is an object that can hold any value.
 > We can update the value of the variable
 > ~~~
-> variable = 'qckitty.gif'
+> cool_file_name = 'qckitty.gif'
 > ~~~
 > {: .language-python}
 >
 > We can also create new variables.
 > A variable name can include any character except space ` `, and it can't begin with a number.
+> ~~~
 > myFavoriteFilename = 'qckitty.gif'
+> ~~~
+> {: .language-python}
+>
+> One of the hardest parts of programming is picking good names for your variables.
+> To help understand your code when you return to it in the future, try to use descriptive names.
 {: .callout}
 
 ## Importing modules
@@ -174,16 +181,26 @@ Modules, or code libraries designed to expand Python's functionality, can be, at
 * third-party modules, which you load, often at the start of your script;
 * home-made modules, which you create to meet your own specific needs.
 
-To figure out which modules you already have installed, you can run one of two commands:
+There are two ways to figure out which modules you already have installed.
+
+When you're in a Jupyter notebook or Python console:
 
 ~~~
 help('modules')
 ~~~
 {: .language-python}
 
+When you're using a terminal:
+
+~~~
+pip list
+~~~
+{: .language-bash}
+
 The base python environment has very few functions built-in.
 In order to power yourself up, you need to import modules with the functions you need.
-You only need to load a module once per script and, to make sure we load every module that we need, we typically put all of our import statements at the very top of a script.
+You only need to load a module once per script.
+To make sure we load every module that we need, we typically put all of our import statements at the very top of a script.
 
 > ## Python Syntax: Modules and `.`
 >
@@ -214,7 +231,9 @@ The `os` module is like a gateway that connects Python to your underlying operat
 
 ## Listing all the files in a directory
 
-If you're asking yourself: are we ever gonna get to finding some damn AV files? We're here! Our time is now!
+If you're asking yourself: are we ever gonna get to finding some damn AV files?
+We're here!
+Our time is now!
 
 > ## Finding files with Bash
 > For reference, in a Unix environment, you might run something like this.
@@ -263,16 +282,24 @@ From the help text, we can see that os.walk works through a directory tree struc
 > {: .solution}
 {: .challenge}
 
+### `for` loops
+
 To work with all of these lists, we will need to use `for` loops, a computer programming method for repeating sections of code.
 During a `for` loop, Python will take items from a list one-at-a-time and perform the same actions on each item.
 
-> ## Python Syntax: For Loops
+__`for` loops will be the most important tool that we'll use in this workshop.__
+
+Dealing with 100's, 1000's, or even more files means a lot of batch processing.
+The `for` loop is the most common way that we'll be doing that batch processing.
+
+
+> ## Python Syntax: `for` Loops
 > In the case of Python, there are a few important things to keep in mind about for loops.
 > The first line of a for loop always looks similar to this:
 `for listitem in somelist:`
 > * for - tells Python it will have to repeat code on multiple items from a list
 > * somelist - the list of items to be worked through
-> * listitem(s) - the generic name(s) to refer to items in the code section
+> * listitem(s - the generic name(s) to refer to items in the code section
 > The body of the `for` loop is always indented from the first line and can include multiple lines of code, even additional `for` loops.
 {: .callout}
 
@@ -306,6 +333,7 @@ Comparing the outputs, for each folder name from the first command there is a co
 > 
 > > ## Solution
 > > Jupyter only displays the final item in the list, because it only displays the results of the final line of code.
+> > Because we're learning about how Python works, during the workshop we will use the `print()` function a lot.
 > {: .solution}
 {: .challenge}
  
@@ -327,8 +355,15 @@ Functions in `os.path` try to understand any string as a filepath.
 
 We can use our QCKitty absolute path to walk through a few of the ways that `os.path` can process a string into information about out filesystem:
 
+On macOS:
 ~~~
 kittypath = '/Users/username/Desktop/CoolStuff/qckitty.gif'
+~~~
+{: .language-python}
+
+On Windows:
+~~~
+kittypath = 'C:\\username\\Desktop\\CoolStuff\\qckitty.gif'
 ~~~
 {: .language-python}
 
@@ -373,6 +408,7 @@ os.path.relpath(kittypath)
 ~~~
 CoolStuff/qckitty.gif
 ~~~
+{: .output}
 
 We can generate the absolute path, if we only have a relative path.
 ~~~
@@ -443,8 +479,9 @@ False
 {: .output}
 
 Returning to os.walk, we want to print a list of file paths.
-Our second command printed lists of files, but `os.path.join` can only join strings together.
-We will need another `for` loop.
+Our second command printed lists of files.
+`os.path.join` can only join strings together.
+To access each string in the lists of files, we will need another `for` loop.
 
 ~~~
 for root, subdirs, files in os.walk('.'):
@@ -467,6 +504,19 @@ for root, subdirs, files in os.walk('.'):
 > Data that will be used by a function is placed within parentheses `(` `)` immediately after the function name.
 > If a function uses more than argument, each argument is separated by a comma.
 > Arguments can be anything, including strings, lists, variables that hold strings, and other functions.
+> However, functions can have rules for what they will accept.
+> For example, using strings as arguments in `os.path.join` returns an error.
+> ~~~
+> os.path.join('Desktop', 'amia19')
+> ~~~
+> {: .language-python}
+>
+> But using the same strings as elements in a list, returns the result we want.
+>
+> ~~~
+> os.path.join(['Desktop', 'amia19'])
+> ~~~
+> {: .language-python}
 {: .callout}
 
 We've successfully listed the absolute path for every file in our directory.
@@ -476,10 +526,34 @@ The reason for taking this extra step—joining together path elements to create
 
 Now that we've figured out how to print full file paths for all of the files located within our chosen directory, we'll move on to the next piece of using Python for AV file management: gathering those paths into a list, one of Python's main collection data types. 
 
-Each of Python's four collection data types—lists, tuples, sets, and dictionaries—have different rules governing their behavior and different ways of operating. Knowing these rules, and knowing when to choose one type over the other, is an important step in advancing one's Python knowledge. But as this workshop is geared toward showing, not telling, we'll continue to be selective in our review of the basics.
+Each of Python's four collection data types—lists, tuples, sets, and dictionaries—have different rules governing their behavior and different ways of operating.
+Knowing these rules, and knowing when to choose one type over the other, is an important step in advancing one's Python knowledge.
+But as this workshop is geared toward showing, not telling, we'll continue to be selective in our review of the basics.
 
 We've already seen lists created by other functions, but we haven't talked about what makes them different or useful.
-In Python, lists are indicated by comma-separated items that are contained within square brackets:
+
+
+> ## Python Syntax: Lists
+> In Python, lists start and end with square brackets `[` `]`.
+> Lists can contain any kind of data, strings, numbers, other lists, etc.
+> Each list item is separated by a comma.
+>
+> This is a list with two items.
+> ~~~
+> ['emu', 'cat']
+> ~~~
+> {: .language-python}
+>
+> This is a list with one item.
+>
+> ~~~
+> ['emu, cat']
+> ~~~
+> {: .language-python}
+> 
+{: .callout}
+
+Let's create a list to explore how they work in Python.
 
 ~~~
 kittylist = ['emu', 'cat', 'dog']
@@ -531,7 +605,7 @@ print(kittylist[2])
 We can use a negative index to begin at the end of a list:
 
 ~~~
-print(kittylist[-1])
+kittylist[-1]
 ~~~
 {: .language-python}
 
@@ -555,7 +629,7 @@ sorted(kittylist)
 We can add items to a list (by using the append method):
 ~~~
 kittylist.append('frog')
-print(kittylist)
+kittylist
 ~~~
 {: .language-python}
 
@@ -584,23 +658,28 @@ for animal in kittylist:
 
 If we combine these techniques, we can get to a place where we can build a list of all the files we're looking for (in Alice's case, all files that have a .mov extension).
 
-First, we'll store an empty list to a variable empty list:  
+First, we'll create an empty list to hold each file path as we generate it.  
 
 ~~~
-mov_list = [ ]
+file_list = [ ]
 ~~~
 {: .language-python}
 
-Then, we'll use os.walk, a for loop, an if statement, the endswith string method, and the os.path join method, to find all the files, filter for the ones we need, and store their paths in our list:
+Then, we'll use `os.walk`, a `for` loop, and `os.path.join` to find all the files and store their paths in our list:
 
 ~~~
 for root, dirs, files in os.walk(video_dir):
     for file in files:
-        if file.endswith('.mov'):
-            item_path = os.path.join(root, file)
-            mov_list.append(item_path)
+        item_path = os.path.join(root, file)
+        file_list.append(item_path)
+
+file_list[0:20]
 ~~~
 {: .language-python}
+
+`file_list` contains the path for every file in `amia19`.
+It would be more useful if we had a list of only the mov files.
+For that we will need an `if` statement.
 
 > ## Python Syntax: `if` statements 
 >
@@ -613,8 +692,22 @@ for root, dirs, files in os.walk(video_dir):
 > It can include multiple lines of code, including more `if` statements.
 {: .callout}
 
+In our case, we would like to know if the end of the filename is `.mov`.
+If it is, we will add the file to our list.
+If it isn't, we will do nothing and go to the next item in our `for` loop.
 
-To confirm that this has gone down in the way we imagined, we can use the print statement to ensure that our list contains Quicktime (and only Quicktime) file paths:
+~~~
+mov_list = []
+
+for root, dirs, files in os.walk(video_dir):
+    for file in files:
+        if file.endswith('.mov'):
+            item_path = os.path.join(root, file)
+            mov_list.append(item_path)
+~~~
+{: .language-python}
+
+Let's look at the list to confirm that it contains what we imagined it should.
 
 ~~~
 mov_list
@@ -648,12 +741,15 @@ mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 ~~~
 {: .language-python}
 
-Here, we're asking glob to behave in a fashion similar to os.walk, and recursively dig through directories to identify any Quicktime file located within. In fact, underneath the hood the glob module is joining the forces of two other Python modules: os.scandir (a cousin of os.walk) and fnmatch.fnmatch (a module devoted to pattern matching).
+Here, we're asking glob to behave in a fashion similar to os.walk, and recursively dig through directories to identify any Quicktime file located within.
+In fact, underneath the hood the glob module is joining the forces of two other Python modules: os.scandir (a cousin of os.walk) and fnmatch.fnmatch (a module devoted to pattern matching).
 
-We can create even more powerful filtering pattern matching. Say, for example, that Alice wants to find the files oh her hard drive that match her institution's file naming system, which uses a three-digit pattern. We could do this with glob in a quick and easy way:
+We can create even more powerful filtering pattern matching.
+Say, for example, that Alice found a filenaming policy that said all filenames should include the item id surrounded by underscores `_`.
+We could do this with glob pattern like this:
 
 ~~~
-goodfn_mov_list = [file for file in glob.glob(video_dir + "/**/*[0-9][0-9][0-9]*mov", recursive=True)]
+goodfn_mov_list = glob.glob(os.path.join(video_dir, "**", "*_[0-9][0-9][0-9][0-9]_*mov", recursive=True)
 ~~~
 {: .language-python}
 
@@ -666,10 +762,9 @@ If you're thinking, "If I have the power of `glob.glob` in one line, why should 
 > > ## Solution
 > > `glob.glob` does one job, find filepaths, really well.
 > > It can't do other jobs, like count the number of subdirectories or find all the files that don't match a particular pattern.
+> > If you need to do additional filtering, counting, or other operations while you're are looping through the file system, `os.walk` is probably more useful.
 > {: .solution}
 {: .challenge}
-
-
 
 Expanding upon our previous efforts to gather up Quicktime files, we can amend our earlier os.walk and use what’s called a tuple to add a bunch of different media-specific file extensions to our endswith if statement.
 
@@ -679,12 +774,10 @@ media_list = [ ]
 for root, dirs, files in os.walk(video_dir):
     for file in files:
         if file.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
-            item_path = os.path.join(root, file)
+        	item_path = os.path.join(root, file)
             media_list.append(item_path)
- ~~~
- {: .language-python}
-
-And from here, our steps will largely be the same as before; we’ll use a new for loop, and the os.stat method, to print out the file size of each file.
+~~~
+{: .language-python}
 
 
 
