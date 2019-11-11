@@ -28,7 +28,7 @@ Anaconda also has a text editor, so we will use that to turn some of our previou
 
 To open a text file in Anaconda, click the `+` button in the left sidebar and click on the `Text File` tile in the main tab.
 A text editing interface will open.
-We will immediately rename this file going to File > Save File As... and giving it the name `filesurvey.py`.
+We will immediately rename this file by going to File > Save File As... and giving it the name `filesurvey.py`.
 
 > ## Python Extensions
 > 
@@ -37,7 +37,7 @@ We will immediately rename this file going to File > Save File As... and giving 
 > We typically use `.py` to tell other people that the file contains Python code.
 {: .callout}
 
-A Python script is that code is read and executed from the top of the script to the bottom.
+A Python script is code that is read and executed from the top of the script to the bottom.
 If you are in a Jupyter Notebook and the first cell contains
 
 ~~~
@@ -193,7 +193,7 @@ If the above example was a line of Python it might look like this: `conda.instal
 > Strings typically do not have to be surrounded by quotation marks `"`.
 {: .callout}
 
-To make it easier to apply to survey other folders and save the output to new files, we will add another module to our `filesurvey.py` script, `argparse`.
+To make it easier to survey other folders and save the output to new files, we will add another module to our `filesurvey.py` script, `argparse`.
 
 First, we have to import the module at the beginning of our script.
 
@@ -203,16 +203,16 @@ import argparse
 {: .language-python}
 
 Because `argparse` is more abstract than other components we have used so far, we will include working code immediately.
-Pasted this into script immediately after the import statements.
+Paste this into the script immediately after the import statements.
 
 ~~~
 parser = argparse.ArgumentParser()
 parser.description = "survey a directory for AV files and report on technical metadata"
 parser.add_argument("-d", "--directory",
-                    "required" = True,
+                    required = True,
                     help = "Path to a directory of AV files")
 parser.add_argument("-o", "--output",
-                    "required" = True,
+                    required = True,
                     help = "Path to the save the metadata as a CSV")
 args = parser.parse_args()
 
