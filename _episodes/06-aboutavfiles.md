@@ -1,6 +1,6 @@
 ---
 title: "Finding Out About AV Files"
-teaching: 20
+teaching: 10
 exercises: 10
 questions:
 - "How can I use Python to collect more technical metadata?"
@@ -146,17 +146,17 @@ for item in sorted(all_file_data):
 
 For each file, we generated technical metadata with pymediainfo and then stored select pieces of metadata in a list (a group of comma-separated values contained in brackets).
 
-Because MediaInfo organizes technical metadata by track, we had to collect each piece of metadata from the appropriate track whether “General,” “Video,"" and “Audio”.
-Before, we used a single `if` test to see if our loop was looking at the "General" track.
+Because MediaInfo organizes technical metadata by track, we had to collect each piece of metadata from the appropriate track whether `General`, `Video`, and `Audio`.
+Before, we used a single `if` test to see if our loop was looking at the `General` track.
 Now, we added additional tests with `elif` (or if).
-If our loop wasn't looking at the "General" track, maybe it was looking at a "Video" or "Audio" track.
+If our loop wasn't looking at the "General" track, maybe it was looking at a `Video` or `Audio` track.
 
 When we were looking at the one of these tracks, we were collecting data from that track into a list, either `general_data`, `video_data`, and `audio_data`.
 And once our loop has looked at all of these tracks, we combined `general_data`, `video_data`, and `audio_data`.
 In Python, we can make a single long list out of multiple smaller lists by using the `+`.
 The new trifecta-combo list is appended to our master list of lists `all_file_data`.
 
-It’s complicated, no doubt, but our goal should be clear: we not only do we want to gather MediaInfo data, but we want to do so in a way that creates a structured data set that can easily be exported to allow for further analysis.
+It’s complicated, no doubt, but our goal should be clear: we not only do we want to gather MediaInfo data, but we want to do so in a way that creates a structured data set that can be exported to allow for further analysis.
 
 The fields we gathered in the code above may or may not meet your needs.
 You may need to gather less.
@@ -187,12 +187,12 @@ It’s yet another long and wordy list, but again, knowing how pymediainfo organ
 > ## What are possible flaws in this approach?
 >
 > Think about your experience with AV files and compare that to the data we generated for each file.
-> Think about your experience with AV files and compare that to the data we generated for each file.
+> What issues could you encounter when running this code against real-world collections?
 >
 > > ## Solution
 > >
-> > Files with multiple video or audio tracks.
-> > Files missing some of the fields we asking for.
+> > If a file has multiple video or audio tracks, this code will only report metadata from the last one it looked at.
+> > If a file is missing some of the fields we asking for, it's not clear what would happen.
 > {: .solution}
 {: .challenge}
 
@@ -200,9 +200,12 @@ It’s yet another long and wordy list, but again, knowing how pymediainfo organ
 
 If we hope to analyze our collection of media files on a deeper level, beginning to make larger overall comparisons, or if we simply want to transmit that information into a database or some other type of information system, we’ll first need to export that data in a structured form. 
 
-CSV, or comma separated values, is one of many tabular data structures that python supports, but it will serve our purposes nicely as it’s human and machine readable, lightweight, and has fairly extensive tool support. But as with other modules that we’ve encountered, we’ll need to (1) use an import statement to incorporate csv functionality into our code (note that the csv module does not require a separate pip installation), and (2) learn key components of the csv syntax in order to use it properly.
+CSV, or comma separated values, is one of many tabular data structures that python supports, but it will serve our purposes nicely as it’s human and machine readable, lightweight, and has fairly extensive tool support.
+But as with other modules that we’ve encountered, we’ll need to:
+1. use an import statement to incorporate csv functionality into our code (note that the csv module does not require a separate pip installation)
+2. learn key components of the csv syntax in order to use it properly
 
-Because we made the effort to create a structured yet accommodating MediaInfo data set within our script (the “list of lists” all_file_data), which, to remind ourselves, looks like this:
+Because we made the effort to create a structured yet accommodating MediaInfo data set within our script (the list of lists `all_file_data`), which, to remind ourselves, looks like this:
 
 ~~~
 ['test21', 'mov', 'MPEG-4', 36773291, 1318, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
@@ -212,9 +215,12 @@ Because we made the effort to create a structured yet accommodating MediaInfo da
 ['test25', 'mov', 'MPEG-4', 65053469, 2311, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
 ~~~
 
-We can easily envision how this will port over to something that would look good in Google Sheets or Microsoft Excel.  But to get from inside our jupyter notebook or terminal/cmd window to a separate standalone file, we’ll need to “open” a new CSV file object and “write” data to it.
+We can envision how this will port over to something that would look good in Google Sheets or Microsoft Excel.
+To get from inside our Jupyter notebook or terminal/cmd window to a separate standalone file, we’ll need to "open" a new CSV file object and "write" data to it.
 
-There are, as usual, a number of ways to perform this action, but one common approach is to use a “with open” combination, which takes advantage of invisible try/except logic to ensure that the CSV file being written to will close despite any exceptions or issues encountered. After “opening” the CSV file, we’ll use the csv.writer and csv.writerow functions to transform each list of MediaInfo file information into its own separate row of our resulting CSV file.
+There are, as usual, a number of ways to perform this action, but the recommended approach is to use a `with open` statement.
+This takes care of some expectations from the file system to make sure our file is correctly closed after we finish working with it.
+After "opening" the CSV file, we’ll use the `csv.writer` and `csv.writerow` functions to transform each list of MediaInfo file information into its own separate row of our resulting CSV file.
 
 But before we do any of that, we’ll first want to give our CSV file a header row with our attributes in named order (this will give us the ability to work with this data in an easier way down the road):
 

@@ -1,7 +1,7 @@
 ---
 title: "Moving and Transcoding Files"
 teaching: 10
-exercises: 20
+exercises: 10
 questions:
 - "How can I use Python to move files from one place to another?"
 - "How can I use Python to run ffmpeg?"
@@ -12,7 +12,7 @@ keypoints:
 - "Collecting filepaths is often the first step of any AV script"
 ---
 
-Alice (remember Alice??) had 3 tasks she wanted to complete.
+Alice had 3 tasks she wanted to complete.
 
 1. create service copy MP4s for all of the files on her hard drive
 2. share the duration of each video file with a cataloger
@@ -67,15 +67,12 @@ shutil.copy(qckitty_path, service_folder)
 ~~~
 {: .language-python}
 
-~~~
-ERROR: something
-~~~
-{: .output}
-
-As there wasn't a landing directory ready for our QCKitty, we ended up with a strange malformed "service" file that was exactly the same size as our gif (8.7 MB). We could add an extension and rename the file to salvage things, but clearly this wasn't a very workable solution. 
+As there wasn't a landing directory ready for our QCKitty, we ended up with an extensionless file called "service" file.
+It is exactly the same size as our gif (8.7 MB).
+We wanted to copy the gif into a folder called "service", except the "service" folder didn't exist.
 
 Let's delete that "service" file and do things the right way. 
-With the `os` module, we can use Python to make this folder.
+We can use the `os` module to make this folder.
 But, before doing that, it's good practice to make sure the folder doesn't already exist.
 Among python users, this is called Looking Before You Leap (LBYP).
 
@@ -88,7 +85,7 @@ if not os.path.exists(service_folder):
 And now that the destination directory actually exists, we should be able to copy files there.
 
 ~~~
-shutil.copy(qckitty_path, service_folder)
+shutil.copy(kittypath, service_folder)
 ~~~
 {: .language-python}
 
@@ -109,30 +106,47 @@ For the next part, she'll need to do some transcoding.
 ## Using ffmpeg from Python
 
 Some command-line tools like MediaInfo have a Python module that makes them easier to use in a script.
-Unfortunately, `ffmpeg`, the workhorse utility for media transcoding, does not.
-However, we can still use Python to work with `ffmpeg` or any other command line program  by using the `subprocess` module.
+Even if they don't, we can use the `subprocess` module to run terminal commands from our script.
 
 ~~~
 import subprocess
 ~~~
 {: .language-python}
 
-We'll use the `subprocess.call()` function.
+We'll use the `subprocess.run()` function.
 
 ~~~
-help(subprocess.call)
+help(subprocess.run)
 ~~~
 {: .language-python}
 
 We can try out the example code to see how this works.
 
 ~~~
-subprocess.call(['ls', '-l'])
+subprocess.run(['ls', '-l'])
 ~~~
 {: .language-python}
 
+> ## What do you expect this code to do?
+> Before you run this code, predict what the results will be.
+> Did the results match your expectations?
+> 
+> > ## Solution
+> > `subprocess.run()` runs a terminal command and returns whether it was successful or not.
+> > `0` means the command finished successfully.
+> > `1` means the command had an error and did not finish.
+> > 
+> > For some commands like `ffmpeg` this is all we're interested.
+> > But if we want to see the output of the command, we can do the following.
+> > ~~~
+> > subprocess.run(['ls', '-l'], capture_output=True)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge} 
+
 If you've used command line tools, you might recognize `ls -l` as the way to return the contents of a directory as a list.
-`subprocess.call()` structures that command differently.
+`subprocess.run()` structures that command differently.
 Instead of taking a string like `subprocess.call('ls -l')`, it takes a list where each item in the list is a string.
 We'll be taking advantage of that.
 
@@ -182,12 +196,12 @@ napl1777.mp4
 For a final step, we can join the new filename to the `service_folder` path, all within the context of the `ffmpeg` command and `subprocess` call.
 
 ~~~
-subprocess.call(['ffmpeg', '-i', media_list[0], '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', os.path.join(service_folder, os.path.basename(media_list[0]).replace('mov', 'mp4'))])
+subprocess.run(['ffmpeg', '-i', media_list[0], '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', os.path.join(service_folder, os.path.basename(media_list[0]).replace('mov', 'mp4'))])
 ~~~
 {: language-python}
 
 ~~~
-0
+CompletedProcess(['ffmpeg', '-i', 'Desktop/amia19/federal_grant/napl1777.mov', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', 'Desktop/amia19/service/napl1777.mp4'], returncode=0)
 ~~~
 {: .output}
 
@@ -212,7 +226,7 @@ for item in media_list:
 	if item.endswith('mov'):
 		output_file = os.path.join(service_folder, os.path.basename(item).replace('mov', 'mp4'))
 		if not os.path.exists(output_file):
-			subprocess.call(['ffmpeg', '-i', item, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', output_file])
+			subprocess.run(['ffmpeg', '-i', item, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', output_file])
 
 os.listdir(service_folder)
 ~~~
