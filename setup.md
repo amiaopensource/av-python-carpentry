@@ -185,8 +185,8 @@ There is a built-in virtual environment feature in Python, but we’re going to 
 
 First, download the environment setup file for your operating system for this workshop. Right-click the appropriate link below and select save-as.
 
-* [Windows](files/win_env.yaml) 
-* [MacOS/Linux/Unix](files/mac_env.yaml)
+* [Windows]({{ page.root }}/files/win_env.yaml) 
+* [MacOS/Linux/Unix]({{ page.root }}/files/mac_env.yaml)
 
 Then in Anaconda Navigator, click on the Environment tab on left side of the window.
 
