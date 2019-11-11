@@ -7,10 +7,10 @@ questions:
 objectives:
 - “Use for loops on lists of objects”
 - “Use os.stat to get file size”
-- “Installing packages with pip”
+- “Install packages with pip”
 - “Use pymediainfo to collect duration”
 keypoints:
-- "Performing small tasks repeatedly is at the core of automation"
+- "Start with the shortest piece of code and build up your pieces gradually"
 ---
 
 ## Asking questions about a list of files
