@@ -60,8 +60,6 @@ A file path encodes the same hierarchy of folders that we click through, express
 We know that `CoolStuff` is a subdirectory stored inside of `Desktop`.
 We can also see that `Desktop` is a subdirectory of `alice`, which is a subdirectory of `Users` which is a subdirectory of root.
 
-____diagram of folders____
-
 You may not see folders like `Users` on a regular basis.
 As computer users, we spend more time working from a folder like `Desktop` and thinking about the locations of files relative to that folder.
 The relative file path to `qckitty.gif` from Alice's `Desktop` is `CoolStuff/qckitty.gif`.
@@ -103,9 +101,34 @@ os.listdir()
 
 (Your results may be slightly different depending on your operating system and how you have customized your filesystem.)
 
-`os.listdir()` prints the names of files and folders in the current directory as a list.
+In this code
+* `os` is a module that connects Python to your underlying operating system (Mac, Windows, Linux)
+* `listdir()` is a function that is part of that module
 
-We can also try listing folders in one of our video file directories.
+We'll explain more about modules in a bit.
+For now, we will work with just this function.
+Then, we'll explore other paths of the `os` module.
+
+`os.listdir()` prints the names of files and folders in the current directory as a list.
+By default, `os.listdir()` prints contents of the current working directory.
+In our case that's the home folder.
+
+It can also print the contents of another folder.
+We will use the relative path to the Desktop.
+
+~~~
+os.listdir('Desktop')
+~~~
+{: .language-python}
+
+If the path points to folder that doesn't exist, `os.listdir()` will give an error.
+~~~
+os.listdir('Desk')
+~~~
+{: .language-python}
+
+We're curious about the contents of the `amia19` folder, so let's examine that.
+Because we will use this path repeatedly, first we will store it with a variable.
 
 On macOS:
 ~~~
@@ -134,100 +157,12 @@ os.listdir(video_dir)
 
 
 > ## Python Syntax: Strings
->
-> In order to parse our input, Python has rules about how it should be written.
-> We can use these same rules when reading code to understand what is happening.
-> As different syntaxes appear, we will point them out in these callout boxes.
 > 
 > ### Strings
 > Characters that you want Python to interpret as single piece of text need to be quoted.
 > This is called a string.
 > Single-quotes `'` and double-quotes `"` are both valid as long as you use the same symbol at the beginning and end of the string.
 {: .callout}
-
-> ## Python Syntax: `=`
->
-> In Python, the equals sign `=` works a little differently than in a math class.
-> `=` assigns a value to variable, like this:
-> 
-> ~~~
-> variable = value
-> ~~~
-> {: .language-python}
->
-> A variable is an object that can hold any value.
-> We can update the value of the variable
-> ~~~
-> cool_file_name = 'qckitty.gif'
-> ~~~
-> {: .language-python}
->
-> We can also create new variables.
-> A variable name can include any character except space ` `, and it can't begin with a number.
-> ~~~
-> myFavoriteFilename = 'qckitty.gif'
-> ~~~
-> {: .language-python}
->
-> One of the hardest parts of programming is picking good names for your variables.
-> To help understand your code when you return to it in the future, try to use descriptive names.
-{: .callout}
-
-## Importing modules
-To start listing files, Alice had to run two lines of code. The first was to import a module.
-
-Modules, or code libraries designed to expand Python's functionality, can be, at times, a little tricky. There are different kinds of modules in Python: 
-* standard distribution modules, which are built into Python itself;
-* third-party modules, which you load, often at the start of your script;
-* home-made modules, which you create to meet your own specific needs.
-
-There are two ways to figure out which modules you already have installed.
-
-When you're in a Jupyter notebook or Python console:
-
-~~~
-help('modules')
-~~~
-{: .language-python}
-
-When you're using a terminal:
-
-~~~
-pip list
-~~~
-{: .language-bash}
-
-The base python environment has very few functions built-in.
-In order to power yourself up, you need to import modules with the functions you need.
-You only need to load a module once per script.
-To make sure we load every module that we need, we typically put all of our import statements at the very top of a script.
-
-> ## Python Syntax: Modules and `.`
->
-> Like directory structures, modules can contain functions and submodules, which themselves can contain functions and submodules.
-> The `.` syntax works like the slash in a filepath.
-> It clarifies that we want to use a function defined in a specific module.
-> If we don't include the parent modules, the Python interpreter will not know where to find the function we want to run.
-{: .callout}
-
-We're using the `os` module for one function right now, but the module has a lot more to offer.
-The `os` module is like a gateway that connects Python to your underlying operating system (Mac, Windows, or Linux) and, as such, it allows you to do many operating system tasks (starting/killing processes; adding/removing files, etc.) from inside your Python program. 
-
-> ## Loading another module
->
-> `glob` is another useful module for finding files.
-> Do you have glob installed?
-> How would you load it into your script?
-> 
-> > ## Solution
-> > Yes, glob is one of the standard distribution modules.
-> > It can be loaded like this:
-> > ~~~
-> > import glob
-> > ~~~
-> > {: .language-python}
-> {: .solution}
-{: .challenge}
 
 ## Listing all the files in a directory
 
@@ -479,18 +414,21 @@ False
 {: .output}
 
 Returning to os.walk, we want to print a list of file paths.
-Our second command printed lists of files.
-`os.path.join` can only join strings together.
-To access each string in the lists of files, we will need another `for` loop.
 
 ~~~
 for root, subdirs, files in os.walk('.'):
-    for file in files:
-        print(file)
+    os.path.join(root, files)
 ~~~
 {: .language-python}
 
-Next we need join the folder path and file name.
+~~~
+Error
+~~~
+{: .output}
+
+`os.path.join` can only join strings together.
+To access each string in the lists of files, we will need another `for` loop.
+
 ~~~
 for root, subdirs, files in os.walk('.'):
     for file in files:
@@ -726,6 +664,59 @@ mov_list
 > {: .solution}
 {: .challenge}
 
+## Importing modules
+At the very beginning of this exercise with `os`, Alice had to run two lines of code. The first was to import a module.
+
+Modules, or code libraries designed to expand Python's functionality, can be, at times, a little tricky. There are different kinds of modules in Python: 
+* standard distribution modules, which are built into Python itself;
+* third-party modules, which you load, often at the start of your script;
+* home-made modules, which you create to meet your own specific needs.
+
+There are two ways to figure out which modules you already have installed.
+
+When you're in a Jupyter notebook or Python console:
+
+~~~
+help('modules')
+~~~
+{: .language-python}
+
+When you're using a terminal:
+
+~~~
+pip list
+~~~
+{: .language-bash}
+
+The base python environment has very few functions built-in.
+In order to power yourself up, you need to import modules with the functions you need.
+You only need to load a module once per script.
+To make sure we load every module that we need, we typically put all of our import statements at the very top of a script.
+
+> ## Python Syntax: Modules and `.`
+>
+> Like directory structures, modules can contain functions and submodules, which themselves can contain functions and submodules.
+> The `.` syntax works like the slash in a filepath.
+> It clarifies that we want to use a function defined in a specific module.
+> If we don't include the parent modules, the Python interpreter will not know where to find the function we want to run.
+{: .callout}
+
+> ## Loading another module
+>
+> `glob` is another useful module for finding files.
+> Do you have glob installed?
+> How would you load it into your script?
+> 
+> > ## Solution
+> > Yes, glob is one of the standard distribution modules.
+> > It can be loaded like this:
+> > ~~~
+> > import glob
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
 ### glob
 
 `os.walk()` is not the only way to make a file list.
@@ -755,7 +746,7 @@ goodfn_mov_list = glob.glob(os.path.join(video_dir, "**", "*_[0-9][0-9][0-9][0-9
 
 If you're thinking, "If I have the power of `glob.glob` in one line, why should I bother writing all the looping of `os.walk`?" you're asking a good question.
 
-> ## Finding out how many Quicktime files
+> ## `os.walk` vs. `glob.glob`
 >
 > In what types of situations would it be useful to use `for` loops with `os.walk` instead of `glob.glob`
 > 
