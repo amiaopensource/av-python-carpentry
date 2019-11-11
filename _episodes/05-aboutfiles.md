@@ -210,6 +210,20 @@ First, open a console Terminal tab by clicking on the `+` sign in the sidebar an
     <img alt="JupyterLab Main Work Area" src="../fig/0_jupyterlab_main_work_area.png" width="750"/>
 </p>
 
+When the terminal opens, it should look like the following.
+~~~
+(amia19)username@computername >
+~~~
+{: .language-bash}
+
+If it doesn't, you need to activate the `amia19` environment.
+
+~~~
+conda activate amia19
+~~~
+{: .language-bash}
+
+
 Then type the following:
 
 ~~~
@@ -262,7 +276,7 @@ pip list
 Now that we’ve got `hurry.filesize` installed, how do we take advantage of the power that it offers?
 By importing, that’s how!
 
-But we’ll import in a slightly different way, with a `from X, import Y` statement at the start of our code.
+But we’ll import in a slightly different way, with a `from X import Y` statement at the start of our code.
 Why do it this way, instead of using the generic `import X`? 
 
 When we import a module, it imports all the submodules and functions. Some modules have a lot of those, and so to use function, we need to write `module.submodule.submodule....function()`.
@@ -304,11 +318,12 @@ Here, we’ll call upon another Python package: `pymediainfo`, a Python wrapper 
 `pymediainfo` is the shit, and though there are other ways to incorporate MediaInfo into our Python code, pymediainfo is elegant and has a relatively low bar to entry.
 
 We’ll touch upon many of the different ways that Python + MediaInfo can assist with AV file management, but let’s start with installation and the process of gathering up the durations of our files.
+In the Terminal tab, type:
 
 ~~~
 pip install pymediainfo
 ~~~
-{: .language-python}
+{: .language-bash}
 
 To use `pymediainfo` we’ll need to understand how pymediainfo creates a special class for MediaInfo track-related information. 
 
@@ -351,7 +366,7 @@ for track in media_info.tracks:
 By default, pymediainfo returns the time in milliseconds.
 This is frustrating, in that we generally don't talk about a time in milliseconds.
 
-We could, for example, have our print statement be more descriptive in nature by using Python’s print formatting function.
+We could, for example, have our print statement be more human-readable by using Python’s print formatting function.
 
 ~~~
 for track in media_info.tracks:
@@ -417,7 +432,7 @@ for track in media_info.tracks:
 ~~~
 {: .output}
 
-This undoubtedly makes for a more human-readable option, but when we try to sum up the entire collection, that human-readability can be a liability.
+This is an even more human-readable option, but when we try to sum up the entire collection, that human-readability can be a liability.
 
 ~~~
 durations = []
