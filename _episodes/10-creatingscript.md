@@ -209,10 +209,10 @@ Paste this into the script immediately after the import statements.
 parser = argparse.ArgumentParser()
 parser.description = "survey a directory for AV files and report on technical metadata"
 parser.add_argument("-d", "--directory",
-                    "required" = True,
+                    required = True,
                     help = "Path to a directory of AV files")
 parser.add_argument("-o", "--output",
-                    "required" = True,
+                    required = True,
                     help = "Path to the save the metadata as a CSV")
 args = parser.parse_args()
 
