@@ -28,7 +28,7 @@ Let's try it out.
 First we install the module.
 
 ~~~
-pip install bagit-python
+pip install bagit
 ~~~
 {: .language-bash}
 
