@@ -45,7 +45,7 @@ Let’s begin by reviewing a few ways Python can be used to determine some of th
 Just to make sure, here is the code for creating our digital shelflist.
 
 ~~~
-media_list = [ ]
+media_list = []
 
 for root, dirs, files in os.walk(video_dir):
     for file in files:

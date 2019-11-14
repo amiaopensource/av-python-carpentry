@@ -1,7 +1,9 @@
 ---
+layout: break
 title: "1st Break"
 break: 10
-objectives:
-- "Enjoy coffee and/or tea"
-- "Move around a little"
 ---
+## Important Things
+- Enjoy water, coffee, and/or tea
+- Move around a little
+- Fill out feedback cards for the instructors.
