@@ -1,6 +1,6 @@
 # AV Python Carpentry
 
-This repository generates the corresponding lesson website for [Python for AV Carpentry](nkrabben.github.io/av-python-carpentry) based on the template from [The Carpentries](https://carpentries.org/) repertoire of lessons. 
+This repository generates the corresponding lesson website for [Python for AV Carpentry](https://amiaopensource.github.io/av-python-carpentry/) based on the template from [The Carpentries](https://carpentries.org/) repertoire of lessons. 
 
 ## Contributing
 
