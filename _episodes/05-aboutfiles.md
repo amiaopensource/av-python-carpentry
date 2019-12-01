@@ -156,7 +156,7 @@ And the answer points to a long, and honestly, quite dumb history, but it is wor
 The tl; dr is: computer scientists really love binary systems and think `2 ** 10` or `1024` is a convenient large group.
 Engineers really love base-10 systems and think `10 ** 3` or `1000` is a really useful group.
 For a while, both of these communities used the same prefixes for their numbers.
-A computer scientist would talk about a kilobyte with 1,024 bytes and an enginner would talk about a kilobyte with 1,000 bytes.
+A computer scientist would talk about a kilobyte with 1,024 bytes and an engineer would talk about a kilobyte with 1,000 bytes.
 
 In the 90s, they "settled" their dispute.
 To talk about base-10 numbers, you should use the familiar SI (International System of Units) prefixes: kilo- (k), mega- (M), giga- (G), tera- (T), etc.)
