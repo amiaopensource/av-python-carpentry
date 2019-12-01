@@ -22,11 +22,11 @@ But Alice has realized that while doing the work is one thing, being able to ana
 
 > ## pandas: the Google Sheets/Excel replacement you didn't know you were missing
 >
-> pandas is yet another python add-on, this time an extraordinarily powerful data analysis engine that comes from the world of finance, specifically quantitiave analytics. 
+> pandas is yet another python add-on, this time an extraordinarily powerful data analysis engine that comes from the world of finance, specifically quantitive analytics. 
 > While it may seem intimidating, pandas is remarkably user friendly and intuitive.
 > pandas is excellent at:
 > * normalizing data from diverse sources
-> * performing calculations on rows or colmns
+> * performing calculations on rows or columns
 > * concatenating or joining or grouping by category
 > * visualization 
 >
@@ -46,7 +46,7 @@ With a scatterplot, we can visualize these differences, and possibly learn how t
 
 ## Another set of FFV1/MKV, but this time with a mistaken twist
 
-Let's begin by transcoding another set of FFV1/MKv files from our Quicktime masters, but, to make things more interesting, let's assume that Alice accidentally forgot to include an if statement that separated out her DV-encoded Quicktime files.
+Let's begin by transcoding another set of FFV1/MKV files from our Quicktime masters, but, to make things more interesting, let's assume that Alice accidentally forgot to include an if statement that separated out her DV-encoded Quicktime files.
 
 ~~~
 media_list = [ ]
@@ -133,7 +133,7 @@ for item in media_list:
 ## The DataFrame--the core data structure of pandas 
 
 Before we make some cool looking charts, we've first gotta gather up the information that we're hoping visualize. 
-To do this, we're going to pull some MediaInfo and feed it into a "dataframe," essentially a spreadsheet written into pyhton/pandas memory.
+To do this, we're going to pull some MediaInfo and feed it into a "dataframe," essentially a spreadsheet written into python/pandas memory.
 The precise definition of a DataFrame (from geeksforgeeks.com) is "a two-dimensional, size-mutable, potentially heterogenous tabular data structure with labeled axes (rows and columns)." It might make you shudder, but again, just think of it as a nifty spreadsheet.
 
 Step 1: gather up file names and file sizes from our original set of Quicktime files.
@@ -215,7 +215,7 @@ pd.set_option('display.max_rows', 1000)
 
 ## matplotlib and data visualization
 
-Let's take our dataframe and transform it into something both viusally appealing and communicative. To make this happen, we'll call upon matplotlib, a 2D plotting library which offers a host of amazing features and customizablity.
+Let's take our dataframe and transform it into something both visually appealing and communicative. To make this happen, we'll call upon matplotlib, a 2D plotting library which offers a host of amazing features and customizability.
 
 First we'll import matplotlib and ask Jupyter to display visualizations directly in our notebook.
 ~~~
@@ -267,7 +267,7 @@ Here, for example, is a breakdown of objects digitized by format:
 
 ![Piechart-FormatBreakdown](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/gh-pages/assets/img/pie-formatbreakdown.png)
 
-And here's a line graph of objects digitzed per month:
+And here's a line graph of objects digitized per month:
 
 ![Linegraph-ObjectsPerMonth](https://raw.githubusercontent.com/nkrabben/av-python-carpentry/gh-pages/assets/img/linegraph-objectsdigitzed.png)
 
