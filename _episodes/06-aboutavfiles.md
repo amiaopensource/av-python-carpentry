@@ -121,7 +121,7 @@ for item in media_list:
 This may look wildly intimidating, but we’re really just making a small expansion on our previous efforts.
 First, we've used lists to collect a single piece information about a bunch of files.
 Now, we're collecting multiple pieces of information, so we store all of that information for each file that we survey in a list.
-In the end, we create `all_file_data`, a “multi-dimensional container,” or a list that contains wihin it a series of lists, one for each file. 
+In the end, we create `all_file_data`, a “multi-dimensional container,” or a list that contains within it a series of lists, one for each file. 
 
 Let's print each item in `all_file_data` to see what this looks like.
 
