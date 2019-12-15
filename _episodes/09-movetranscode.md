@@ -232,4 +232,3 @@ os.listdir(service_folder)
 
 Success!
 
-{% include links.md %}

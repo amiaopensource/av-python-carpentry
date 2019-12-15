@@ -98,5 +98,3 @@ for item in mov_list:
 > > You might want to use a different audio codec like flac.
 > {: .solution}
 {: .challenge}
-
-{% include links.md %}

@@ -610,7 +610,5 @@ For now, it's a useful exercise to see if you can interpret the gist of what is 
 {: .challenge}
 
 
-{% include links.md %}
-
 
 

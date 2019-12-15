@@ -390,11 +390,7 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 ## Closing JupyterLab
 
 *   From the Menu Bar select the "File" menu and the choose "Quit" at the bottom of the dropdown menu. You will be prompted to confirm that you wish to shutdown the JupyterLab server (don't forget to save your work!). Click "Confirm" to shutdown the JupyterLab server.
-*   To restart the JupyterLab server you will need to re-run the following command from a shell.
-
-~~~
-$ jupyter lab
-~~~
+*   To restart the JupyterLab server you will need to click on its tile from the Anaconda browser.
 
 > ## Closing JupyerLab
 >
@@ -405,5 +401,3 @@ $ jupyter lab
 [jupyterlab-ui]: https://jupyterlab.readthedocs.io/en/stable/user/interface.html
 [jupyterlab-notebook-docs]: https://jupyterlab.readthedocs.io/en/stable/user/notebook.html
 [markdown]: https://en.wikipedia.org/wiki/Markdown
-
-{% include links.md %}
