@@ -32,8 +32,8 @@ In this case, let's not look before we leap.
 
 ~~~
 # /federal_grant/napl_0368_pres.mov
-test_mkv = os.path.join(mkv_folder, os.path.basename(media_list[12]).replace('mov', 'mkv'))
-subprocess.run(['ffmpeg', '-i', media_list[12], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv])
+test_mkv = os.path.join(mkv_folder, os.path.basename(mov_list[12]).replace('mov', 'mkv'))
+subprocess.run(['ffmpeg', '-i', mov_list[12], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv])
 ~~~
 {: .language-python}
 
@@ -42,11 +42,11 @@ subprocess.run(['ffmpeg', '-i', media_list[12], '-map', '0', '-dn', '-c:v', 'ffv
 ~~~
 {: .output}
 
-> ## How Much Compression Did Get?
+> ## How Much Compression Did We Get?
 > How would calculate the file size difference between the original and transcoded file?
 > > ## Solution
 > > ~~~
-> > os.stat(media_list[12].st_size - os.stat(output_path).st_size
+> > os.stat(mov_list[12].st_size - os.stat(output_path).st_size
 > > ~~~
 > > {: .language-python}
 > {: .solution}
@@ -80,13 +80,13 @@ To create service files, we checked if an output file already existed.
 To do lossless encoding, we'll need to check the format of the original.
 
 ~~~
-for item in media_list:
-    if item.endswith('mov'):
-        media_info = MediaInfo.parse(item)
-        for track in media_info.tracks:
-            if track.track_type == "General":
-                if not track.format == "DV":
-                    # add transcoding code here
+for item in mov_list:
+    media_info = MediaInfo.parse(item)
+    for track in media_info.tracks:
+        if track.track_type == "General":
+            if not track.format == "DV":
+            	mkv_path = os.path.join(mkv_folder, os.path.basename(item).replace('mov', 'mkv'))
+                subprocess.run(['ffmpeg', '-i', item, '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', mkv_path])
 ~~~
 {: language-python}
 
@@ -99,3 +99,4 @@ for item in media_list:
 > {: .solution}
 {: .challenge}
 
+{% include links.md %}

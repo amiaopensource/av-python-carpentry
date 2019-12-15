@@ -87,16 +87,12 @@ Change any paths so that they reflect your computer's folders.
 ~~~
 video_dir = '/Users/username/Desktop/amia19'
 
-media_list = [ ]
+mov_list = [ ]
 all_file_data = []
 
-for root, dirs, files in os.walk(video_dir):
-    for item in files:
-        if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
-            item_path = os.path.join(root, item)
-            media_list.append(item_path)
+mov_list = glob.glob(os.path.join(video_dir, '**', '*mov'))
 
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
@@ -184,7 +180,7 @@ If you have not used the command line much in the past, commands work a lot like
 * After that, there might be subtools, e.g. `conda install`
 * After that, there might be arguments that will be used by the tool, e.g. `conda install -c conda-forge ffmpeg`
 
-If the above example was a line of Python it might look like this: `conda.install(c="conda-forge", "ffmpeg")`.
+If the above example was a line of Python it might look like this: `conda.install(c="conda-forge", package="ffmpeg")`.
 
 > ## Command-Line Syntax
 > 
@@ -244,6 +240,7 @@ Save the script.
 > > with open(args.output, 'w') as f:
 > > ~~~
 > > {: .language-python}
+> > Similarly, we have to use `args.directory` instead of the hard-coded string for `video_dir`
 > {: .solution}
 {: .challenge}
 
@@ -282,7 +279,7 @@ Instead, we'll ask the code to try and collect those attributes.
 When python comes across files that are missing some of these key elements, it will return None (a null data type of its own making) rather than breaking down.
 
 ~~~
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":

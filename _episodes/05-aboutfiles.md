@@ -18,8 +18,10 @@ keypoints:
 Alice now has a digital shelflist of the the files she wants to work with. Before she decides what to do with her files, she wants to understand them better.
 
 While learning how to create filepaths, we created our first few building blocks:
-* building lists of files and folders
-* using `for` loops
+* import modules
+* generating lists
+
+To this, we will add a very important building block, the `for` loop.
 
 Within an AV preservation environment, we will use these building blocks repeatedly for two common tasks:
 * information gathering (analysis)
@@ -42,18 +44,78 @@ Let’s begin by reviewing a few ways Python can be used to determine some of th
 * How big are they individually and cumulatively
 * What is the duration of each file/our set of files?
 
-Just to make sure, here is the code for creating our digital shelflist.
+Just to make sure we're setup right, here is the code for creating our digital shelflist.
 
+On Mac:
 ~~~
-media_list = []
-
-for root, dirs, files in os.walk(video_dir):
-    for file in files:
-        if file.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
-            item_path = os.path.join(root, file)
-            media_list.append(item_path)
+video_dir = '/Users/username/Desktop/amia19'
 ~~~
 {: .language-python}
+
+On Windows:
+~~~
+video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+~~~
+{: .language-python}
+
+~~~
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
+~~~
+{: .language-python}
+
+The building block we're adding to this is the `for` loop.
+
+## `for` loops
+
+Often when we works with lists, we use `for` loops, a computer programming method for repeating sections of code.
+During a `for` loop, Python will take items from a list one-at-a-time and perform the same actions on each item.
+
+__`for` loops will be the most important tool that we'll use in this workshop.__
+
+Dealing with 100's, 1000's, or even more files means a lot of batch processing.
+The `for` loop is the most common way that we'll be doing that batch processing.
+
+> ## Python Syntax: `for` Loops
+> In the case of Python, there are a few important things to keep in mind about for loops.
+> The first line of a for loop always looks similar to this:
+`for listitem in somelist:`
+> * for - tells Python it will have to repeat code on multiple items from a list
+> * somelist - the list of items to be worked through
+> * listitem(s - the generic name(s) to refer to items in the code section, you choose these names
+> The body of the `for` loop is always indented from the first line and can include multiple lines of code, even additional `for` loops.
+{: .callout}
+
+~~~
+for filepath in mov_list:
+    print(filepath)
+~~~
+{: .language-python}
+
+This command outputs each item from our `mov_list`.
+We can perform more complicated actions within the loop.
+
+~~~
+for filepath in mov_list:
+    print(filepath + ' exists')
+~~~
+{: .language-python}
+
+> ## Printing, `for` loops, and Jupyter
+>
+> What happens when you don't include the print function?
+> Why do you think this is the case?
+>
+> ~~~
+> for filepath in mov_list:
+>   filepath + ' exists'
+> ~~~
+> {: .language-python}
+> 
+> > ## Solution
+> > Jupyter only displays the result from the final item in the list, because it only displays the results of the final line of code.
+> > Because we're learning about how Python works, during the workshop we will use the `print()` function a lot.
+> {: .solution}
+{: .challenge}
 
 
 ## Finding the total size of all AV files in a directory
@@ -65,10 +127,10 @@ The stat module offers a wealth of detail related to ownership, permissions, loc
 
 Our end goal is to write a `for` loop that collects the size of each file.
 A good strategy to build towards the `for` loop is to apply the code to a single element of our list.
-Let's see how `os.stat` works on the first path in `media_list`.
+Let's see how `os.stat` works on the first path in `mov_list`.
 
 ~~~
-os.stat(media_list[0]).st_size
+os.stat(mov_list[0]).st_size
 ~~~
 {: .language-python}
 
@@ -96,7 +158,7 @@ The result is a number. It's important to notice that it doesn't have quote mark
 We can adapt this code into a `for` loop to look at all of the files.
 
 ~~~
-for item in media_list:
+for item in mov_list:
     print(os.stat(item).st_size)
 ~~~
 {: .language-python}
@@ -105,7 +167,7 @@ This list would be more useful if we know which number is associated with which 
 One way to do this is by using string formatting.
 
 ~~~
-for item in media_list:
+for item in mov_list:
     print('File: {}, Size: {}'.format(item, os.stat(item).st_size))
 ~~~
 {: .language-python}
@@ -114,9 +176,9 @@ But even better than descriptive print statements is gaining an aggregate sense 
 To accomplish that, we will save the sizes to a list, instead of immediately printing them out. 
 
 ~~~
-size_list = [ ]
+size_list = []
 
-for item in media_list:
+for item in mov_list:
     size_list.append(os.stat(item).st_size)
 ~~~
 {: .language-python}
@@ -190,21 +252,23 @@ If this is all feeling a little rabbit-holey and inane, just know: how you commu
 If your storage provider sells storage by the TB while you calculate by the TiB, you might be surprised by your bill.
 Clarity is Queen!
 
-But as we’re working in and with Python, we should recognize that we have monster data crunching analysis/power at our fingertips, and a built-in community that has already faced similar issues.
-Often, someone else has already created the tool/package that we’re in need of, so in this sense, Python could be thought of as a thieves paradise.
+## Collecting duration information
 
-Instead of remembering the history of binary and base-10 number systems, we can outsource this labor by installing a package (hurry.filesize) that will do the heavy lifting for us.
+Let’s turn from bytes to duration, another key piece of information that we’ll often be asked to aggregate when we begin to work at scale (average duration by format can help when forecasting anticipated needs).
 
-#### Installing packages with pip
+Here, we’ll call upon another Python package: `pymediainfo`, a Python wrapper for the open source technical metadata tool MediaInfo. 
+`pymediainfo` is the shit, and though there are other ways to incorporate MediaInfo into our Python code, pymediainfo is elegant and has a relatively low bar to entry.
 
-We’re still stuck (for the moment) in numbersland, but we’re getting to the fun stuff—leveraging the vast number of free and open tools that are available in the world of Python, and using them to turbo-charge our scripts. 
+We’ll touch upon many of the different ways that Python + MediaInfo can assist with AV file management, but let’s start with installation and the process of gathering up the durations of our files.
+
+### Installing packages with pip
 
 This is the realm of package management, and if any macOS users are familiar with Homebrew, the program pip plays a similar role within Python, allowing users to install “packages,” or specialized code libraries designed to perform specific, not-handled-by-default tasks.
 
 So we’re back to importing modules, as it were, though these outside modules first require a separate installation step (via pip) before we can import and use them in our code.
 As we’ve all installed Python3 via Anaconda, we’ll have pip available to us.
 But, to check our installation, we can do the following.
-First, open a console Terminal tab by clicking on the `+` sign in the sidebar and clicking on the `Terminal` tiles in the main area.
+First, open a console Terminal tab in Jupyter by clicking on the `+` sign in the sidebar and clicking on the `Terminal` tiles in the main area.
 
 <p align='center'>
     <img alt="JupyterLab Main Work Area" src="../fig/0_jupyterlab_main_work_area.png" width="750"/>
@@ -223,7 +287,6 @@ conda activate amia19
 ~~~
 {: .language-bash}
 
-
 Then type the following:
 
 ~~~
@@ -237,29 +300,23 @@ Note: you may need to restart the kernel to use updated packages.hon3.7/site-pac
 ~~~
 {: .output}
 
-
 pip offers a lot of features, but the ones most relevant to us are related to this process of searching for, installing/uninstalling, and listing packages located in what’s called the Python Package Index, or PyPI (remember too that pip -h will direct you to handy help pages).
 
-Let’s begin our pipping with a search, specifically a search for the `hurry.filesize` package, which alleviates that very annoying bytes-->something more understandable issue.
+Let’s begin our pipping with a search, specifically a search for the `pymediainfo` package.
 
 ~~~
-pip search hurry.filesize
+pip search pymediainfo
 ~~~
 {: .language-bash}
 
-~~~
-hurry.filesize (0.9)  - A simple Python library for human readable file sizes (or anything sized in bytes).
-~~~
-{: .output}
-
-And to install hurry.filesize, we do the obvious:
+And to install pymediainfo, we do the following:
 
 ~~~
-pip install hurry.filesize
+pip install pymediainfo
 ~~~
 {: .language-bash}
 
-To check that we’ve installed `hurry.filesize` properly, we can list all of the packages that we’ve installed via pip:
+To check that we’ve installed `pymediainfo` properly, we can list all of the packages that we’ve installed via pip:
 
 ~~~
 pip list
@@ -267,72 +324,39 @@ pip list
 {: .language-bash}
 
 > ## Already installed
-> Your `pip install` command may report that hurry.filesize has already been installed.
+> Your `pip install` command may report that pymediainfo has already been installed.
 > We weren't sure how well the Internet would work during this workshop, so we pre-installed it during the setup.
 {: .callout}
 
-#### Incorporating a package (hurry.filesize) into our code
+### Using pymediainfo
 
-Now that we’ve got `hurry.filesize` installed, how do we take advantage of the power that it offers?
-By importing, that’s how!
-
-But we’ll import in a slightly different way, with a `from X import Y` statement at the start of our code.
-Why do it this way, instead of using the generic `import X`? 
-
-When we import a module, it imports all the submodules and functions. Some modules have a lot of those, and so to use function, we need to write `module.submodule.submodule....function()`.
-But, if we only need a single function from the package, we can import just that function.
-Then in our code, we only have to write `function()`.
-There is no right or wrong here, but there is a simplicity to not having to type as much every time we use a module.
-
-~~~
-from hurry.filesize import size, si, iec
-size(totalsize, system=si)
-~~~
-{: .language-python}
-
-~~~
-16.2T
-~~~
-{: .output}
-
-Or if we need to know the binary equivalent:
-
-~~~
-size(totalsize, system=iec)
-~~~
-{: .language-python}
-
-~~~
-14.7Ti
-~~~
-{: .output}
-
-Underneath the hood, `hurry.filesize` does the same math we did above, divide our number by powers of 1,000 or 1,024.
-
-
-## pymediainfo and collecting duration information
-
-Let’s turn from bytes to duration, another key piece of information that we’ll often be asked to aggregate when we begin to work at scale (average duration by format can help when forecasting anticipated needs).
-
-Here, we’ll call upon another Python package: `pymediainfo`, a Python wrapper for the open source technical metadata tool MediaInfo. 
-`pymediainfo` is the shit, and though there are other ways to incorporate MediaInfo into our Python code, pymediainfo is elegant and has a relatively low bar to entry.
-
-We’ll touch upon many of the different ways that Python + MediaInfo can assist with AV file management, but let’s start with installation and the process of gathering up the durations of our files.
-In the Terminal tab, type:
-
-~~~
-pip install pymediainfo
-~~~
-{: .language-bash}
-
-To use `pymediainfo` we’ll need to understand how pymediainfo creates a special class for MediaInfo track-related information. 
-
-We won’t be going deep on classes today, but the important thing to keep in mind is that to use `pymediainfo` correctly, we need to first be able to direct it to the information we’re trying to gather. It’s essentially a weird syntax issue, but good news: we’re gonna get you started!
+This time, when we import the module, we'll get a bit more specific.
 
 ~~~
 from pymediainfo import MediaInfo
+~~~
+{: .language-python}
 
-media_info = MediaInfo.parse(media_list[0])
+> ## Python Syntax: `from` and imports
+>
+> So far we've always imported the entire module, but sometimes you only need a portion of the module.
+> That can be because the module is large, you don't want to waste time loading unnecessary components.
+> Or it can be because the part you need is buried deep in the module, and you don't want to write `module.submodule.function` everytime.
+>
+> For this we can use the `from module import submodule` statement.
+> This loads only the specific submodule named.
+> It is loaded as `submodule`, so we don't have to write `module.submodule` everytime.
+>
+{: .callout}
+
+To use `pymediainfo` we’ll need to understand how pymediainfo creates a special class for MediaInfo track-related information. 
+
+We've already worked with a special class when we used the `'string'.replace()` method.
+`pymediainfo` produces nested data objects with similar notation.
+To see this in action, first we look at the data it generates from one file.
+
+~~~
+media_info = MediaInfo.parse(mov_list[0])
 
 for track in media_info.tracks:
     print(track.track_type, track.duration)
@@ -346,15 +370,29 @@ Audio 465
 ~~~
 {: .output}
 
-If we break this down into discrete units, we’ve got four key steps:
+If we break this down into discrete units, we’ve got three key steps:
 
-* the `import` statement, which calls up `pymediainfo`;
-* running and parsing the output of MediaInfo on a single file, then storing that technical metadata to a for us to retrieve;
+* running and parsing the output of MediaInfo on a single file, then storing that technical metadata to a variable for us to retrieve;
 * looping through the `tracks` that MediaInfo reported on
 * printing out, in our Jupyter notebook, the name of each track and its duration.
 
-We can, of course, tweak this in any number of ways.
+We can tweak this in any number of ways.
 First, we can limit our printing to only the 'General' track.
+
+## `if` conditionals
+
+When we only want code to run under certain conditions, we use logic tests.
+The most common of these is the `if` statement.
+An `if` statement can be read like this: If this is true, then do the following. If this isn't true then do something else.
+
+> ## Python Syntax: `if` statements
+> In the case of Python, there are a few important things to keep in mind about `if` statements.
+> The first line of a for loop always looks similar to this:
+`if logic_test:`
+> * if - tells Python it will be testing if the following statement is true or not
+> * logic_test - any code which resolves to true or false
+> The logic_test portion is commonly a test like is this variable equal to a value, `string_variable == 'string'`, or is this number greater or less than another, `temp_variable > 55`.
+{: .callout}
 
 ~~~
 for track in media_info.tracks:
@@ -362,6 +400,8 @@ for track in media_info.tracks:
         print(track.duration)
 ~~~
 {: .language-python}
+
+## Working with Time
 
 By default, pymediainfo returns the time in milliseconds.
 This is frustrating, in that we generally don't talk about a time in milliseconds.
@@ -380,7 +420,7 @@ So here, we ask Python to do two additional things: (1) format the print stateme
 Finally, we can use a `for` loop to get this information for every file.
 
 ~~~
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
@@ -402,10 +442,10 @@ Duration: 0.935 sec.
 
 As an alternative, we could take advantage of MediaInfo’s already verbose output, and if we recall, when we ask MediaInfo for a “full” report (mediainfo -F my_movie.mov), we receive a few different expressions of the same value:
 
-In its own roundabout way, pymediainfo allows us to access these various options:
+`pymediainfo` allows us to access these various options:
 
 ~~~
-media_info = MediaInfo.parse(media_list[0])
+media_info = MediaInfo.parse(mov_list[0])
 
 for track in media_info.tracks:
     if track.track_type == "General":
@@ -437,7 +477,7 @@ This is an even more human-readable option, but when we try to sum up the entire
 ~~~
 durations = []
 
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
@@ -502,12 +542,12 @@ While calculating is easier with milliseconds (integers), reading is far easier 
 Our challenge is to do all of the calculating with milliseconds and then print the final result as HH:MM:SS:MS.
 Now, this being the wide world of Python, there is a module (called datetime) that we could use to transform our HH:MM:SS:MS into a shape (called a datetime object) that could be manipulated, but for now, let’s stick to a more manageable solution.
 
-As with our summing of bytes, we can easily make a few small changes to our code to add our individual durations to a new list:
+As with our summing of bytes, we can make a few small changes to our code to add our individual durations to a new list:
 
 ~~~
 durations = []
 
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
@@ -522,7 +562,8 @@ sum(durations)
 ~~~
 {: .output}
 
-To create something more human readable, we could perform a series of equations to transform this value into HH:MM:SS:MS:
+To create something more human readable, we could perform a series of equations to transform this value into HH:MM:SS:MS, or we could use some prebuilt Python modules.
+Both are demonstrated below.
 
 ~~~
 total_duration = sum(durations)
@@ -542,6 +583,17 @@ human_duration
 ~~~
 {: .output}
 
+~~~
+import datetime
+
+total_duration = sum(durations)
+
+human_duration = datetime.timedelta(milliseconds=total_duration)
+
+human_duration
+~~~
+{: .language-python}
+
 
 > ## Challenge
 >
@@ -558,35 +610,27 @@ human_duration
 
 ## Putting it all together
 
-We can put all of the pieces together, using `hurry.filesize`, `pymediainfo`, a slew of `for` loops, multiple lists, `os.walk`, `endswith` statements, and a formatted print statement to result in a script that will comb through our directory, count up all of the relevant media files, and let us know: (1) the total number of files, (2) the average duration in human readable form, and (3) the average file size, in the SI system.
+We can put all of the pieces together, using `pymediainfo`, a slew of `for` loops, multiple lists, `glob`, `datetime`, and a formatted print statement to result in a script that will comb through our directory, count up all of the relevant media files, and let us know: (1) the total number of files, (2) the average duration in human readable form, and (3) the average file size, in the SI system.
 
 ~~~
-media_list = [ ]
+mov_list = [ ]
 sizes = []
 durations = []
 
-for root, dirs, files in os.walk(video_dir):
-    for file in files:
-        if file.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
-            item_path = os.path.join(root, file)
-            media_list.append(item_path)
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
             durations.append(track.duration)
             sizes.append(track.file_size)
 
-avg_duration = int(sum(durations)/len(media_list))
+avg_duration = int(sum(durations)/len(mov_list))
 
-hours = avg_duration // 3600000
-minutes = (avg_duration % 3600000) // 60000
-seconds = (avg_duration % 60000) // 1000
-ms = avg_duration % 1000
-human_duration = "{:0>2}:{:0>2}:{:0>2}.{:0>3}".format(hours, minutes, seconds, ms)
+human_duration = datetime.timedelta(milliseconds=total_duration)
 
-print("Total Number of Files: {} ; Average Duration: {}; Average Size: {}".format(len(media_list), human_duration, size(sum(sizes)/len(media_list), system=si)))
+print("Total Number of Files: {} ; Average Duration: {}; Average Size: {}".format(len(mov_list), human_duration, sum(sizes)/len(mov_list)/1e6))
 ~~~
 {: .language-python}
 

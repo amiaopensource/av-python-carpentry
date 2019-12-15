@@ -43,7 +43,7 @@ help(shutil.copy)
 ~~~
 {: .language-python}
 
-`shutil.copy()` takes two arguments, `src` (path to source file) and `dest` (path to destination). The source path we can pull from our `media_list`. The destination path, we'll have to create.
+`shutil.copy()` takes two arguments, `src` (path to source file) and `dest` (path to destination). The source path we can pull from our `mov_list`. The destination path, we'll have to create.
 
 Let's make a single subfolder in the `amia19` folder to hold copies of the service files.
 
@@ -63,12 +63,11 @@ It's just a string.
 If we try to copy anything to this folder, we'll get an error.
 
 ~~~
-shutil.copy(qckitty_path, service_folder)
+shutil.copy(mov_list[0], service_folder)
 ~~~
 {: .language-python}
 
-As there wasn't a landing directory ready for our QCKitty, we ended up with an extensionless file called "service" file.
-It is exactly the same size as our gif (8.7 MB).
+As there wasn't a landing directory ready for our video, we ended up with an extensionless file called "service" file.
 We wanted to copy the gif into a folder called "service", except the "service" folder didn't exist.
 
 Let's delete that "service" file and do things the right way. 
@@ -85,16 +84,16 @@ if not os.path.exists(service_folder):
 And now that the destination directory actually exists, we should be able to copy files there.
 
 ~~~
-shutil.copy(kittypath, service_folder)
+shutil.copy(mov_list[0], service_folder)
 ~~~
 {: .language-python}
 
 Now we can unleash a loop on this problem.
 
 ~~~
-for item in media_list:
-	if item.endswith('mp4'):
-		shutil.copy(item, service_folder)
+mp4_list = glob.glob(os.path.join(video_dir, '**', '*mp4'))
+for item in mp4_list:
+	shutil.copy(item, service_folder)
 
 os.listdir(service_folder)
 ~~~
@@ -162,14 +161,14 @@ We can turn that into a list.
 {: .language-python}
 
 Just like with `shutil.copy()`, we need to provide source and destination paths for this command to function properly.
-Again, the source will be taken from `media_list`.
+Again, the source will be taken from `mov_list`.
 For the destination, we can use the `service_folder`, but `ffmpeg` requires a path with a filename.
 
 Since we're transcoding preservation files to make service files, we can use the preservation filename as the basis of our service filename.
 And because we're dealing with path, let's use an `os.path` function.
 
 ~~~
-os.path.basename(media_list[0])
+os.path.basename(mov_list[0])
 ~~~
 {: .language-python}
 
@@ -180,10 +179,10 @@ napl1777.mov
 
 That's a good start.
 Now we need the filename to have an 'mp4' extension instead of 'mov'.
-For that, we can use the `replace()` function for strings.
+For that, we can use the `replace()` method for strings.
 
 ~~~
-pres_filename = os.path.basename(media_list[0])
+pres_filename = os.path.basename(mov_list[0])
 pres_filename.replace('mov', 'mp4')
 ~~~
 {: .language-python}
@@ -196,7 +195,7 @@ napl1777.mp4
 For a final step, we can join the new filename to the `service_folder` path, all within the context of the `ffmpeg` command and `subprocess` call.
 
 ~~~
-subprocess.run(['ffmpeg', '-i', media_list[0], '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', os.path.join(service_folder, os.path.basename(media_list[0]).replace('mov', 'mp4'))])
+subprocess.run(['ffmpeg', '-i', mov_list[0], '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', os.path.join(service_folder, os.path.basename(mov_list[0]).replace('mov', 'mp4'))])
 ~~~
 {: language-python}
 
@@ -207,14 +206,13 @@ CompletedProcess(['ffmpeg', '-i', 'Desktop/amia19/federal_grant/napl1777.mov', '
 
 ## Looking Before You Transcode
 
-It might be tempting to wrap this all in a `for` loop and celebrate, but let's think through what might happen when we run this code across all the files in `media_list`.
+It might be tempting to wrap this all in a `for` loop and celebrate, but let's think through what might happen when we run this code across all the files in `mov_list`.
 
 > ## Problems with Transcoding Everything
-> What issues would face if you tried to transcode every file in `media_list` right now?
+> What issues would face if you tried to transcode every file in `mov_list` right now?
 > What steps would you take to avoid those issues?
 > > You would transcode files that you already have service files for, like `napl1777.mov`.
-> > You would double-transcode the service files you have, like the 120th Anniversary service files.
-> > To avoid this, you would need create some `if` statements to skip transcoding for those files.
+> > To avoid this, you would need create an `if` statements to skip transcoding for those files.
 > {: .solution}
 {: .challenge} 
 
@@ -222,7 +220,7 @@ It might be tempting to wrap this all in a `for` loop and celebrate, but let's t
 Let's just focus on untranscoded movs.
 
 ~~~
-for item in media_list:
+for item in mov_list:
 	if item.endswith('mov'):
 		output_file = os.path.join(service_folder, os.path.basename(item).replace('mov', 'mp4'))
 		if not os.path.exists(output_file):
@@ -234,4 +232,4 @@ os.listdir(service_folder)
 
 Success!
 
-
+{% include links.md %}
