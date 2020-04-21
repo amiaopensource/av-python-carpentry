@@ -24,9 +24,9 @@ So why not take advantage of that work first?
 
 ## Moving Files
 
-Unfortunately, when we review the folders where those service files live, it looks like they're all located in [BagIt](https://en.wikipedia.org/wiki/BagIt) bags.
-Moving the files out of the bags would render the bags invalid.
-To avoid that issue, we can make a copy of those service files.
+When we review the folders where those service files live, it looks like they're all located in [BagIt](https://en.wikipedia.org/wiki/BagIt) bags.
+Because bags have multiple mechanisms to track the fixity of their contents, we don't want to change their contents if we don't have to.
+For this case, we can make copies of the existing service files.
 
 For any kind of local file moving or copying, the `shutil` module is a good starting point.
 Let's import that.
@@ -60,7 +60,7 @@ service_folder
 
 This folder doesn't actually exist yet.
 It's just a string. 
-If we try to copy anything to this folder, we'll get an error.
+If we try to copy anything to this folder, we won't get the results we might expect.
 
 ~~~
 shutil.copy(mov_list[0], service_folder)
@@ -71,7 +71,8 @@ As there wasn't a landing directory ready for our video, we ended up with an ext
 We wanted to copy the gif into a folder called "service", except the "service" folder didn't exist.
 
 Let's delete that "service" file and do things the right way. 
-We can use the `os` module to make this folder.
+
+Now, let's use the `os` module to make this folder.
 But, before doing that, it's good practice to make sure the folder doesn't already exist.
 Among python users, this is called Looking Before You Leap (LBYP).
 
@@ -88,7 +89,7 @@ shutil.copy(mov_list[0], service_folder)
 ~~~
 {: .language-python}
 
-Now we can unleash a loop on this problem.
+Finally, let's use a loop to do this for all of the existing service files.
 
 ~~~
 mp4_list = glob.glob(os.path.join(video_dir, '**', '*mp4'))
@@ -104,8 +105,11 @@ For the next part, she'll need to do some transcoding.
 
 ## Using ffmpeg from Python
 
-Some command-line tools like MediaInfo have a Python module that makes them easier to use in a script.
-Even if they don't, we can use the `subprocess` module to run terminal commands from our script.
+Python can be used to run other scripts and programs on a computer.
+For example, if there is a command-line utility that does an essential function, you can incorporate it into a Python script that automates it across a group of files.
+For this lesson, we will use the `subprocess` module to run terminal commands from our script.
+This module work for all command-line tools.
+Later, we will look at another method that exists for some, but not all, command-line tools.
 
 ~~~
 import subprocess
@@ -153,19 +157,22 @@ First, let's assemble an FFMPEG command to make mp4/h264 files.
 And since we're mortals, we'll use the wonderful [ffmprovisr](https://amiaopensource.github.io/ffmprovisr/#transcode_h264)
 
 The suggested command is `ffmpeg -i input_file -c:v libx264 -pix_fmt yuv420p -c:a aac output_file`.
-We can turn that into a list.
+The 'subprocess.run()' function requires the command to be in a list format.
+We do that by treating the spaces in the command as the delimiters for each item in our list.
+When we use this function in a for-loop, most of these items will remain the same each time the command runs, but we will change the input and output files.
+For those, we will use a variable instead of a string.
 
 ~~~
 ['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', output_file]
 ~~~
 {: .language-python}
 
-Just like with `shutil.copy()`, we need to provide source and destination paths for this command to function properly.
-Again, the source will be taken from `mov_list`.
-For the destination, we can use the `service_folder`, but `ffmpeg` requires a path with a filename.
+The `input_file` and `ouput_file` are like the source and destination paths we needed for `shutil.copy()`.
+We can take `input_file` from the first entry on our `mov_list`.
+For `output_file`, we can use the `service_folder`, but `ffmpeg` requires a path with a filename.
 
-Since we're transcoding preservation files to make service files, we can use the preservation filename as the basis of our service filename.
-And because we're dealing with path, let's use an `os.path` function.
+Since we're transcoding preservation files to make service files, we can use the preservation filename as the basis for our service filename.
+And because we're dealing with paths, let's use an `os.path` function.
 
 ~~~
 os.path.basename(mov_list[0])
@@ -178,12 +185,11 @@ napl1777.mov
 {: .output}
 
 That's a good start.
-Now we need the filename to have an 'mp4' extension instead of 'mov'.
-For that, we can use the `replace()` method for strings.
+Our service files use an 'mp4' wrapper instead of an 'mov' wrapper.
+Because a filename is a string, we can use the `replace()` method for strings to make this change.
 
 ~~~
-pres_filename = os.path.basename(mov_list[0])
-pres_filename.replace('mov', 'mp4')
+os.path.basename(mov_list[0]).replace('mov', 'mp4')
 ~~~
 {: .language-python}
 
@@ -192,10 +198,12 @@ napl1777.mp4
 ~~~
 {: .output}
 
-For a final step, we can join the new filename to the `service_folder` path, all within the context of the `ffmpeg` command and `subprocess` call.
+For a final step, we can join the new filename to the `service_folder` path.
 
 ~~~
-subprocess.run(['ffmpeg', '-i', mov_list[0], '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', os.path.join(service_folder, os.path.basename(mov_list[0]).replace('mov', 'mp4'))])
+input_file = mov_list[0]
+output_file = os.path.join(service_folder, os.path.basename(mov_list[0]).replace('mov', 'mp4'))
+subprocess.run(['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', output_file])
 ~~~
 {: language-python}
 
@@ -204,9 +212,31 @@ CompletedProcess(['ffmpeg', '-i', 'Desktop/amia19/federal_grant/napl1777.mov', '
 ~~~
 {: .output}
 
+> ## Using variables 1
+> One of the challenging things about learning to program is how and when to use variables.
+> You can be verbose and store the result of every change to a variable like this.
+> ~~~
+> original_filename = os.path.basename(mov_list[0])
+> output_filename = original_filename.replace('mov', 'mp4')
+> output_filepath = output_file = os.path.join(service_folder, output_filename)
+> subprocess.run(['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', output_filepath])
+> ~~~
+> {: language-python}
+> You can also be very terse and nest all of your functions inside of each other like this.
+> ~~~
+> subprocess.run(['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', os.path.join(service_folder, os.path.basename(mov_list[0]).replace('mov', 'mp4'))])
+> ~~~
+> {: language-python}
+>
+> Both of these approaches will work.
+> In practice, most code falls somewhere between these extremes to produce something that is concise but readable.
+> When you're starting, it's easier to focus on getting code to run.
+> As you continue you may find resources like the [PEP-8](https://www.python.org/dev/peps/pep-0008/) style guide useful.
+{: .callout}
+
 ## Looking Before You Transcode
 
-It might be tempting to wrap this all in a `for` loop and celebrate, but let's think through what might happen when we run this code across all the files in `mov_list`.
+It might be tempting to wrap `ffmpeg` command in a `for` loop and celebrate, but let's think through what might happen when we run this code across all the files in `mov_list`.
 
 > ## Problems with Transcoding Everything
 > What issues would face if you tried to transcode every file in `mov_list` right now?
@@ -217,7 +247,7 @@ It might be tempting to wrap this all in a `for` loop and celebrate, but let's t
 {: .challenge} 
 
 
-Let's just focus on untranscoded movs.
+Let's just focus on untranscoded movs. To do that, we'll look before we leap by seeing if a service copy already exists for that mov file.
 
 ~~~
 for item in mov_list:
@@ -231,4 +261,12 @@ os.listdir(service_folder)
 {: language-python}
 
 Success!
+
+> ## Using variables 2
+> The code above is an example of how a variable can be useful.
+> By first storing the service file path to `output_file`, we are able to use it in two different contexts.
+> First, to see if the service file already exists.
+> Second, to store the newly created service file if it doesn't.
+> Without creating a variable for that file path, we would have needed to run `os.path.join(service_folder, os.path.basename(item).replace('mov', 'mp4'))` twice.
+{: .callout}
 
