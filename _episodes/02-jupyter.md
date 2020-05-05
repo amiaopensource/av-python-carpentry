@@ -281,7 +281,7 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 > Why do you think that nothing is displayed when this cell is executed?
 >
 > ~~~
-> cwd = os.getcwd()
+> current_dir = os.getcwd()
 > ~~~
 > {: .language-python}
 > 
@@ -291,13 +291,39 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 > {: .solution}
 {: .challenge}
 
+> ## Python Syntax: `=`
+>
+> In order to parse our input, Python has rules about how it should be written.
+> We can use these same rules when reading code to understand what is happening.
+> As different syntaxes appear, we will point them out in these callout boxes.
+>
+> In Python, the equals sign `=` works a little differently than in a math class.
+> `=` assigns a value to variable, like this:
+> 
+> ~~~
+> variable = value
+> ~~~
+> {: .language-python}
+>
+> A variable is an object that can hold data.
+> We will experiment with this in the next lesson.
+> For now, we can update the value of the variable
+> ~~~
+> current_dir = 'Downloads'
+> ~~~
+> {: .language-python}
+>
+> One of the hardest parts of programming is picking good names for your variables.
+> You tend to read code more often than writing, so it's very useful to use descriptive variable names.
+{: .callout}
+
 > ## Running Even More Python Cells
 >
-> How would you display the data stored as cwd?
+> How would you display the data stored as `current_dir`?
 > 
 > > ## Solution
 > > ~~~
-> > cwd
+> > current_dir
 > > ~~~
 > > {: .language-python}
 > > ~~~
@@ -310,21 +336,21 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 
 > ## Running the Last Python Cell for this Lesson
 >
-> What information is stored as cwd when this cell is executed?
+> What information is stored as `current_dir` when this cell is executed?
 >
 > ~~~
-> os.chdir('Downloads')
-> cwd = os.getcwd()
+> os.chdir('Desktop')
+> current_dir = os.getcwd()
 > ~~~
 > {: .language-python}
 > 
 > > ## Solution
 > > ~~~
-> > cwd
+> > current_dir
 > > ~~~
 > > {: .language-python}
 > > ~~~
-> > '/Users/your_username/Downloads'
+> > '/Users/your_username/Desktop'
 > > ~~~
 > > {: .output}
 > > After changing directories, `os.getcwd()` returns a different value than before.
@@ -361,46 +387,10 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 > {: .solution}
 {: .challenge}
 
-> ## Python Syntax: `=`
->
-> In order to parse our input, Python has rules about how it should be written.
-> We can use these same rules when reading code to understand what is happening.
-> As different syntaxes appear, we will point them out in these callout boxes.
->
-> In Python, the equals sign `=` works a little differently than in a math class.
-> `=` assigns a value to variable, like this:
-> 
-> ~~~
-> variable = value
-> ~~~
-> {: .language-python}
->
-> A variable is an object that can hold any value.
-> We can update the value of the variable
-> ~~~
-> cool_file_name = 'qckitty.gif'
-> ~~~
-> {: .language-python}
->
-> We can also create new variables.
-> A variable name can include any character except space ` `, and it can't begin with a number.
-> ~~~
-> myFavoriteFilename = 'qckitty.gif'
-> ~~~
-> {: .language-python}
->
-> One of the hardest parts of programming is picking good names for your variables.
-> To help understand your code when you return to it in the future, try to use descriptive names.
-{: .callout}
-
 ## Closing JupyterLab
 
 *   From the Menu Bar select the "File" menu and the choose "Quit" at the bottom of the dropdown menu. You will be prompted to confirm that you wish to shutdown the JupyterLab server (don't forget to save your work!). Click "Confirm" to shutdown the JupyterLab server.
-*   To restart the JupyterLab server you will need to re-run the following command from a shell.
-
-~~~
-$ jupyter lab
-~~~
+*   To restart the JupyterLab server you will need to click on its tile from the Anaconda browser.
 
 > ## Closing JupyerLab
 >
@@ -411,5 +401,3 @@ $ jupyter lab
 [jupyterlab-ui]: https://jupyterlab.readthedocs.io/en/stable/user/interface.html
 [jupyterlab-notebook-docs]: https://jupyterlab.readthedocs.io/en/stable/user/notebook.html
 [markdown]: https://en.wikipedia.org/wiki/Markdown
-
-{% include links.md %}

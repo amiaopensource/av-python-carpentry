@@ -17,6 +17,7 @@ Specific modules/libraries/tools will include: the os, glob, re, subprocess, shu
 > ## Prerequisites
 >
 > Workshop participants must bring their own laptops to the workshop.
+> Laptops should have at least 4GB of RAM, 10GB of available drive space, and Windows 8+ or MacOS 10.10+
 >
 > Familiarity with the following programming concepts is helpful:
 > * Variables

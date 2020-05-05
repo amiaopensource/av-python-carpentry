@@ -16,7 +16,7 @@ The service file transcoding was a huge success. One command and tens of service
 ## Python, ffmpeg, and lossless transcoding
 
 For this workshop, we'll experiment with transcoding video to FFV1 and rewrapping the file in an MKV.
-First, we'll mirror the setup for service files.
+First, we'll create a similar setup as we did for the service files.
 
 ~~~
 mkv_folder = os.path.join('Desktop', 'amia19', 'mkv')
@@ -28,12 +28,12 @@ if not os.path.exists(mkv_folder):
 From ffmprovisr we can find the following recipe:
 `ffmpeg -i input_file -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy output_file.mkv`
 
-In this case, let's not look before we leap.
+As an experiment, let's not look before we leap.
 
 ~~~
 # /federal_grant/napl_0368_pres.mov
-test_mkv = os.path.join(mkv_folder, os.path.basename(media_list[12]).replace('mov', 'mkv'))
-subprocess.run(['ffmpeg', '-i', media_list[12], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv])
+test_mkv = os.path.join(mkv_folder, os.path.basename(mov_list[12]).replace('mov', 'mkv'))
+subprocess.run(['ffmpeg', '-i', mov_list[12], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv])
 ~~~
 {: .language-python}
 
@@ -42,11 +42,11 @@ subprocess.run(['ffmpeg', '-i', media_list[12], '-map', '0', '-dn', '-c:v', 'ffv
 ~~~
 {: .output}
 
-> ## How Much Compression Did Get?
+> ## How Much Compression Did We Get?
 > How would calculate the file size difference between the original and transcoded file?
 > > ## Solution
 > > ~~~
-> > os.stat(media_list[12].st_size - os.stat(output_path).st_size
+> > os.stat(mov_list[12].st_size - os.stat(output_path).st_size
 > > ~~~
 > > {: .language-python}
 > {: .solution}
@@ -66,29 +66,31 @@ For comparison, it's like converting a JPEG image file to TIFF or JPEG2000.
 The lossy original was designed to encode that information as efficiently as it could.
 Encoding it with a different codec will just store the existing information in a more verbose format.
 
-Before we jump into building our transcoding loop, let's get rid of this bad file.
+## Transcoding Everything to MKV/FFV1
+For now, let's go ahead and transcode everything just to see the difference.
 
 ~~~
-os.remove(test_mkv)
-os.listdir(mkv_folder)
-~~~
-{: .language-python}
-
-## Adding Conditionals to a Lossless Transcoder
-
-To create service files, we checked if an output file already existed.
-To do lossless encoding, we'll need to check the format of the original.
-
-~~~
-for item in media_list:
-    if item.endswith('mov'):
-        media_info = MediaInfo.parse(item)
-        for track in media_info.tracks:
-            if track.track_type == "General":
-                if not track.format == "DV":
-                    # add transcoding code here
+for item in mov_list:
+    mkv_path = os.path.join(mkv_folder, os.path.basename(item).replace('mov', 'mkv'))
+    subprocess.run(['ffmpeg', '-i', item, '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', mkv_path])
 ~~~
 {: language-python}
+
+> ## How Much Compression Did We Get?
+> How would calculate the file size difference between all of the original and transcoded files?
+> > ## Solution
+> > ~~~
+> > original_size = 0
+> > for item in mov_list:
+> >     original_size = original_size + os.stat(item).st_size
+> > compressed_size = 0
+> > for item in mkv_list:
+> >     compressed_size = compressed_size + os.stat(item).st_size
+print(original_size, compressed_size)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
 > ## Keep on improving
 > The ffmprovisr recipe for lossless compression is basic.
@@ -98,4 +100,3 @@ for item in media_list:
 > > You might want to use a different audio codec like flac.
 > {: .solution}
 {: .challenge}
-

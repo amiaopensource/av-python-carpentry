@@ -52,17 +52,13 @@ Let’s begin by returning to our media-specific file path gathering starter cod
 We can pick up where we left off, with a script that uses pymediainfo to gather the duration and size of our files:
 
 ~~~
-media_list = []
+mov_list = []
 sizes = []
 durations = []
 
-for root, dirs, files in os.walk(video_dir):
-    for item in files:
-        if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
-            item_path = os.path.join(root, item)
-            media_list.append(item_path)
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
@@ -74,16 +70,12 @@ for item in media_list:
 With some adjustments, we can build this script out to collect the full list of the technical attributes described above:
 
 ~~~
-media_list = [ ]
+mov_list = [ ]
 all_file_data = []
 
-for root, dirs, files in os.walk(video_dir):
-    for item in files:
-        if item.endswith(('.mkv', '.mov', '.wav', '.mp4', '.dv', '.iso', '.flac')):
-            item_path = os.path.join(root, item)
-            media_list.append(item_path)
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
@@ -126,7 +118,7 @@ In the end, we create `all_file_data`, a “multi-dimensional container,” or a
 Let's print each item in `all_file_data` to see what this looks like.
 
 ~~~
-for item in sorted(all_file_data):
+for item in all_file_data:
     print(item)
 ~~~
 {: .language-python}
@@ -162,12 +154,11 @@ The fields we gathered in the code above may or may not meet your needs.
 You may need to gather less.
 If so, delete those lines.
 You may need to gather other pieces of metadata that MediaInfo collects.
-
 In that case, you'll need to figure out what that field's name is in `pymediainfo`.
 A good strategy for this, as for many questions, is to print out an entire `pymediainfo` report. So, for example, if we ask python to print out the stream attributes, we’ll receive the following:
 
 ~~~
-media_info = MediaInfo.parse(media_list[0])
+media_info = MediaInfo.parse(mov_list[0])
 for track in media_info.tracks:
     print(track.track_type, track.to_data().keys())
 ~~~

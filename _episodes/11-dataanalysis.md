@@ -49,13 +49,13 @@ With a scatterplot, we can visualize these differences, and possibly learn how t
 Let's begin by transcoding another set of FFV1/MKV files from our Quicktime masters, but, to make things more interesting, let's assume that Alice accidentally forgot to include an if statement that separated out her DV-encoded Quicktime files.
 
 ~~~
-media_list = [ ]
+mov_list = [ ]
 
 for root, dirs, files in os.walk(video_dir):
     for file in files:
         if file.endswith('.mov'):
             file_path = os.path.join(root, file)
-            media_list.append(file_path)
+            mov_list.append(file_path)
 ~~~
 {: .language-python}
 
@@ -71,7 +71,7 @@ if not os.path.exists(new_mkv_folder):
 And let's transcode our set, this time not paying attention to underlying codecs (DV might get bigger, not smaller!):
 
 ~~~
-for item in media_list:
+for item in mov_list:
         output_file = os.path.join(new_mkv_folder, os.path.basename(item).replace('mov', 'mkv'))
         subprocess.call(['ffmpeg', '-i', item, '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', output_file])
 ~~~
@@ -81,7 +81,7 @@ For reference, to identify our DV-encoded Quicktime files, we could easily use a
 
 ~~~
 
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "Video":
@@ -96,13 +96,13 @@ for item in media_list:
 > If we wanted to see if we had an equal count of MOVs and MKVs, how would we do so?
 > 
 > > ## Solution
-> > len(media_list) returns 102
+> > len(mov_list) returns 102
 > >
 > > len(new_mkv_folder) returns 23
 > >
 > > What gives?
 > >
-> > The len of media_list counts the list of full file paths that we created for the MOVs.
+> > The len of mov_list counts the list of full file paths that we created for the MOVs.
 > >
 > > The len of new_mkv_folder returns the number of characters in the relative path 'Desktop/amia19/new_mkvs'
 > >
@@ -140,7 +140,7 @@ Step 1: gather up file names and file sizes from our original set of Quicktime f
 ~~~
 all_file_data = []
 
-for item in media_list:
+for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
