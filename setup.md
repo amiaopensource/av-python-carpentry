@@ -136,7 +136,7 @@ From now on, screenshots will be from a Mac, but we’ll highlight any material 
 
 The Anaconda Navigator is one of the ways you’ll be able to run Jupyter Lab. Click on the "launch" button in the Jupyter Lab tile.
 
-![screen-41](http://curriculum-content.s3.amazonaws.com/data-science/screen-41.png)
+![screen-40](http://curriculum-content.s3.amazonaws.com/data-science/screen-40.png)
 
 On both Windows and a Mac you’ll see a window in your web browser that allows you to open existing Jupyter notebooks or create a new one.
 
