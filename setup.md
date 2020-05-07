@@ -146,26 +146,19 @@ Click on the "Python 3" tile under Notebook in the tab.
 
 ![screen-43](http://curriculum-content.s3.amazonaws.com/data-science/screen-44.png)
 
-When you do, you’ll see a new notebook in your browser window that looks something like this:
-
-![screen-44](http://curriculum-content.s3.amazonaws.com/data-science/screen-43.png)
-
-To make sure it’s working, click in the cell and type the following:
+When you do, you’ll see a new notebook in your browser window. To make sure it’s working, click in the cell and type the following:
 
 ```
 import sys
 print(sys.version)
 ```
-
 Then hold down the shift key and hit enter to run the code in the cell. You should see an output something like this.
 
-![screen-45](http://curriculum-content.s3.amazonaws.com/data-science/screen-45.png)
+![screen-44](http://curriculum-content.s3.amazonaws.com/data-science/screen-43.png)
 
 Don’t worry if the version number or date is slightly different. If you get a similar output (something that isn’t an error message), congratulations! You’ve got Anaconda, Python and the Jupyter notebook installed successfully!
 
 To shut down Jupyter notebook, just close the tabs in your browser containing the notebook and the list of noteboks. On a mac you should also click on the terminal window and hit "ctrl-C" to close the notebook.
-
-![screen-46](http://curriculum-content.s3.amazonaws.com/data-science/screen-46.png)
 
 You’ll then have to hit "y" and return to confirm that you want to close down Jupyter notebook.
 
