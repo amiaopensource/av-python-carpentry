@@ -14,22 +14,31 @@ keypoints:
 
 > ## Catch-up Code
 > 
-> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can re-run to get back up to speed.
+> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can re-> run to get back up to speed.
 >
+> ~~~
 > video_dir = '/Users/username/Desktop/amia19'
+>
 > or
+>
 > video_dir = 'C:\\Users\\username\\Desktop\\amia19'
-> then copy and paste the folllowing:
+> 
+> ~~~
+> {: .language-python}
+>
+> Then copy and paste the following:
+>
+> ~~~
 > import os
 > import subprocess
->
 > mov_list = []
 > for root, dirs, files in os.walk(video_dir):
 >     for file in files:
->         if file.endswith('.mov'):
->             item_path = os.path.join(root, file)
->             mov_list.append(item_path)
->
+>        if file.endswith('.mov'):
+>            item_path = os.path.join(root, file)
+>            mov_list.append(item_path)
+> ~~~
+> {: .language-python}
 {: .callout}
 
 
