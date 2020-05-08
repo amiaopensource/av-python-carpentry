@@ -144,7 +144,7 @@ os.listdir(service_folder)
 That's a big chunk of Alice's task performed with a minimal amount of work.
 For the next part, she'll need to do some transcoding.
 
-## Using ffmpeg from Python
+## Using FFmpeg within Python
 
 Python can be used to run other scripts and programs on a computer.
 For example, if there is a command-line utility that performs an essential function, you can incorporate it into a Python script that automates that action for a group of files.
@@ -282,6 +282,7 @@ It might be tempting to wrap `ffmpeg` command in a `for` loop and celebrate, but
 > ## Problems with Transcoding Everything
 > What issues might you enocunter if you tried to transcode every file in `mov_list` right now?
 > What steps could you take to avoid those issues?
+> > ## Solution
 > > You would transcode files that you already have service files for, like `napl1777.mov`.
 > > To avoid this, you could use `if` statements to skip the transcoding process for those files.
 > {: .solution}
