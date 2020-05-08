@@ -14,7 +14,9 @@ keypoints:
 
 > ## Catch-up Code
 > 
-> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can re-> run to get back up to speed.
+> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can re-run to get back up to speed.
+>
+> Remember: press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute the contents of the cell.
 >
 > ~~~
 > video_dir = '/Users/username/Desktop/amia19'
@@ -23,6 +25,7 @@ keypoints:
 >
 > video_dir = 'C:\\Users\\username\\Desktop\\amia19'
 > 
+> DON'T FORGET TO CHANGE USERNAME TO YOUR USERNAME
 > ~~~
 > {: .language-python}
 >
