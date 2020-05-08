@@ -14,7 +14,7 @@ keypoints:
 
 > ## Catch-up Code
 > 
-> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can re-run to get back up to speed.
+> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can run to get back up to speed.
 >
 > Remember: press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute the contents of the cell.
 >
@@ -53,7 +53,7 @@ for root, dirs, files in os.walk(video_dir):
 >
 {: .callout}
 
-Remember Alice? She had 3 tasks that she wanted to complete.
+Remember Alice? She had 3 tasks that she needed to complete.
 
 1. create service copy MP4s for all of the master files on her hard drive
 2. share the duration of each video file with a cataloger
@@ -61,7 +61,7 @@ Remember Alice? She had 3 tasks that she wanted to complete.
 
 Alice will need to create a transcoding script to take care of the first step.
 You may have noticed that the "120th Anniversary" project included service files.
-So let's stsrt there.
+So let's start there.
 
 ## Moving Files
 
