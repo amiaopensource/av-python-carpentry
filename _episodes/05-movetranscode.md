@@ -25,7 +25,7 @@ keypoints:
 >
 > video_dir = 'C:\\Users\\username\\Desktop\\amia19'
 > 
-> DON'T FORGET TO CHANGE USERNAME TO YOUR USERNAME
+> MAKE SURE TO CHANGE USERNAME TO YOUR USERNAME
 > ~~~
 > {: .language-python}
 >
