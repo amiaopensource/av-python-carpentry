@@ -585,7 +585,7 @@ It can't do other jobs, like count the number of subdirectories or find all the 
 If you need to do additional filtering, counting, or other operations you need to use other strategies.
 
 The following code generates the same list as our `glob.glob` but uses 6 lines instead of 1.
-Under-the-hood, `glob.glob` is perfomring a very similar set of steps as this code.
+Under-the-hood, `glob.glob` is performing a very similar set of steps as this code.
 However, it can be useful to do each steps yourself in case you want to perform additional actions while generating lists of files.
 
 ~~~
