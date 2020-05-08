@@ -42,6 +42,15 @@ for root, dirs, files in os.walk(video_dir):
             mov_list.append(item_path)
 > ~~~
 > {: .language-python}
+>
+> Run the following to confirm that you're generating a file list properly (you should see a list of file names; if not, call for help!)
+>
+> ~~~
+> mov_list
+> ~~~
+> {: .language-python}
+>
+>
 {: .callout}
 
 
