@@ -32,11 +32,11 @@ keypoints:
 > import os
 > import subprocess
 > mov_list = []
-> for root, dirs, files in os.walk(video_dir):
->     for file in files:
->        if file.endswith('.mov'):
->            item_path = os.path.join(root, file)
->            mov_list.append(item_path)
+for root, dirs, files in os.walk(video_dir):
+    for file in files:
+        if file.endswith('.mov'):
+            item_path = os.path.join(root, file)
+            mov_list.append(item_path)
 > ~~~
 > {: .language-python}
 {: .callout}
