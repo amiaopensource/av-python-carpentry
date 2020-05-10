@@ -34,12 +34,10 @@ keypoints:
 > ~~~
 > import os
 > import subprocess
+> import glob
 > mov_list = []
-for root, dirs, files in os.walk(video_dir):
-    for file in files:
-        if file.endswith('.mov'):
-            item_path = os.path.join(root, file)
-            mov_list.append(item_path)
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
+>
 > ~~~
 > {: .language-python}
 >
