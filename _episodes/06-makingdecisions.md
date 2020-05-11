@@ -95,7 +95,7 @@ CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/amia19/fed
 > > ## Solution
 > > ~~~
 >> mkv_list = glob.glob(os.path.join(mkv_folder, '**', '*mkv'), recursive=True)
-> > os.stat(sorted(mov_list)[12].st_size - os.stat(mkv_list)[0].st_size
+> > os.stat(sorted(mov_list)[42]).st_size - os.stat(mkv_list[0]).st_size
 > > ~~~
 > > {: .language-python}
 > {: .solution}
