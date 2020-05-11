@@ -536,8 +536,8 @@ False
 >
 > If a function uses more than argument, each argument is separated by a comma.
 > Arguments can be anything, including strings, lists, variables that hold strings, and other functions.
-> However, functions can have rules for what they will accept.
-> For example, using a list as arguments in `os.path.join` returns an error.
+> However, functions often do have rules regarding what they will or will not accept.
+> For example, using a list as an argument in `os.path.join` will return an error.
 > ~~~
 > os.path.join(['Desktop', 'amia19'])
 > ~~~
@@ -549,7 +549,7 @@ False
 > ~~~
 > {: .output}
 >
-> But using strings not enclosed in square brackets returns the result we're after.
+> But using strings not enclosed in square brackets returns the results we're after.
 >
 > ~~~
 > os.path.join('Desktop', 'amia19')
@@ -558,10 +558,10 @@ False
 {: .callout}
 
 Finally, we can combine `glob.glob()` and `os.path.join()` to generate our list of files.
-In order to search recursively through nested folders, we need to give an extra argument to `glob.glob()`, `recursive=True`.
+In order to search recursively through nested folders, we'll need to provide an extra argument to `glob.glob()`, `recursive=True`.
 
 ~~~
-mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
+mov_list = glob.glob(os.path.join(video_dir, '**', '*mov'), recursive=True)
 ~~~
 {: .language-python}
 
@@ -582,11 +582,11 @@ mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 
 `glob.glob` does one job - finding filepaths - really well.
 It can't do other jobs, like count the number of subdirectories or find all the files that don't match a particular pattern.
-If you need to do additional filtering, counting, or other operations you need to use other strategies.
+If you need to do additional filtering, counting, or other operations, you'll need a different strategy.
 
 The following code generates the same list as our `glob.glob` but uses 6 lines instead of 1.
 Under-the-hood, `glob.glob` is performing a very similar set of steps as this code.
-However, it can be useful to do each steps yourself in case you want to perform additional actions while generating lists of files.
+However, it can be useful to split the steps into individual components, in case you'll want to perform additional actions while generating your list of files.
 
 ~~~
 mov_list = []
