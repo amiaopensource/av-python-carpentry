@@ -98,6 +98,11 @@ CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/amia19/fed
 > > os.stat(sorted(mov_list)[42]).st_size - os.stat(mkv_list[0]).st_size
 > > ~~~
 > > {: .language-python}
+> >
+> > ~~~
+> > -1782275
+> > ~~~
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
