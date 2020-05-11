@@ -42,13 +42,13 @@ And as an experiment, let's choose a random file in the `federal_grant` folder a
 
 ~~~
 # /federal_grant/napl_0368_pres.mov
-test_mkv = os.path.join(mkv_folder, os.path.basename(mov_list[12]).replace('mov', 'mkv'))
-subprocess.run(['ffmpeg', '-i', mov_list[12], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv])
+test_mkv = os.path.join(mkv_folder, os.path.basename(sorted(mov_list)[42]).replace('mov', 'mkv'))
+subprocess.run(['ffmpeg', '-i', sorted(mov_list)[42], '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', test_mkv])
 ~~~
 {: .language-python}
 
 ~~~
-0
+CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/amia19/federal_grant/napl_0371_pres.mov', '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', 'Desktop/amia19/mkv/napl_0371_pres.mkv'], returncode=0)
 ~~~
 {: .output}
 
@@ -56,7 +56,8 @@ subprocess.run(['ffmpeg', '-i', mov_list[12], '-map', '0', '-dn', '-c:v', 'ffv1'
 > How would calculate the file size difference between the original and transcoded file?
 > > ## Solution
 > > ~~~
-> > os.stat(mov_list[12].st_size - os.stat(output_path).st_size
+>> mkv_list = glob.glob(os.path.join(mkv_folder, '**', '*mkv'), recursive=True)
+> > os.stat(sorted(mov_list)[12].st_size - os.stat(mkv_list)[0].st_size
 > > ~~~
 > > {: .language-python}
 > {: .solution}
