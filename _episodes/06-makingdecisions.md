@@ -11,19 +11,24 @@ keypoints:
 - "Small variations"
 ---
 
-The service file transcoding was a huge success. One command and tens of service copies created. Alice has been hearing some good things about lossless compression. Maybe the service file code can be used for preservation files.
+Alice's efforts to copy pre-existing service files and transcode new service files was a big success. A couple of commands, and she's got a single folder with a large number of lightweight files ready to deploy. But Alice has also been hearing good things about lossless compression for preservation master files. Perhaps she could adapt the service file code that she used before to generate new, lossless preservation masters.
 
 ## Python, ffmpeg, and lossless transcoding
 
-For this workshop, we'll experiment with transcoding video to FFV1 and rewrapping the file in an MKV.
-First, we'll create a similar setup as we did for the service files.
+Let's experiment with transcoding our preservation master files to FFV1 and rewrapping them from `mov` to `mkv`.
+First, we'll need a place to put our newly created mkv files. Do you remember how to create a new folder using Python?
 
-~~~
+> ## What code would you run to create a new folder inside `amia19` called `mkv`?
+> 
+> > ## Solution
 mkv_folder = os.path.join('Desktop', 'amia19', 'mkv')
 if not os.path.exists(mkv_folder):
 	os.makedirs(mkv_folder)
-~~~
-{: .language-python}
+> > 
+> > As with our last effort, it's good working practice to use an if statement to ensure that the folder we're creating doesn't already exist and that we don't overwrite any data. 
+> > {: .language-python}
+> {: .solution}
+{: .challenge} 
 
 From ffmprovisr we can find the following recipe:
 `ffmpeg -i input_file -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy output_file.mkv`
