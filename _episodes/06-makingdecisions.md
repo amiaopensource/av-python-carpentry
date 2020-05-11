@@ -34,10 +34,11 @@ if not os.path.exists(mkv_folder):
 > {: .solution}
 {: .challenge} 
 
-From ffmprovisr we can find the following recipe:
+Leaning again on [ffmprovisr](https://amiaopensource.github.io/ffmprovisr/), we can find the following recipe for transcoding to FFV1/MKV:
+
 `ffmpeg -i input_file -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy output_file.mkv`
 
-As an experiment, let's not look before we leap.
+And as an experiment, let's choose a random file in the `federal_grant` folder and NOT look before we leap.
 
 ~~~
 # /federal_grant/napl_0368_pres.mov
@@ -64,16 +65,16 @@ subprocess.run(['ffmpeg', '-i', mov_list[12], '-map', '0', '-dn', '-c:v', 'ffv1'
 > ## What?
 > If the results aren't what you expected, what are your next steps to understand what happened?
 > > ## Solution
-> > Check mediainfo
+> > Check MediaInfo
 > > Ask a colleague
 > {: .solution}
 {: .challenge}
 
 FFV1 is a great codec for losslessly compressing uncompressed video.
 However, if a video is already encoded with a lossy codec, like DV or born-digital videos, transcoding to FFV1 will increase the file size.
-For comparison, it's like converting a JPEG image file to TIFF or JPEG2000.
+As a comparison, it would similar to converting a JPEG image file to TIFF or JPEG2000.
 The lossy original was designed to encode that information as efficiently as it could.
-Encoding it with a different codec will just store the existing information in a more verbose format.
+Encoding it with a different lossless codec will just store the existing information in a more verbose format.
 
 ## Transcoding Everything to MKV/FFV1
 For now, let's go ahead and transcode everything just to see the difference.
