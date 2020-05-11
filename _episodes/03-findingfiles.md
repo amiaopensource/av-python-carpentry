@@ -85,7 +85,7 @@ This distinction will become important as we begin using Python to find and do t
 > 2. Windows or Unix/Mac
 >
 > ~~~
-> 1. C:\Users\admin\Desktop
+> 1. C:\\Users\\admin\\Desktop
 > 2. /Desktop/Downloads
 > 3. Downloads
 > 4. usr/local/bin/python
