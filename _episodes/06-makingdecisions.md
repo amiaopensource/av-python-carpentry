@@ -11,13 +11,12 @@ keypoints:
 - "Small variations"
 ---
 
-
-Alice's effort to copy pre-existing service files and transcode new service files was a big success. A couple of commands, and she's ended up a single folder that contained a large number of lightweight files ready to deploy. But Alice has also heard good things about saving space by using lossless compression for preservation master files. Perhaps she could adapt the service file code that she used previously to generate new, lossless preservation masters.
+Alice's effort to copy pre-existing service files and transcode new service files was a big success. A couple of commands and she ended up a single folder containing a large number of lightweight files ready to deploy. But Alice has also heard good things about saving space by using lossless compression on preservation master files. Perhaps she could adapt the service file code that she used previously to generate new, lossless preservation masters.
 
 ## Python, ffmpeg, and lossless transcoding
 
 Let's experiment with transcoding our preservation master files to FFV1 and rewrapping them from `mov` to `mkv`.
-First, we'll need a place to put our newly created mkv files. Do you remember how to create a new folder using Python?
+First, we'll need a place to put our newly created mkv files. Do you remember how to create a new directory using Python?
 
 > ## What code would you run to create a new folder inside `amia19` called `mkv`?
 > 
@@ -25,9 +24,9 @@ First, we'll need a place to put our newly created mkv files. Do you remember ho
 mkv_folder = os.path.join('Desktop', 'amia19', 'mkv')
 if not os.path.exists(mkv_folder):
 	os.makedirs(mkv_folder)
-> > 
-> > As with our last effort, it's good working practice to use an if statement to ensure that the folder we're creating doesn't already exist and that we don't overwrite any data. 
 > > {: .language-python}
+>>
+> > As with our last effort, it's good working practice to use an `if` statement to ensure that the folder we're creating doesn't already exist and that we don't overwrite any data. 
 > {: .solution}
 {: .challenge} 
 
