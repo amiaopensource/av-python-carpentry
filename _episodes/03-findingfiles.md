@@ -19,7 +19,7 @@ keypoints:
 
 ## The First Step: Finding Files
 
-Before Alice can do anything with any file in Python, she first needs to be able to refer Python to the location that file.
+Before Alice can manipulate files with Python, she needs to be able to direct Python to the locations of those files.
 
 ## Navigating filenames, file paths, and file systems
 
@@ -48,7 +48,7 @@ The absolute file path to a file on Alice's desktop would look something like: `
 > On Windows, there isn't a root directory for the entire machine.
 > File systems are rooted on the storage volume that they use.
 > For example, `A:\` has traditionally referred to the root directory of a floppy drive.
-> And `C:\` generally refers to the root directory that contains user files, programs, and windows itself.
+> And `C:\` generally refers to the root directory that contains user files, programs, and Windows itself.
 >
 > On Mac/Linux, the operating system defines a single file system for all devices.
 > The root folder is '/'.
@@ -72,8 +72,8 @@ This distinction will become important as we begin using Python to find and do t
 > ## Slashes
 >
 > On Windows, the backward slash `\` is used to separate parts of a path.
-> This difference in the directionality of the slash can be frustrating when moving back and forth between Mac and Windows operating systems.
-> We will be using Python to remove some of these frustrations and write code that is more cross-functional.
+> This difference in the directionality of the slash can be frustrating when moving between Mac and Windows operating systems.
+> We will be using Python to remove some of these frustrations and write code that is cross-functional.
 > 
 > If you find code in this workshop that doesn't work because it uses the wrong kind of slashes for your operating system, please let us know.
 {: .callout}
@@ -155,9 +155,9 @@ pip list
 {: .language-bash}
 
 The base python environment only has a few functions built-in.
-In order to power up, you need to import modules with the abilities you need.
+In order to power up, you need to import modules with the abilities that you need.
 You only need to load a module once per script.
-To make sure we load every module that we need, we typically put all of our import statements at the very top of a script.
+To make sure we load every module that we need, typically we put all of our import statements at the very top of a script.
 
 > ## Loading another module
 >
