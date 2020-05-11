@@ -21,9 +21,13 @@ First, we'll need a place to put our newly created mkv files. Do you remember ho
 > ## What code would you run to create a new folder inside `amia19` called `mkv`?
 > 
 > > ## Solution
+>>
+~~~
 mkv_folder = os.path.join('Desktop', 'amia19', 'mkv')
 if not os.path.exists(mkv_folder):
 	os.makedirs(mkv_folder)
+~~~
+>>
 > > {: .language-python}
 >>
 > > As with our last effort, it's good working practice to use an `if` statement to ensure that the folder we're creating doesn't already exist and that we don't overwrite any data. 
