@@ -17,6 +17,7 @@ keypoints:
 >
 > Remember: press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute the contents of the cell.
 >
+> > ## Solution
 > ~~~
 > video_dir = '/Users/username/Desktop/amia19'
 >
@@ -46,7 +47,7 @@ mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 > ~~~
 > {: .language-python}
 >
->
+> {: .solution}
 {: .callout}
 
 Alice's effort to copy pre-existing service files and transcode new service files was a big success. A couple of commands and she ended up a single folder containing a large number of lightweight files ready to deploy. But Alice has also heard good things about saving space by using lossless compression on preservation master files. Perhaps she could adapt the service file code that she used previously to generate new, lossless preservation masters.
