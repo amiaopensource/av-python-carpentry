@@ -4,11 +4,11 @@ teaching: 10
 exercises: 10
 questions:
 - "How can I use Python to losslessly compress files?"
-- "How can I use Python to move files by codec?"
+- "How can I use Python to make decisions based upon codec?"
 objectives:
 - "Use conditionals to perform different actions"
 keypoints:
-- "Small variations"
+- "Transcoding lossy codecs to lossless can yield an increase in size"
 ---
 
 > ## Catch-up Code
