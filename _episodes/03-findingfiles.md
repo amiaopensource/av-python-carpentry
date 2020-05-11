@@ -397,22 +397,22 @@ With `os.listdir()` we could list all the files in a directory of our choosing, 
 Instead, we will use a function from the `glob` module and a function from the `os.path` submodule.
 
 `glob` is a module that lets you use wildcards like `*` in filepaths.
-For example, the glob pattern `Desktop\*19` matches against all file and folder names that end with `19` in the `Desktop` folder.
+For example, the glob pattern `Desktop/*19` matches against all file and folder names that end with `19` in the `Desktop` folder.
 However, you need to use a function from the `glob` module to perform that match.
 
 If you haven't loaded the `glob` module, you can load it now.
 
 ~~~
-glob.glob('*19')
+glob.glob('Desktop/*19')
 ~~~
 {: .language-python}
 
 ~~~
-['amia19', <maybe additional files depending on your Desktop>]
+['Desktop/amia19', <maybe additional files depending on your Desktop>]
 ~~~
 {: .output}
 
-We would like to search for all of `mov` files stored within our video directory (amia19), so we'll need to construct a glob-pattern for those paths.
+We'd like to search for all of the `mov` files stored within our video directory (amia19), so we'll need to construct a glob-pattern for those paths.
 For this, we'll use two wildcard characters.
 * `*` - a wildcard for part or all of a file name or folder
 * `**` - a wildcard for nested folders
