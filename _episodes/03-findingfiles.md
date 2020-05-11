@@ -522,7 +522,7 @@ False
 > 
 > > ## Solution
 > > ~~~
-> > os.path.join(video_dir, '&ast;&ast;', '*mov')
+> > os.path.join(video_dir, '**', '*mov')
 > > ~~~
 > > {: .language-python}
 > > Depending on your system, you should see
