@@ -11,7 +11,8 @@ keypoints:
 - "Small variations"
 ---
 
-Alice's efforts to copy pre-existing service files and transcode new service files was a big success. A couple of commands, and she's got a single folder with a large number of lightweight files ready to deploy. But Alice has also been hearing good things about lossless compression for preservation master files. Perhaps she could adapt the service file code that she used before to generate new, lossless preservation masters.
+
+Alice's effort to copy pre-existing service files and transcode new service files was a big success. A couple of commands, and she's ended up a single folder that contained a large number of lightweight files ready to deploy. But Alice has also heard good things about saving space by using lossless compression for preservation master files. Perhaps she could adapt the service file code that she used previously to generate new, lossless preservation masters.
 
 ## Python, ffmpeg, and lossless transcoding
 
