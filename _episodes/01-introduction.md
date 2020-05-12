@@ -9,9 +9,11 @@ questions:
 objectives:
 - "Explain the basics of Python"
 - "Explain why and how to use the command line"
+- "Introduce the sample data used for the workshop"
 keypoints:
-- "Python is powerful"
-- "Python can be used to find, move, survey, and transcode AV files"
+- "Learning to use Python is like learning a new language. It takes practice."
+- "Python code is text that a computer interprets as instructions. You can write it with a text editor and run it separately. Or, you can use an integrated tool like Jupyter to write and run it in the same environment."
+- "Python can be used to find, move, survey, and transcode AV files."
 ---
 
 ## Introduction: Why should I use Python?
@@ -98,4 +100,19 @@ The next few lessons will explore how she could approach these tasks using Pytho
 They will explain how she can use Python scripting to find files, investigate them, and run `ffmpeg` commands based on their contents. 
 As a bonus, once she has Python scripts available to her, Alice will be able to reuse them or adapt them for new digitization projects.
 
-{% include links.md %}
+> ## Exploring the Digitization Projects
+> Take a few minutes to browse through the files you downloaded for this class.
+> They're probably in a folder on your Desktop called `amia19`.
+>
+> What kind of files are you finding?
+> How would you describe their organization? 
+> 
+> > ## Solution
+> > Most of the AV files appear to be MP4s and MOVs.
+> > It's not clear what codecs are used inside those wrappers.
+> > There are additional related to the videos.
+> > 
+> > Based on the file and folder names, file seem to be roughly organized by projects although there doesn't seem to be a standard method.
+> > 
+> {: .solution}
+{: .challenge} 

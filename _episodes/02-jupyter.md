@@ -3,7 +3,7 @@ title: "Running and Quitting"
 teaching: 15
 exercises: 0
 questions:
-- "How can I run Python programs?"
+- "How can I run Python code?"
 objectives:
 - "Launch the JupyterLab server." 
 - "Create a new Python script." 

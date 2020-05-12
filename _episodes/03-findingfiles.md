@@ -41,7 +41,7 @@ File paths are a series of text-based breadcrumbs that describe the location of 
 
 Alice uses macOS. For her, the root directory is the slash character `/`. Every absolute file path will start with `/`.
 
-The absolute file path to a file on Alice's desktop would look something like: `/Users/alice/Desktop/CoolStuff/qckitty.gif` That path will always lead to that particular file, no matter where she's working from (her current working directory).
+The absolute file path to a file on Alice's desktop would look something like: `/Users/alice/Desktop/amia19/on_demand/catexhibit_0001.mov` That path will always lead to that particular file, no matter where she's working from (her current working directory).
 
 > ## Root Directories on Windows vs Mac/Linux
 >
@@ -57,14 +57,14 @@ The absolute file path to a file on Alice's desktop would look something like: `
 
 Some parts of that path, for example, `Desktop`, might be as familiar to you as the folders you see in a GUI.
 A file path encodes the same hierarchy of folders that we click through, expressing it as series of folder names divided by slashes.
-We know that `CoolStuff` is a subdirectory stored inside of `Desktop`.
-We can also see that `Desktop` is a subdirectory of `alice`, which is a subdirectory of `Users` which is a subdirectory of root.
+We know that `amia19` is a subdirectory stored inside of `Desktop`.
+We can also see that `amia19` is a subdirectory of `alice`, which is a subdirectory of `Users` which is a subdirectory of root.
 
 You may not see folders like `Users` on a regular basis.
 Often, we spend time working from a folder like `Desktop` and thinking about the locations of files relative to that folder.
-The relative file path to `qckitty.gif` from Alice's `Desktop` is `CoolStuff/qckitty.gif`.
+The relative file path to `qckitty.gif` from Alice's `Desktop` is `amia19/on_demand/catexhibit_0001.mov`.
 That path only works in relation to the `Desktop` folder.
-If we try to access `CoolStuff/qckitty.gif` from the root folder, our computer will report an error, explaining that it cannot find anything at that path.
+If we try to access `amia19/on_demand/catexhibit_0001.mov` from the root folder, our computer will report an error, explaining that it cannot find anything at that path.
 
 This distinction will become important as we begin using Python to find and do things to different kinds of files.
 **Our first step will always be gathering up file paths based upon a chosen quality, say, for example, filename extension (.mov, .mkv, .mp4, etc.).**
@@ -85,7 +85,7 @@ This distinction will become important as we begin using Python to find and do t
 > 2. Windows or Unix/Mac
 >
 > ~~~
-> 1. C:\Users\admin\Desktop
+> 1. C:\\Users\\admin\\Desktop
 > 2. /Desktop/Downloads
 > 3. Downloads
 > 4. usr/local/bin/python
@@ -390,7 +390,12 @@ Our time is now!
 > ~~~
 > {: .language-bash} 
 >
-> Again, it's useful to know how to accomplish the same goal in multiple ways.
+> It's useful to know how to accomplish the same goal in multiple ways.
+> You may be more comfortable with Bash commands.
+> You may have existing workflows with Bash.
+> You may have another reason.
+> Python is a complementary tool to your existing skillset.
+> It does not have to replace the way you do things.
 {: .callout}
 
 With `os.listdir()` we could list all the files in a directory of our choosing, but if we have a nested set of folders as in Alice's case, we would have to run `os.listdir` over and over again.
@@ -419,7 +424,7 @@ For this, we'll use two wildcard characters.
 
 > ## globbing for mov files
 >
-> What would be a glob-pattern for filenames ending in `mov` in the nested folders of `video_dir`
+> What would be a glob-pattern for filenames ending in `mov` in the nested folders of `video_dir`?
 > 
 > > ## Solution
 > > `C:\Users\username\Desktop\amia19\**\*mov`
@@ -549,7 +554,7 @@ False
 > ~~~
 > {: .output}
 >
-> But using strings not enclosed in square brackets returns the results we're after.
+> But using the same strings not enclosed in square brackets returns the results we're after.
 >
 > ~~~
 > os.path.join('Desktop', 'amia19')
