@@ -68,7 +68,8 @@ This ensures that their functions have been loaded when they are used in the scr
 
 > ## Import Statements for `filesurvey.py`
 > 
-> Fill in the beginning of the script file with the `import` statements that you will need to run the file survey loop that we built in Lesson 6.
+> Open a text editor tab in Jupyter.
+At the top of the file, add the `import` statements that you will need to run the file survey loop that we built in the previous lesson.
 >
 > > ## Solution
 > > We need the following modules.
@@ -82,15 +83,17 @@ This ensures that their functions have been loaded when they are used in the scr
 {: .challenge}
 
 With all the necessary `import` statements are at the top of the file, we can copy-paste in the other portions of the loop.
+Go cell-by-cell to copy code from your previous notebook and past it into your text file.
+
+The code below is available if you run into any problems.
 Change any paths so that they reflect your computer's folders.
 
 ~~~
 video_dir = '/Users/username/Desktop/amia19'
 
-mov_list = [ ]
-all_file_data = []
-
 mov_list = glob.glob(os.path.join(video_dir, '**', '*mov'))
+
+all_file_data = []
 
 for item in mov_list:
     media_info = MediaInfo.parse(item)
@@ -157,7 +160,9 @@ with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
 {: .language-python}
 
 After saving this file, we can run it using terminal.
-Again, we'll use Anaconda's built-in terminal.
+For this, we'll use Anaconda's built-in terminal since it has Python installed.
+You could also use your computer's default terminal like Terminal on MacOS or Command on Windows if you have Python configured for those.
+
 To open a terminal in Anaconda, click the `+` button in the left sidebar and click on the `Terminal` tile in the main tab.
 
 The syntax for running a python script is `python path/to/script.py` (or `python.exe path/to/script.py` in Windows Command).
@@ -207,50 +212,84 @@ parser.description = "survey a directory for AV files and report on technical me
 parser.add_argument("-d", "--directory",
                     required = True,
                     help = "Path to a directory of AV files")
+parser.add_argument("-e", "--extension",
+                    required = True,
+                    help = "Extension of AV file to survey")
 parser.add_argument("-o", "--output",
                     required = True,
                     help = "Path to the save the metadata as a CSV")
 args = parser.parse_args()
 
-print(args.directory, args.output)
+print(args.directory, args.extension, args.output)
 ~~~
 {: .language-python}
 
 Save the script.
 
-> ## Using the new arguments
-> 
-> What happens when you run the following command?
-> ~~~
-> python filesurvey.py -d Desktop/amia19/federal_grant -o Desktop/federal_grant_files.csv
-> ~~~
-> {: .language-bash}
-> Why didn't it create the `federal_grant_files.csv`? How would you change the script to make that happen?
->
-> > ## Solution
-> > 
-> > Replace the hard-coded paths with the argparse arguments.
-> > For example, replace
-> > ~~~
-> > with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
-> > ~~~
-> > {: .language-python}
-> > with
-> > ~~~
-> > with open(args.output, 'w') as f:
-> > ~~~
-> > {: .language-python}
-> > Similarly, we have to use `args.directory` instead of the hard-coded string for `video_dir`
-> {: .solution}
-{: .challenge}
 
-`argparse` also creates help dialogues for our command-line tool.
+One of the immediate benefits of using `argparse` is that it creates help dialogs for our command-line tool.
 Try:
 
 ~~~
 python filesurvey.py -h
 ~~~
 {: .language-bash}
+
+According to the help dialog, the script is able to accept a location of our choosing to survey, the type of file to survey, and a filename of our choosing to save the result of the survey.
+
+> ## Using the new arguments
+> 
+> What happens when you run the following command?
+> ~~~
+> python filesurvey.py -d Desktop/amia19/mkv -e mkv -o Desktop/mkv_files.csv
+> ~~~
+> {: .language-bash}
+> Why didn't it create the `mkv_files.csv`? How would you change the script to make that happen?
+>
+> > ## Solution
+> > Using argparse allows the script to accept the arguments, but to use them in our script we need to reference them in the right places.
+> > 
+> {: .solution}
+{: .challenge}
+
+The print statement at the bottom of the argparse code shows how to reference the data.
+Our next task is to put those references in the right places.
+
+For the directory to survey, we need to replace the hard-coded path that is assigned to `video_dir` with `args.directory`. From:
+~~~
+video_dir = '/Users/username/Desktop/amia19'
+~~~
+{: .language-python}
+To:
+~~~
+video_dir = args.directory
+~~~
+{: .language-python}
+
+Similarly for the extension, we need to replace the portion of the glob command that hard codes `mov` with `args.extension`. From:
+~~~
+mov_list = glob.glob(os.path.join(video_dir, '**', '*mov'))
+~~~
+{: .language-python}
+To:
+~~~
+mov_list = glob.glob(os.path.join(video_dir, '**', '*' + args.extension))
+~~~
+{: .language-python}
+
+Finally, we do the same for the script output with `args.output`. From:
+~~~
+with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
+~~~
+{: .language-python}
+To:
+~~~
+with open(args.output, 'w') as f:
+~~~
+{: .language-python}
+
+Try running the script again.
+
 
 ## Trapping errors/exceptions and anticipating diverse collections
 
@@ -260,7 +299,7 @@ As we move our code from the niceties of the sample workshop files to the broade
 >
 > What happens if we run the script we just created on the entire Desktop?
 > ~~~
-> python filesurvey.py -d Desktop -o desktop_survey.csv
+> python filesurvey.py -d Desktop -e mkv -o desktop_survey.csv
 > ~~~
 > {: .language-bash}
 > > ## Solution
