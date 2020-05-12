@@ -62,7 +62,7 @@ We can also see that `amia19` is a subdirectory of `alice`, which is a subdirect
 
 You may not see folders like `Users` on a regular basis.
 Often, we spend time working from a folder like `Desktop` and thinking about the locations of files relative to that folder.
-The relative file path to `qckitty.gif` from Alice's `Desktop` is `amia19/on_demand/catexhibit_0001.mov`.
+The relative file path to `catexhibit_0001.mov` from Alice's `Desktop` is `amia19/on_demand/catexhibit_0001.mov`.
 That path only works in relation to the `Desktop` folder.
 If we try to access `amia19/on_demand/catexhibit_0001.mov` from the root folder, our computer will report an error, explaining that it cannot find anything at that path.
 
