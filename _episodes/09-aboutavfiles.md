@@ -223,7 +223,8 @@ After "opening" the CSV file, we’ll use the `csv.writer` and `csv.writerow` fu
 But before we do any of that, we’ll first want to give our CSV file a header row with our attributes in named order (this will give us the ability to work with this data in an easier way down the road):
 
 ~~~
-with open(os.path.join('Users', 'amia19', 'Desktop', 'mov_survey.csv'), 'w', encoding='utf8') as f:
+import csv
+with open(os.path.join('/Users', 'YOUR_USERNAME', 'Desktop', 'mov_survey.csv'), 'w', encoding='utf8') as f:
     md_csv = csv.writer(f)
     md_csv.writerow([
         'filename',
