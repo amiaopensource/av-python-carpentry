@@ -334,7 +334,7 @@ CompletedProcess(['ffmpeg', '-i', 'Desktop/amia19/federal_grant/napl1777.mov', '
 > ~~~
 > original_filename = os.path.basename(mov_list[0])
 > output_filename = original_filename.replace('mov', 'mp4')
-> output_filepath = output_file = os.path.join(service_folder, output_filename)
+> output_filepath = os.path.join(service_folder, output_filename)
 > subprocess.run(['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', output_filepath])
 > ~~~
 > {: .language-python}
