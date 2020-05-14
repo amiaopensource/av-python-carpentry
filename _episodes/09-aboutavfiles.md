@@ -12,6 +12,45 @@ keypoints:
 - "Domain specific functions will often require custom tools"
 ---
 
+> ## Catch-up Code
+> 
+> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can run to get back up to speed.
+>
+> Remember: press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute the contents of the cell.
+>
+> ~~~
+> video_dir = '/Users/username/Desktop/amia19'
+>
+> or
+>
+> video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+> 
+> MAKE SURE TO CHANGE USERNAME TO YOUR USERNAME
+> ~~~
+> {: .language-python}
+>
+> Then copy and paste the following:
+>
+> ~~~
+> import os
+> import subprocess
+> import glob
+> from pymediainfo import MediaInfo
+> mov_list = []
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
+> ~~~
+> {: .language-python}
+>
+> And run this to confirm that you're generating a file list properly (you should see a list of file names; if not, call for help!)
+>
+> ~~~
+> mov_list
+> ~~~
+> {: .language-python}
+>
+>
+{: .callout}
+
 ## Additional MediaInfo Attributes 
 
 File paths, file sizes, and durations are all well and good, but when working with AV files at scale, there are a number of other MediaInfo attributes that can yield insight into our collections and help inform decision-making down the road.  
@@ -52,11 +91,8 @@ Let’s begin by returning to our media-specific file path gathering starter cod
 We can pick up where we left off, with a script that uses pymediainfo to gather the duration and size of our files:
 
 ~~~
-mov_list = []
 sizes = []
 durations = []
-
-mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 
 for item in mov_list:
     media_info = MediaInfo.parse(item)
@@ -70,10 +106,7 @@ for item in mov_list:
 With some adjustments, we can build this script out to collect the full list of the technical attributes described above:
 
 ~~~
-mov_list = [ ]
 all_file_data = []
-
-mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 
 for item in mov_list:
     media_info = MediaInfo.parse(item)
