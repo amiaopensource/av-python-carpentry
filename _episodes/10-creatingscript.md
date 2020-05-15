@@ -85,7 +85,7 @@ At the top of the file, add the `import` statements that you will need to run th
 With all the necessary `import` statements are at the top of the file, we can copy-paste in the other portions of the loop.
 Go cell-by-cell to copy code from your previous notebook and past it into your text file.
 
-The code below is available if you run into any problems.
+A simplified version of the code is provided below is available if you run into any problems.
 Change any paths so that they reflect your computer's folders.
 
 ~~~
@@ -105,28 +105,7 @@ for item in mov_list:
                 track.format,
                 track.file_size,
                 track.duration]
-        elif track.track_type == "Video":
-            video_data = [
-                track.codec_id,
-                track.bit_rate,
-                track.width,
-                track.height,
-                track.other_display_aspect_ratio,
-                track.pixel_aspect_ratio,
-                track.frame_rate,
-                track.standard,
-                track.color_space,
-                track.chroma_subsampling,
-                track.bit_depth,
-                track.compression_mode]
-        elif track.track_type == "Audio":
-            audio_data = [
-                track.codec_id,
-                track.bit_rate,
-                track.channel_s,
-                track.bit_depth,
-                track.sampling_rate]
-    all_file_data.append(general_data + video_data + audio_data)
+    all_file_data.append(general_data)
 
 
 with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
@@ -136,24 +115,7 @@ with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
         'extension',
         'format',
         'size',
-        'duration',
-        'video_codec',
-        'video_bitrate',
-        'width',
-        'height',
-        'dar',
-        'par',
-        'framerate',
-        'standard',
-        'colorspace',
-        'chromasubsampling',
-        'video_bitdepth',
-        'video_compression',
-        'audio_codec',
-        'audio_bitrate',
-        'audio_channels',
-        'audio_bitdepth',
-        'audio_samplingrate'
+        'duration'
     ])
     md_csv.writerows(sorted(all_file_data))
 ~~~
@@ -297,9 +259,9 @@ As we move our code from the niceties of the sample workshop files to the broade
 
 > ## What happens we survey non-AV files?
 >
-> What happens if we run the script we just created on the entire Desktop?
+> What happens if we run the script we just created on non-AV file?
 > ~~~
-> python filesurvey.py -d Desktop -e mkv -o desktop_survey.csv
+> python filesurvey.py -d Desktop -e txt -o nonav_survey.csv
 > ~~~
 > {: .language-bash}
 > > ## Solution
@@ -308,54 +270,39 @@ As we move our code from the niceties of the sample workshop files to the broade
 {: .challenge}
 
 This is where we can use the programming concept of `try` and `except`.
-First we try a bit of code, and if an error results, we try a different piece of code that should work.
-For example, if we come across video files that don't have all the attributes that we expect,
+First we try one piece of code, and if an error results, we try a different piece of code that should work.
+For example, if we survey files that aren't time-based, they won't have a `track.duration` reported by `pymediainfo`.
+When we run our previous script,
 1. our code errors out
 2. the `for` loop stops
 3. the script doesn't finish
 
-Instead, we'll ask the code to try and collect those attributes.
-When python comes across files that are missing some of these key elements, it will return None (a null data type of its own making) rather than breaking down.
+Instead, we'll ask the code to try to collect all of the attributes.
+When the script comes across files that are missing the duration, it will, 
+1. try the first code
+2. fail because of an exception (`track.duration` doesn't exist)
+3. try the second code chunk which doesn't ask for duration and return a None value.
 
 ~~~
 for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
-            general_data = [
-                track.file_name,
-                track.file_extension,
-                track.format,
-                track.file_size,
-                track.duration]
-        if track.track_type == "Video":
             try:
-                video_data = [
-                    track.codec_id,
-                    track.bit_rate,
-                    track.width,
-                    track.height,
-                    track.display_aspect_ratio,
-                    track.pixel_aspect_ratio,
-                    track.frame_rate,
-                    track.standard,
-                    track.color_space,
-                    track.chroma_subsampling,
-                    track.bit_depth,
-                    track.compression_mode]
-            except:
-                video_data = [None, None, None, None, None, None, None, None, None, None, None, None]    
-        if track.track_type == "Audio":
-            try:
-                audio_data = [
+                general_data = [
+                    track.file_name,
+                    track.file_extension,
                     track.format,
-                    track.bit_rate,
-                    track.channel_s,
-                    track.bit_depth,
-                    track.sampling_rate]
+                    track.file_size,
+                    track.duration]
             except:
-                audio_data = [None, None, None, None, None]
-    all_file_data.append(general_data + video_data + audio_data)
+                general_data = [
+                    track.file_name,
+                    track.file_extension,
+                    track.format,
+                    track.file_size,
+                    None]
+    all_file_data.append(general_data)
 ~~~
 {: .language-python}
 
