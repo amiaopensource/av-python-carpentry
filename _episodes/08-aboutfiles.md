@@ -88,6 +88,13 @@ Our end goal is to write a `for` loop that collects the size of each file.
 As we did in previous lessons, a good strategy to build towards the `for` loop is to apply the code to a single element of our list.
 Let's see how `os.stat` works on the first path in `mov_list`.
 
+First, we have to import the `os` module.
+
+~~~
+import os
+~~~
+{: .language-python}
+
 ~~~
 os.stat(mov_list[0]).st_size
 ~~~
