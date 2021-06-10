@@ -15,13 +15,27 @@ keypoints:
 
 ## Asking questions about a list of files
 
-Alice now has a digital shelflist of the the files she wants to work with. Before she decides what to do with her files, she wants to understand them better.
+Alice jumped in with both feet and knocked out a lot of transcoding work.
+However, she had some lingering questions about how effective all that transcoding was and if different codecs had different results.
+To understand that, she needs to collect metadata about her files.
 
-While learning how to create filepaths, we created our first few building blocks:
+> ## Look Before You Leap vs. Easier to Ask Forgiveness than Permission
+>
+> Generally, Alice and anyone else working with collections would do this before copying, moving, or transcoding any files.
+> This is also an approach to Python programming called Look Before You Leap.
+> In other words, before you perform an action make sure you understand the consequences of that action.
+>
+> For this workshop, we want participants to experience some big results early on.
+> So those lessons were done in the spirit of another approach to Python programming called It's Easier to Ask For Forgiveness than Permission.
+> In this approach, you perform actions with the expectation that nothing terrible will happen as a result.
+> For us, we left all of the original files alone.
+> If there had been an error in our code or the results, it didn't affect the original collection, so all we would have lost was our time.
+{: .callout}
+
+While learning how to create filepaths and transcode files, we created our first few building blocks:
 * import modules
 * generating lists
-
-To this, we will add a very important building block, the `for` loop.
+* building `for` loops
 
 Within an AV preservation environment, we will use these building blocks repeatedly for two common tasks:
 * information gathering (analysis)
@@ -29,9 +43,9 @@ Within an AV preservation environment, we will use these building blocks repeate
 
 Frequently, these two tasks go hand in hand. We may generate monthly/quarterly/annual reports about the size of the collection for administration, and then use this information to perform actions like estimating storage needed for service copies or deciding to losslessly transcode everything.
 
-> ## Metadata about Quicktime files
+> ## Metadata about Media Files
 >
-> If we want to make MP4s from the Quicktime files, what are some of the key pieces of information that we’ll want to ascertain before doing anything else?
+> If we want to compare the technical characteristics of the Quicktime files and MKV files, what are some of the key pieces of information that we'll want collect?
 > 
 > > ## Solution
 > > TOTAL NUMBER OF FILES! SIZE! DURATION!
@@ -63,71 +77,23 @@ mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 ~~~
 {: .language-python}
 
-The building block we're adding to this is the `for` loop.
-
-## `for` loops
-
-Often when we works with lists, we use `for` loops, a computer programming method for repeating sections of code.
-During a `for` loop, Python will take items from a list one-at-a-time and perform the same actions on each item.
-
-__`for` loops will be the most important tool that we'll use in this workshop.__
-
-Dealing with 100's, 1000's, or even more files means a lot of batch processing.
-The `for` loop is the most common way that we'll be doing that batch processing.
-
-> ## Python Syntax: `for` Loops
-> In the case of Python, there are a few important things to keep in mind about for loops.
-> The first line of a for loop always looks similar to this:
-`for listitem in somelist:`
-> * for - tells Python it will have to repeat code on multiple items from a list
-> * somelist - the list of items to be worked through
-> * listitem(s - the generic name(s) to refer to items in the code section, you choose these names
-> The body of the `for` loop is always indented from the first line and can include multiple lines of code, even additional `for` loops.
-{: .callout}
-
-~~~
-for filepath in mov_list:
-    print(filepath)
-~~~
-{: .language-python}
-
-This command outputs each item from our `mov_list`.
-We can perform more complicated actions within the loop.
-
-~~~
-for filepath in mov_list:
-    print(filepath + ' exists')
-~~~
-{: .language-python}
-
-> ## Printing, `for` loops, and Jupyter
->
-> What happens when you don't include the print function?
-> Why do you think this is the case?
->
-> ~~~
-> for filepath in mov_list:
->   filepath + ' exists'
-> ~~~
-> {: .language-python}
-> 
-> > ## Solution
-> > Jupyter only displays the result from the final item in the list, because it only displays the results of the final line of code.
-> > Because we're learning about how Python works, during the workshop we will use the `print()` function a lot.
-> {: .solution}
-{: .challenge}
-
-
 ## Finding the total size of all AV files in a directory
 
 ### os.stat
 
-A good place to start is with os.stat, a piece of the os module that provides information on the “status” of a file.
+A good place to start is with `os.stat`, a piece of the os module that provides information on the “status” of a file.
 The stat module offers a wealth of detail related to ownership, permissions, location, creation/modification times, but for our purposes, we’ll be using it to determine file sizes.
 
 Our end goal is to write a `for` loop that collects the size of each file.
-A good strategy to build towards the `for` loop is to apply the code to a single element of our list.
+As we did in previous lessons, a good strategy to build towards the `for` loop is to apply the code to a single element of our list.
 Let's see how `os.stat` works on the first path in `mov_list`.
+
+First, we have to import the `os` module.
+
+~~~
+import os
+~~~
+{: .language-python}
 
 ~~~
 os.stat(mov_list[0]).st_size
@@ -142,7 +108,8 @@ The result is a number. It's important to notice that it doesn't have quote mark
 > No decimal points.
 > No quotation marks.
 > You can do math with an integer: `2 + 2 = 4`
-> But, if you do the same math with strings, you will get a very different result: `'2' + '2' = '22'`
+> 
+> If you do the same math with strings, you will get a very different result: `'2' + '2' = '22'`
 {: .callout}
 
 > ## Numbers that don't act like numbers
@@ -192,7 +159,7 @@ sum(size_list)
 
 While os.stat provides us with the size (number of bytes as integers) of our files, it can be very hard to tell if you're working with 10's of terabytes (`10000000000000`) or 100's of gigabytes (`100000000000`).
 
-In writing, we use commas to help with this problem, but computers don't need or want the help of commas.
+When humans write numbers, we often use commas to help with this problem, but computers don't need or want the help of commas.
 If we want to express the total number of bytes as terabytes, we need to ask for that ourselves.
 
 For example:
@@ -213,7 +180,7 @@ Here, `**` is the Python notation for an exponent, so `1000 ** 4` means 1,000,00
 
 ### TB vs. TiB (sidetrackkkkkkkk)
 If you're wondering why we're using `1000` instead of `1024` for our math, you're asking good question.
-And the answer points to a long, and honestly, quite dumb history, but it is worth taking a quick tangent.
+And the answer points to a long, and honestly, quite frustrating history, but it is worth taking a quick tangent.
 
 The tl; dr is: computer scientists really love binary systems and think `2 ** 10` or `1024` is a convenient large group.
 Engineers really love base-10 systems and think `10 ** 3` or `1000` is a really useful group.
@@ -225,6 +192,7 @@ To talk about base-10 numbers, you should use the familiar SI (International Sys
 To talk about binary numbers, you should use the binary prefixes: kibi- (ki), mebi- (Mi), gibi- (Gi), tebi- (Ti), etc.
 Unfortunately, they didn't really settle the debate, and you can still find marketing materials that mix the two up.
 For us, it's an important distinction as our collections grow bigger.
+Take the 16 trillion bytes from the example above.
 
 ~~~
 totalsize/(1000 ** 4)
@@ -391,7 +359,7 @@ An `if` statement can be read like this: If this is true, then do the following.
 `if logic_test:`
 > * if - tells Python it will be testing if the following statement is true or not
 > * logic_test - any code which resolves to true or false
-> The logic_test portion is commonly a test like is this variable equal to a value, `string_variable == 'string'`, or is this number greater or less than another, `temp_variable > 55`.
+> The logic_test portion is commonly a test like, "Is this variable equal to a value?" (`string_variable == 'string'`) or "Is this number greater or less than another?" (`number_variable > 55`).
 {: .callout}
 
 ~~~
@@ -587,12 +555,20 @@ human_duration
 import datetime
 
 total_duration = sum(durations)
-
 human_duration = datetime.timedelta(milliseconds=total_duration)
-
 human_duration
 ~~~
 {: .language-python}
+
+~~~
+'00:01:09.327'
+~~~
+{: .output}
+
+With all of the complexity and unfamiliar syntax of the first example, we think the second approach is preferable.
+The challenge in finding that approach is knowing where to ask for help.
+Your colleagues are always a good first stop.
+Even if they don't know the answer, they can help you refine your question.
 
 
 > ## Challenge

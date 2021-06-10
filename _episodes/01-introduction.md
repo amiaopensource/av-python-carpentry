@@ -9,9 +9,11 @@ questions:
 objectives:
 - "Explain the basics of Python"
 - "Explain why and how to use the command line"
+- "Introduce the sample data used for the workshop"
 keypoints:
-- "Python is powerful"
-- "Python can be used to find, move, survey, and transcode AV files"
+- "Learning to use Python is like learning a new language. It takes practice."
+- "Python code is text that a computer interprets as instructions. You can write it with a text editor and run it separately. Or, you can use an integrated tool like Jupyter to write and run it in the same environment."
+- "Python can be used to find, move, survey, and transcode AV files."
 ---
 
 ## Introduction: Why should I use Python?
@@ -19,12 +21,12 @@ keypoints:
 At a high level, computers do four things:
 * run programs
 * store data
-* communicate with each other, and
+* communicate with each other
 * interact with us
 
 Computers can interact with us in a variety of ways, such as through a keyboard and mouse, touch screen interface, or speech recognition system. While touch and voice interfaces are becoming more common, most interaction is still performed by using traditional screens, mice, touchpads, and keyboards.
 
-The graphical user interface (GUI) is the most popular way of interacting with personal computers. The user provides instructions (to run a program, copy a file, create a new folder/directory) with the convenience of just a few clicks of the mouse. This way of interacting with a computer is intuitive and very easy to learn. But it scales very poorly if we need to perform an action repeatedly, or with a slight permutation. For example, if we wanted to create 100 MP4s from 100 preservation master video files stored in 100 directories, this would be a distinct challenge.
+The graphical user interface (GUI) is the most popular way of interacting with personal computers. The user provides instructions (to run a program, copy a file, create a new folder/directory) with the convenience of a few mouse clicks. This way of interacting with a computer is intuitive and very easy to learn. But it scales very poorly if we need to perform an action repeatedly, or with slight permutations. For example, if we wanted to create 100 MP4s from 100 preservation master video files stored in 100 directories without having to navigate to each master file individually, it would be a distinct challenge.
 
 This is where we can take advantage of the Python - a programming language designed to make repetitive tasks consistent and automated. Python can receive a single instruction and perform a set task, or, with slight modifications, perform a series of tasks in a repetitive manner as often as we would like. The script (set of instructions for Python) for the task described above (locating and generating a number of derivative video files) can be written in just a few minutes.
 
@@ -98,4 +100,19 @@ The next few lessons will explore how she could approach these tasks using Pytho
 They will explain how she can use Python scripting to find files, investigate them, and run `ffmpeg` commands based on their contents. 
 As a bonus, once she has Python scripts available to her, Alice will be able to reuse them or adapt them for new digitization projects.
 
-{% include links.md %}
+> ## Exploring the Digitization Projects
+> Take a few minutes to browse through the files you downloaded for this class.
+> They're probably in a folder on your Desktop called `amia19`.
+>
+> What kind of files are you finding?
+> How would you describe their organization? 
+> 
+> > ## Solution
+> > Most of the AV files appear to be MP4s and MOVs.
+> > It's not clear what codecs are used inside those wrappers.
+> > There are additional related to the videos.
+> > 
+> > Based on the file and folder names, file seem to be roughly organized by projects although there doesn't seem to be a standard method.
+> > 
+> {: .solution}
+{: .challenge} 

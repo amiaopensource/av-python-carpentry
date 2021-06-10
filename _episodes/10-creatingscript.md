@@ -68,7 +68,8 @@ This ensures that their functions have been loaded when they are used in the scr
 
 > ## Import Statements for `filesurvey.py`
 > 
-> Fill in the beginning of the script file with the `import` statements that you will need to run the file survey loop that we built in Lesson 6.
+> Open a text editor tab in Jupyter.
+At the top of the file, add the `import` statements that you will need to run the file survey loop that we built in the previous lesson.
 >
 > > ## Solution
 > > We need the following modules.
@@ -82,15 +83,17 @@ This ensures that their functions have been loaded when they are used in the scr
 {: .challenge}
 
 With all the necessary `import` statements are at the top of the file, we can copy-paste in the other portions of the loop.
+Go cell-by-cell to copy code from your previous notebook and past it into your text file.
+
+A simplified version of the code is provided below is available if you run into any problems.
 Change any paths so that they reflect your computer's folders.
 
 ~~~
 video_dir = '/Users/username/Desktop/amia19'
 
-mov_list = [ ]
-all_file_data = []
-
 mov_list = glob.glob(os.path.join(video_dir, '**', '*mov'))
+
+all_file_data = []
 
 for item in mov_list:
     media_info = MediaInfo.parse(item)
@@ -102,28 +105,7 @@ for item in mov_list:
                 track.format,
                 track.file_size,
                 track.duration]
-        elif track.track_type == "Video":
-            video_data = [
-                track.codec_id,
-                track.bit_rate,
-                track.width,
-                track.height,
-                track.other_display_aspect_ratio,
-                track.pixel_aspect_ratio,
-                track.frame_rate,
-                track.standard,
-                track.color_space,
-                track.chroma_subsampling,
-                track.bit_depth,
-                track.compression_mode]
-        elif track.track_type == "Audio":
-            audio_data = [
-                track.codec_id,
-                track.bit_rate,
-                track.channel_s,
-                track.bit_depth,
-                track.sampling_rate]
-    all_file_data.append(general_data + video_data + audio_data)
+    all_file_data.append(general_data)
 
 
 with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
@@ -133,31 +115,16 @@ with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
         'extension',
         'format',
         'size',
-        'duration',
-        'video_codec',
-        'video_bitrate',
-        'width',
-        'height',
-        'dar',
-        'par',
-        'framerate',
-        'standard',
-        'colorspace',
-        'chromasubsampling',
-        'video_bitdepth',
-        'video_compression',
-        'audio_codec',
-        'audio_bitrate',
-        'audio_channels',
-        'audio_bitdepth',
-        'audio_samplingrate'
+        'duration'
     ])
     md_csv.writerows(sorted(all_file_data))
 ~~~
 {: .language-python}
 
 After saving this file, we can run it using terminal.
-Again, we'll use Anaconda's built-in terminal.
+For this, we'll use Anaconda's built-in terminal since it has Python installed.
+You could also use your computer's default terminal like Terminal on MacOS or Command on Windows if you have Python configured for those.
+
 To open a terminal in Anaconda, click the `+` button in the left sidebar and click on the `Terminal` tile in the main tab.
 
 The syntax for running a python script is `python path/to/script.py` (or `python.exe path/to/script.py` in Windows Command).
@@ -207,44 +174,22 @@ parser.description = "survey a directory for AV files and report on technical me
 parser.add_argument("-d", "--directory",
                     required = True,
                     help = "Path to a directory of AV files")
+parser.add_argument("-e", "--extension",
+                    required = True,
+                    help = "Extension of AV file to survey")
 parser.add_argument("-o", "--output",
                     required = True,
                     help = "Path to the save the metadata as a CSV")
 args = parser.parse_args()
 
-print(args.directory, args.output)
+print(args.directory, args.extension, args.output)
 ~~~
 {: .language-python}
 
 Save the script.
 
-> ## Using the new arguments
-> 
-> What happens when you run the following command?
-> ~~~
-> python filesurvey.py -d Desktop/amia19/federal_grant -o Desktop/federal_grant_files.csv
-> ~~~
-> {: .language-bash}
-> Why didn't it create the `federal_grant_files.csv`? How would you change the script to make that happen?
->
-> > ## Solution
-> > 
-> > Replace the hard-coded paths with the argparse arguments.
-> > For example, replace
-> > ~~~
-> > with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
-> > ~~~
-> > {: .language-python}
-> > with
-> > ~~~
-> > with open(args.output, 'w') as f:
-> > ~~~
-> > {: .language-python}
-> > Similarly, we have to use `args.directory` instead of the hard-coded string for `video_dir`
-> {: .solution}
-{: .challenge}
 
-`argparse` also creates help dialogues for our command-line tool.
+One of the immediate benefits of using `argparse` is that it creates help dialogs for our command-line tool.
 Try:
 
 ~~~
@@ -252,15 +197,71 @@ python filesurvey.py -h
 ~~~
 {: .language-bash}
 
+According to the help dialog, the script is able to accept a location of our choosing to survey, the type of file to survey, and a filename of our choosing to save the result of the survey.
+
+> ## Using the new arguments
+> 
+> What happens when you run the following command?
+> ~~~
+> python filesurvey.py -d Desktop/amia19/mkv -e mkv -o Desktop/mkv_files.csv
+> ~~~
+> {: .language-bash}
+> Why didn't it create the `mkv_files.csv`? How would you change the script to make that happen?
+>
+> > ## Solution
+> > Using argparse allows the script to accept the arguments, but to use them in our script we need to reference them in the right places.
+> > 
+> {: .solution}
+{: .challenge}
+
+The print statement at the bottom of the argparse code shows how to reference the data.
+Our next task is to put those references in the right places.
+
+For the directory to survey, we need to replace the hard-coded path that is assigned to `video_dir` with `args.directory`. From:
+~~~
+video_dir = '/Users/username/Desktop/amia19'
+~~~
+{: .language-python}
+To:
+~~~
+video_dir = args.directory
+~~~
+{: .language-python}
+
+Similarly for the extension, we need to replace the portion of the glob command that hard codes `mov` with `args.extension`. From:
+~~~
+mov_list = glob.glob(os.path.join(video_dir, '**', '*mov'))
+~~~
+{: .language-python}
+To:
+~~~
+mov_list = glob.glob(os.path.join(video_dir, '**', '*' + args.extension))
+~~~
+{: .language-python}
+
+Finally, we do the same for the script output with `args.output`. From:
+~~~
+with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
+~~~
+{: .language-python}
+To:
+~~~
+with open(args.output, 'w') as f:
+~~~
+{: .language-python}
+
+Try running the script again.
+
+
 ## Trapping errors/exceptions and anticipating diverse collections
 
 As we move our code from the niceties of the sample workshop files to the broader pool of material you might see in real life, we also need to look out for exceptions.
 
 > ## What happens we survey non-AV files?
 >
-> What happens if we run the script we just created on the entire Desktop?
+> What happens if we run the script we just created on non-AV file?
 > ~~~
-> python filesurvey.py -d Desktop -o desktop_survey.csv
+> python filesurvey.py -d Desktop -e txt -o nonav_survey.csv
 > ~~~
 > {: .language-bash}
 > > ## Solution
@@ -269,54 +270,39 @@ As we move our code from the niceties of the sample workshop files to the broade
 {: .challenge}
 
 This is where we can use the programming concept of `try` and `except`.
-First we try a bit of code, and if an error results, we try a different piece of code that should work.
-For example, if we come across video files that don't have all the attributes that we expect,
+First we try one piece of code, and if an error results, we try a different piece of code that should work.
+For example, if we survey files that aren't time-based, they won't have a `track.duration` reported by `pymediainfo`.
+When we run our previous script,
 1. our code errors out
 2. the `for` loop stops
 3. the script doesn't finish
 
-Instead, we'll ask the code to try and collect those attributes.
-When python comes across files that are missing some of these key elements, it will return None (a null data type of its own making) rather than breaking down.
+Instead, we'll ask the code to try to collect all of the attributes.
+When the script comes across files that are missing the duration, it will, 
+1. try the first code
+2. fail because of an exception (`track.duration` doesn't exist)
+3. try the second code chunk which doesn't ask for duration and return a None value.
 
 ~~~
 for item in mov_list:
     media_info = MediaInfo.parse(item)
     for track in media_info.tracks:
         if track.track_type == "General":
-            general_data = [
-                track.file_name,
-                track.file_extension,
-                track.format,
-                track.file_size,
-                track.duration]
-        if track.track_type == "Video":
             try:
-                video_data = [
-                    track.codec_id,
-                    track.bit_rate,
-                    track.width,
-                    track.height,
-                    track.display_aspect_ratio,
-                    track.pixel_aspect_ratio,
-                    track.frame_rate,
-                    track.standard,
-                    track.color_space,
-                    track.chroma_subsampling,
-                    track.bit_depth,
-                    track.compression_mode]
-            except:
-                video_data = [None, None, None, None, None, None, None, None, None, None, None, None]    
-        if track.track_type == "Audio":
-            try:
-                audio_data = [
+                general_data = [
+                    track.file_name,
+                    track.file_extension,
                     track.format,
-                    track.bit_rate,
-                    track.channel_s,
-                    track.bit_depth,
-                    track.sampling_rate]
+                    track.file_size,
+                    track.duration]
             except:
-                audio_data = [None, None, None, None, None]
-    all_file_data.append(general_data + video_data + audio_data)
+                general_data = [
+                    track.file_name,
+                    track.file_extension,
+                    track.format,
+                    track.file_size,
+                    None]
+    all_file_data.append(general_data)
 ~~~
 {: .language-python}
 

@@ -12,6 +12,45 @@ keypoints:
 - "Domain specific functions will often require custom tools"
 ---
 
+> ## Catch-up Code
+> 
+> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can run to get back up to speed.
+>
+> Remember: press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute the contents of the cell.
+>
+> ~~~
+> video_dir = '/Users/username/Desktop/amia19'
+>
+> or
+>
+> video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+> 
+> MAKE SURE TO CHANGE USERNAME TO YOUR USERNAME
+> ~~~
+> {: .language-python}
+>
+> Then copy and paste the following:
+>
+> ~~~
+> import os
+> import subprocess
+> import glob
+> from pymediainfo import MediaInfo
+> mov_list = []
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
+> ~~~
+> {: .language-python}
+>
+> And run this to confirm that you're generating a file list properly (you should see a list of file names; if not, call for help!)
+>
+> ~~~
+> mov_list
+> ~~~
+> {: .language-python}
+>
+>
+{: .callout}
+
 ## Additional MediaInfo Attributes 
 
 File paths, file sizes, and durations are all well and good, but when working with AV files at scale, there are a number of other MediaInfo attributes that can yield insight into our collections and help inform decision-making down the road.  
@@ -52,11 +91,8 @@ Let’s begin by returning to our media-specific file path gathering starter cod
 We can pick up where we left off, with a script that uses pymediainfo to gather the duration and size of our files:
 
 ~~~
-mov_list = []
 sizes = []
 durations = []
-
-mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 
 for item in mov_list:
     media_info = MediaInfo.parse(item)
@@ -70,10 +106,7 @@ for item in mov_list:
 With some adjustments, we can build this script out to collect the full list of the technical attributes described above:
 
 ~~~
-mov_list = [ ]
 all_file_data = []
-
-mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
 
 for item in mov_list:
     media_info = MediaInfo.parse(item)
@@ -110,7 +143,7 @@ for item in mov_list:
 ~~~
 {: .language-python}
 
-This may look wildly intimidating, but we’re really just making a small expansion on our previous efforts.
+This may look wildly intimidating, but we’re building on our previous efforts.
 First, we've used lists to collect a single piece information about a bunch of files.
 Now, we're collecting multiple pieces of information, so we store all of that information for each file that we survey in a list.
 In the end, we create `all_file_data`, a “multi-dimensional container,” or a list that contains within it a series of lists, one for each file. 
@@ -191,7 +224,8 @@ It’s yet another long and wordy list, but again, knowing how pymediainfo organ
 
 If we hope to analyze our collection of media files on a deeper level, beginning to make larger overall comparisons, or if we simply want to transmit that information into a database or some other type of information system, we’ll first need to export that data in a structured form. 
 
-CSV, or comma separated values, is one of many tabular data structures that python supports, but it will serve our purposes nicely as it’s human and machine readable, lightweight, and has fairly extensive tool support.
+CSV, or comma separated values, is one of many tabular data structures that python supports. 
+It will serve our purposes nicely as it’s human and machine readable, lightweight, and has fairly extensive tool support.
 But as with other modules that we’ve encountered, we’ll need to:
 1. use an import statement to incorporate csv functionality into our code (note that the csv module does not require a separate pip installation)
 2. learn key components of the csv syntax in order to use it properly
@@ -199,12 +233,18 @@ But as with other modules that we’ve encountered, we’ll need to:
 Because we made the effort to create a structured yet accommodating MediaInfo data set within our script (the list of lists `all_file_data`), which, to remind ourselves, looks like this:
 
 ~~~
-['test21', 'mov', 'MPEG-4', 36773291, 1318, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
-['test22', 'mov', 'MPEG-4', 49968309, 1773, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
-['test23', 'mov', 'MPEG-4', 26394991, 935, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
-['test24', 'mov', 'MPEG-4', 11312141, 401, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
-['test25', 'mov', 'MPEG-4', 65053469, 2311, 'v210', 223724851, 720, 486, '1.333', '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'PCM', 2304000, 2, 24, 48000]
+for item in all_file_data:
+    print(item)
 ~~~
+{: .language-python}
+
+~~~
+['napl_0642_pres', 'mov', 'MPEG-4', 13199199, 468, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_1777_pres', 'mov', 'MPEG-4', 2832743, 111, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+['napl_0171_pres', 'mov', 'MPEG-4', 7541223, 267, 'v210', 223724851, 720, 486, ['4:3'], '0.900', '29.970', 'NTSC', 'YUV', '4:2:2', 10, 'Lossless', 'in24', 2304000, 2, 24, 48000]
+...
+~~~
+{: .output}
 
 We can envision how this will port over to something that would look good in Google Sheets or Microsoft Excel.
 To get from inside our Jupyter notebook or terminal/cmd window to a separate standalone file, we’ll need to "open" a new CSV file object and "write" data to it.
@@ -216,7 +256,8 @@ After "opening" the CSV file, we’ll use the `csv.writer` and `csv.writerow` fu
 But before we do any of that, we’ll first want to give our CSV file a header row with our attributes in named order (this will give us the ability to work with this data in an easier way down the road):
 
 ~~~
-with open(os.path.join('Users', 'amia19', 'Desktop', 'kittydata.csv', 'w', encoding='utf8') as f:
+import csv
+with open(os.path.join('/Users', 'YOUR_USERNAME', 'Desktop', 'mov_survey.csv'), 'w', encoding='utf8') as f:
     md_csv = csv.writer(f)
     md_csv.writerow([
         'filename',
@@ -244,6 +285,7 @@ with open(os.path.join('Users', 'amia19', 'Desktop', 'kittydata.csv', 'w', encod
     ])
     md_csv.writerows(sorted(all_file_data))
 ~~~
+{: .language-python}
 
 
 {% include links.md %}

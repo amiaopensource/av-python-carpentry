@@ -3,7 +3,7 @@ title: "Running and Quitting"
 teaching: 15
 exercises: 0
 questions:
-- "How can I run Python programs?"
+- "How can I run Python code?"
 objectives:
 - "Launch the JupyterLab server." 
 - "Create a new Python script." 
@@ -23,20 +23,18 @@ keypoints:
 ## Getting Started with JupyterLab
 
 While many software developers will often use an integrated development environment (IDE) or a 
-text editor to create and edit their Python programs we will be using [JupyterLab][jupyterlab] 
-during this lesson. 
+text editor to create and edit their Python programs we will be using JupyterLab during this lesson. 
 
-JupyterLab is an application with a web-based user interface from [Project Jupyter][jupyter] that 
-enables one to work with documents and activities such as Jupyter notebooks, text editors, terminals,
-and even custom components in a flexible, integrated, and extensible manner. JupyterLab requires a
+JupyterLab is an application with a web-based user interface from Project Jupyter that 
+enables you to work with documents and activities such as Jupyter notebooks, text editors, terminals,
+or even custom components in a flexible, integrated, and extensible manner. JupyterLab requires a
 reasonably up-to-date browser (ideally a current version of Chrome, Safari, or Firefox); Internet
 Explorer versions 9 and below are *not* supported.
 
 JupyterLab is included as part of the the Anaconda Python distribution. If you have not already 
-installed the Anaconda Python distribution, see [the setup instructions]({{ page.root }}/setup/) 
-for installation instructions.
+installed the Anaconda Python distribution, see the setup instructions.
 
-Even though JupyterLab is a web-based application, JupyterLab runs locally on your machine and 
+Even though JupyterLab is a web-based application, it runs locally on your machine and 
 does not require an internet connection.
 *   The JupyterLab server sends messages to your web browser.
 *   The JupyterLab server does the work and the web browser renders the result.
@@ -57,9 +55,9 @@ does not require an internet connection.
 
 ## Starting JupyterLab
 
-For this workshop, we start JupyterLab from Anaconda Navigator.
+For this workshop, we call JupyterLab from the Anaconda Navigator.
 
-On Windows, click on Start and then Anaconda Navigator in the program list (or search for Anaconda in the search bar and select Anaconda Navigator). On a Mac, open up the finder, and in the Applications folder, double click on Anaconda-Navigator.
+On Windows, click on Start and then Anaconda Navigator in the program list (or search for Anaconda in the search bar and select Anaconda Navigator). On a Mac, open up a Finder window and double click on Anaconda-Navigator in the Applications folder.
 
 At the top of the screen, change the environment from `base` to `amia19`. Then click `Launch` on the JupyterLab tile.
 
@@ -148,7 +146,7 @@ more details, then see the [official notebook documentation][jupyterlab-notebook
 > ## Arranging Documents into Panels of Tabs
 >
 > In the JupyterLab Main Work Area you can arrange documents into panels of tabs. Here is an 
-> example from the [official documentation][jupyterlab].
+> example from the official documentation:
 > 
 > <p align='center'>
 >    <img alt="Multi-panel JupyterLab" src="../fig/0_multipanel_jupyterlab_screenshot.png" width="750"/>

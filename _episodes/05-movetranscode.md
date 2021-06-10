@@ -12,23 +12,62 @@ keypoints:
 - "Collecting filepaths is often the first step of any AV script"
 ---
 
-Alice had 3 tasks she wanted to complete.
+> ## Catch-up Code
+> 
+> If you get lost or fall behind or need to burn it all down and start again, here's some quick catch-up code that you can run to get back up to speed.
+>
+> Remember: press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute the contents of the cell.
+>
+> ~~~
+> video_dir = '/Users/username/Desktop/amia19'
+>
+> or
+>
+> video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+> 
+> MAKE SURE TO CHANGE USERNAME TO YOUR USERNAME
+> ~~~
+> {: .language-python}
+>
+> Then copy and paste the following:
+>
+> ~~~
+> import os
+> import subprocess
+> import glob
+> mov_list = []
+mov_list = glob.glob(os.path.join(video_dir, "**", "*mov"), recursive=True)
+>
+> ~~~
+> {: .language-python}
+>
+> And run this to confirm that you're generating a file list properly (you should see a list of file names; if not, call for help!)
+>
+> ~~~
+> mov_list
+> ~~~
+> {: .language-python}
+>
+>
+{: .callout}
 
-1. create service copy MP4s for all of the files on her hard drive
+Remember Alice? She had 3 tasks that she needed to complete.
+
+1. create service copy MP4s for all of the master files on her hard drive
 2. share the duration of each video file with a cataloger
 3. preserve the files
 
-She'll need to create a transcoding script to take care of the first step.
+Alice will need to create a transcoding script to take care of the first step.
 You may have noticed that the "120th Anniversary" project included service files.
-So why not take advantage of that work first?
+So let's start there.
 
 ## Moving Files
 
-When we review the folders where those service files live, it looks like they're all located in [BagIt](https://en.wikipedia.org/wiki/BagIt) bags.
-Because bags have multiple mechanisms to track the fixity of their contents, we don't want to change their contents if we don't have to.
-For this case, we can make copies of the existing service files.
+When we review the directories in which those service files reside, it appears that they're all located in [BagIt](https://en.wikipedia.org/wiki/BagIt) bags.
+Because bags use multiple mechanisms to track the fixity of their contents, we don't want to change their contents if we can avoid it.
+In this case, we can make copies of those existing service files.
 
-For any kind of local file moving or copying, the `shutil` module is a good starting point.
+For any kind of local file moving or copying in Python, the `shutil` module is a good starting point.
 Let's import that.
 
 ~~~
@@ -43,9 +82,9 @@ help(shutil.copy)
 ~~~
 {: .language-python}
 
-`shutil.copy()` takes two arguments, `src` (path to source file) and `dest` (path to destination). The source path we can pull from our `mov_list`. The destination path, we'll have to create.
+`shutil.copy()` takes two arguments, `src` (path to source file) and `dest` (path to destination). The source path we can pull from our `mov_list`. But the destination path we'll have to create anew.
 
-Let's make a single subfolder in the `amia19` folder to hold copies of the service files.
+Let's make a single subfolder within the `amia19` directory to hold copies of those service files.
 
 ~~~
 service_folder = os.path.join('Desktop', 'amia19', 'service')
@@ -60,21 +99,21 @@ service_folder
 
 This folder doesn't actually exist yet.
 It's just a string. 
-If we try to copy anything to this folder, we won't get the results we might expect.
+If we try to copy anything to this folder, we won't get the results we're after.
 
 ~~~
 shutil.copy(mov_list[0], service_folder)
 ~~~
 {: .language-python}
 
-As there wasn't a landing directory ready for our video, we ended up with an extensionless file called "service" file.
-We wanted to copy the gif into a folder called "service", except the "service" folder didn't exist.
+Because there wasn't a landing directory ready for our video files, we ended up with an extensionless file called "service."
+We wanted to copy the file into a folder called "service", except the "service" folder didn't exist.
 
-Let's delete that "service" file and do things the right way. 
+So let's delete that "service" file and do things the right way. 
 
-Now, let's use the `os` module to make this folder.
-But, before doing that, it's good practice to make sure the folder doesn't already exist.
-Among python users, this is called Looking Before You Leap (LBYP).
+We'll use the `os` module to make this folder.
+But before doing that, it's good practice to make sure the folder doesn't already exist.
+Among python users, this is what's called Looking Before You Leap (LBYP).
 
 ~~~
 if not os.path.exists(service_folder):
@@ -89,13 +128,80 @@ shutil.copy(mov_list[0], service_folder)
 ~~~
 {: .language-python}
 
-Finally, let's use a loop to do this for all of the existing service files.
+So now we have the tool to do a drag-and-drop with Python.
+But just using this tool would mean writing a command for every file we want to copy.
+That would have the same problems as dragging-and-dropping every file.
+To turn this tool into something really useful, we need another building block, the `for` loop.
+
+## `for` loops
+
+Often when we works with lists, we use `for` loops, a computer programming method for repeating sections of code.
+During a `for` loop, Python will take items from a list one-at-a-time and perform the same actions on each item.
+
+__`for` loops will be the most important tool that we'll use in this workshop.__
+
+Dealing with 100's, 1000's, or even more files means a lot of batch processing.
+The `for` loop is the most common way that we'll be doing that batch processing.
+
+> ## Python Syntax: `for` Loops
+> In the case of Python, there are a few important things to keep in mind about for loops.
+> The first line of a for loop always looks similar to this:
+`for listitem in somelist:`
+> * for - tells Python it will have to repeat code on multiple items from a list
+> * somelist - the list of items to be worked through
+> * listitem(s - the generic name(s) to refer to items in the code section, you choose these names
+> The body of the `for` loop is always indented from the first line and can include multiple lines of code, even additional `for` loops.
+{: .callout}
 
 ~~~
-mp4_list = glob.glob(os.path.join(video_dir, '**', '*mp4'))
+for filepath in mov_list:
+    print(filepath)
+~~~
+{: .language-python}
+
+This command outputs each item from our `mov_list`.
+We can perform more complicated actions within the loop.
+
+~~~
+for filepath in mov_list:
+    print(filepath + ' exists')
+~~~
+{: .language-python}
+
+> ## Printing, `for` loops, and Jupyter
+>
+> What happens when you don't include the print function?
+> Why do you think this is the case?
+>
+> ~~~
+> for filepath in mov_list:
+>   filepath + ' exists'
+> ~~~
+> {: .language-python}
+> 
+> > ## Solution
+> > Jupyter only displays the result from the final item in the list, because it only displays the results of the final line of code.
+> > Because we're learning about how Python works, during the workshop we will use the `print()` function a lot.
+> {: .solution}
+{: .challenge}
+
+Now we have all of the tools to automate the copying:
+* using `glob.glob()` to create a list of files
+* using `shutil.copy` to copy a file
+* using a `for` loop to perform the same action repeatedly
+
+Putting those tools together, we can write code like this.
+
+~~~
+mp4_list = glob.glob(os.path.join(video_dir, '**', '*mp4')), recursive=True)
 for item in mp4_list:
 	shutil.copy(item, service_folder)
+~~~
+{: .language-python}
 
+And we can check that this code did what we intended either by viewing the folder or by using some more Python code.
+
+~~~
 os.listdir(service_folder)
 ~~~
 {: .language-python}
@@ -103,12 +209,22 @@ os.listdir(service_folder)
 That's a big chunk of Alice's task performed with a minimal amount of work.
 For the next part, she'll need to do some transcoding.
 
-## Using ffmpeg from Python
+> ## Building `for` Loops
+> The process we went through above is a great practice when writing a `for` loop.
+> 1. Write the code to run on a single piece of data.
+> 2. Test out the code and make sure it works. If not, keep developing it.
+> 3. Add the `for` loop syntax and adjust any variable names.
+> 
+> That way, if there are any problems in the code you write, you're more likely to catch them before the `for` loops makes the same mistake over-and-over again.
+> Imagine if you were copying 1000's of files to multiple locations and had to find and manually delete them because of a typo.
+{: .callout}
+
+## Using FFmpeg within Python
 
 Python can be used to run other scripts and programs on a computer.
-For example, if there is a command-line utility that does an essential function, you can incorporate it into a Python script that automates it across a group of files.
+For example, if there is a command-line utility that performs an essential function, you can incorporate it into a Python script that automates that action for a group of files.
 For this lesson, we will use the `subprocess` module to run terminal commands from our script.
-This module work for all command-line tools.
+The `subprocess` module works for all command-line tools.
 Later, we will look at another method that exists for some, but not all, command-line tools.
 
 ~~~
@@ -153,12 +269,12 @@ If you've used command line tools, you might recognize `ls -l` as the way to ret
 Instead of taking a string like `subprocess.call('ls -l')`, it takes a list where each item in the list is a string.
 We'll be taking advantage of that.
 
-First, let's assemble an FFMPEG command to make mp4/h264 files.
+First, let's assemble an FFmpeg command to make mp4/h264 files.
 And since we're mortals, we'll use the wonderful [ffmprovisr](https://amiaopensource.github.io/ffmprovisr/#transcode_h264)
 
 The suggested command is `ffmpeg -i input_file -c:v libx264 -pix_fmt yuv420p -c:a aac output_file`.
 The 'subprocess.run()' function requires the command to be in a list format.
-We do that by treating the spaces in the command as the delimiters for each item in our list.
+We can do this by treating the spaces in the command as the delimiters for each item in our list.
 When we use this function in a for-loop, most of these items will remain the same each time the command runs, but we will change the input and output files.
 For those, we will use a variable instead of a string.
 
@@ -169,10 +285,10 @@ For those, we will use a variable instead of a string.
 
 The `input_file` and `ouput_file` are like the source and destination paths we needed for `shutil.copy()`.
 We can take `input_file` from the first entry on our `mov_list`.
-For `output_file`, we can use the `service_folder`, but `ffmpeg` requires a path with a filename.
+For `output_file`, we can use the `service_folder`, but `ffmpeg` requires a named output path with a filename.
 
 Since we're transcoding preservation files to make service files, we can use the preservation filename as the basis for our service filename.
-And because we're dealing with paths, let's use an `os.path` function.
+And because we're dealing with paths, let's use an `os.path` function. The function `os.path.basename` will always return the last piece of a path, whether that's a directory name or filename.
 
 ~~~
 os.path.basename(mov_list[0])
@@ -212,42 +328,46 @@ CompletedProcess(['ffmpeg', '-i', 'Desktop/amia19/federal_grant/napl1777.mov', '
 ~~~
 {: .output}
 
-> ## Using variables 1
+> ## Using Variables 1
 > One of the challenging things about learning to program is how and when to use variables.
 > You can be verbose and store the result of every change to a variable like this.
 > ~~~
 > original_filename = os.path.basename(mov_list[0])
 > output_filename = original_filename.replace('mov', 'mp4')
-> output_filepath = output_file = os.path.join(service_folder, output_filename)
+> output_filepath = os.path.join(service_folder, output_filename)
 > subprocess.run(['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', output_filepath])
 > ~~~
-> {: language-python}
+> {: .language-python}
 > You can also be very terse and nest all of your functions inside of each other like this.
 > ~~~
 > subprocess.run(['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', os.path.join(service_folder, os.path.basename(mov_list[0]).replace('mov', 'mp4'))])
 > ~~~
-> {: language-python}
+> {: .language-python}
 >
 > Both of these approaches will work.
-> In practice, most code falls somewhere between these extremes to produce something that is concise but readable.
-> When you're starting, it's easier to focus on getting code to run.
-> As you continue you may find resources like the [PEP-8](https://www.python.org/dev/peps/pep-0008/) style guide useful.
+> In practice, most code falls somewhere between these extremes, producing something that is concise but readable.
+> When you're learning to code, it's better to focus on getting code to run.
+> Don't be afraid of using too many variables as long as they help you understand the code you're writing.
+> And as you advance you may find resources like the [PEP-8](https://www.python.org/dev/peps/pep-0008/) style guide useful.
 {: .callout}
 
 ## Looking Before You Transcode
 
-It might be tempting to wrap `ffmpeg` command in a `for` loop and celebrate, but let's think through what might happen when we run this code across all the files in `mov_list`.
+It might be tempting to wrap `ffmpeg` command in a `for` loop and celebrate, but let's think through what might happen when we run this code across all of the files in `mov_list`.
 
 > ## Problems with Transcoding Everything
-> What issues would face if you tried to transcode every file in `mov_list` right now?
-> What steps would you take to avoid those issues?
+> What issues might you encounter if you tried to transcode every file in `mov_list` right now?
+> What steps could you take to avoid those issues?
+> > ## Solution
 > > You would transcode files that you already have service files for, like `napl1777.mov`.
-> > To avoid this, you would need create an `if` statements to skip transcoding for those files.
+> > To avoid this, you could use `if` statements, to skip the transcoding process for those files like the `os.makedirs()` example above.
 > {: .solution}
 {: .challenge} 
 
 
-Let's just focus on untranscoded movs. To do that, we'll look before we leap by seeing if a service copy already exists for that mov file.
+Let's focus on untranscoded movs.
+To do that, we'll look before we leap by seeing if a service copy already exists for that mov file.
+We'll explore more about how to use `if` statements in Lesson 8.
 
 ~~~
 for item in mov_list:
@@ -262,7 +382,7 @@ os.listdir(service_folder)
 
 Success!
 
-> ## Using variables 2
+> ## Using Variables 2
 > The code above is an example of how a variable can be useful.
 > By first storing the service file path to `output_file`, we are able to use it in two different contexts.
 > First, to see if the service file already exists.

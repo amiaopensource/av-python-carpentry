@@ -27,7 +27,7 @@ Assuming you have a computer that meets the requirements, let’s start by getti
 The easiest way to get set up with Python and Jupyter Lab so you can start coding is to install the Anaconda distribution. Let’s go through the install instructions  for the two most common operating systems - Windows and MacOS.
 
 #### Windows
-Go [here](https://www.anaconda.com/download/#windows) and click on the "download" button for the Python 3.x (currently 3.7) version of Anaconda.
+Go [here](https://www.anaconda.com/download/#windows) and click on the "download" button for the Python 3.x (currently 3.7) Graphical Installer of Anaconda.
 
 A window may pop up asking if you want to give Anaconda your information in return for a cheat sheet - you do not need to do so unless you want to.
 
@@ -72,7 +72,7 @@ It’ll open up a browser window which you can just close down.
 And that’s the process of installing Anaconda. The next step is to test your installation.
 
 #### Mac
-Go [here](https://www.anaconda.com/download/#macos) and click on the "download" button for the Python 3.x (currently 3.7) version of Anaconda.
+Go [here](https://www.anaconda.com/download/#macos) and click on the "download" button for the Python 3.x (currently 3.7) Graphical Installer of Anaconda.
 
 ![screen-26](http://curriculum-content.s3.amazonaws.com/data-science/screen-26.png)
 
@@ -138,10 +138,6 @@ The Anaconda Navigator is one of the ways you’ll be able to run Jupyter Lab. C
 
 ![screen-40](http://curriculum-content.s3.amazonaws.com/data-science/screen-40.png)
 
-On a mac you’ll see a terminal window pop up.
-
-![screen-41](http://curriculum-content.s3.amazonaws.com/data-science/screen-41.png)
-
 On both Windows and a Mac you’ll see a window in your web browser that allows you to open existing Jupyter notebooks or create a new one.
 
 ![screen-42](http://curriculum-content.s3.amazonaws.com/data-science/screen-42.png)
@@ -150,32 +146,25 @@ Click on the "Python 3" tile under Notebook in the tab.
 
 ![screen-43](http://curriculum-content.s3.amazonaws.com/data-science/screen-44.png)
 
-When you do, you’ll see a new notebook in your browser window that looks something like this:
-
-![screen-44](http://curriculum-content.s3.amazonaws.com/data-science/screen-43.png)
-
-To make sure it’s working, click in the cell and type the following:
+When you do, you’ll see a new notebook in your browser window. To make sure it’s working, click in the cell and type the following:
 
 ```
 import sys
 print(sys.version)
 ```
-
 Then hold down the shift key and hit enter to run the code in the cell. You should see an output something like this.
 
-![screen-45](http://curriculum-content.s3.amazonaws.com/data-science/screen-45.png)
+![screen-44](http://curriculum-content.s3.amazonaws.com/data-science/screen-43.png)
 
 Don’t worry if the version number or date is slightly different. If you get a similar output (something that isn’t an error message), congratulations! You’ve got Anaconda, Python and the Jupyter notebook installed successfully!
 
 To shut down Jupyter notebook, just close the tabs in your browser containing the notebook and the list of noteboks. On a mac you should also click on the terminal window and hit "ctrl-C" to close the notebook.
 
-![screen-46](http://curriculum-content.s3.amazonaws.com/data-science/screen-46.png)
-
 You’ll then have to hit "y" and return to confirm that you want to close down Jupyter notebook.
 
 ## Setting up the Conda Virtual Environment
 
-As you do programming projects, you will spend a lot of your time using pre-written libraries to speed up your development. Examples include pymediainfo, bagit-python, and pandas. As you work on different projects, you may also find that you end up using different versions of different libraries for different projects.
+As you begin working on programming projects, you'll spend a lot of time incorporating pre-written libraries to speed up your development. Examples include pymediainfo, bagit-python, and pandas. As you work on different projects, you may also find that you end up using different versions of different libraries for different projects.
 
 Occasionally, code that works in an old version of a library won’t work in a newer version. So if you open up a new project and install the dependencies, it’s possible that your old project won’t work any more.
 
