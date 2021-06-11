@@ -1,5 +1,5 @@
 ---
-title: "Finding Files"
+title: "4. Finding Files"
 teaching: 20
 exercises: 10
 questions:
