@@ -43,7 +43,7 @@ A folder can be loaded as a bag by sending it's path to `bagit.Bag()`.
 Once loaded, the bag object has a function to validate itself.
 For example:
 ~~~
-bag = bagit.bag(os.path.join('Desktop', 'amia19', '120th anniversary', '1143'))
+bag = bagit.bag(os.path.join('Desktop', 'pyforav', '120th anniversary', '1143'))
 bag.validate()
 ~~~
 {: .language-python}
@@ -56,7 +56,7 @@ The result of `validate()` will be `True` or `False`.
 > First you will need to create a list of all the subfolders of `120th anniversary`
 > > ## Solution
 > > ~~~
-> > bag_paths = glob.glob(os.path.join('Desktop', 'amia19', '120th anniversary', '*'))
+> > bag_paths = glob.glob(os.path.join('Desktop', 'pyforav', '120th anniversary', '*'))
 > > 
 > > for bag_path in bag_paths:
 > >     bag = bagit.bag(bag_path)
@@ -83,7 +83,7 @@ The `bagit` module has a `make_bag()` function.
 > > Once run, `make_bag()` creates a bag in place, moving the contents of a folder into a `data` subdirectory, and writing manifests.
 > > Warning: because the following code will move all the files in `on_demand`, you might want to copy this folder, so you can delete the bag you create.
 > > ~~~
-> > bagit.make_bag(os.path.join('Desktop', 'amia19', 'on_demand'))
+> > bagit.make_bag(os.path.join('Desktop', 'pyforav', 'on_demand'))
 > > ~~~
 > > {: .language-python}
 > {: .solution}
@@ -97,7 +97,7 @@ import hashlib
 
 BLOCKSIZE = 65536
 
-ondemand_paths = glob.glob(os.path.join('Desktop', 'amia19', 'on_demand', '*mov'))
+ondemand_paths = glob.glob(os.path.join('Desktop', 'pyforav', 'on_demand', '*mov'))
 
 hasher = hashlib.md5()
 with open(ondemand_paths[0], 'rb') as f:
@@ -117,7 +117,7 @@ It's also a fair reaction to look at this code, look at another tool for creatin
 For example:
 
 ~~~
-md5 Desktop/amia19/on_demand/middlerrequest_1669.mov > Desktop/amia19/on_demand/middlerrequest_1669.md5
+md5 Desktop/pyforav/on_demand/middlerrequest_1669.mov > Desktop/pyforav/on_demand/middlerrequest_1669.md5
 ~~~
 {: .language-bash}
 

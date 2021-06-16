@@ -89,7 +89,7 @@ A simplified version of the code is provided below is available if you run into 
 Change any paths so that they reflect your computer's folders.
 
 ~~~
-video_dir = '/Users/username/Desktop/amia19'
+video_dir = '/Users/username/Desktop/pyforav'
 
 mov_list = glob.glob(os.path.join(video_dir, '**', '*mov'))
 
@@ -108,7 +108,7 @@ for item in mov_list:
     all_file_data.append(general_data)
 
 
-with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
+with open('/Users/pyforav/Desktop/script_output.csv', 'w') as f:
     md_csv = csv.writer(f)
     md_csv.writerow([
         'filename',
@@ -139,7 +139,7 @@ After running this command a new CSV named `script_output.csv` is saved to the d
 ## Increasing Script Flexibility
 
 By creating a script we automated some of the effort of running our Python code.
-But, the current script can only gather data from the `amia19` folder and save a CSV to `script_output.csv`.
+But, the current script can only gather data from the `pyforav` folder and save a CSV to `script_output.csv`.
 To make this more flexible, we can accept arguments from the command line.
 
 If you have not used the command line much in the past, commands work a lot like functions in Python.
@@ -203,7 +203,7 @@ According to the help dialog, the script is able to accept a location of our cho
 > 
 > What happens when you run the following command?
 > ~~~
-> python filesurvey.py -d Desktop/amia19/mkv -e mkv -o Desktop/mkv_files.csv
+> python filesurvey.py -d Desktop/pyforav/mkv -e mkv -o Desktop/mkv_files.csv
 > ~~~
 > {: .language-bash}
 > Why didn't it create the `mkv_files.csv`? How would you change the script to make that happen?
@@ -219,7 +219,7 @@ Our next task is to put those references in the right places.
 
 For the directory to survey, we need to replace the hard-coded path that is assigned to `video_dir` with `args.directory`. From:
 ~~~
-video_dir = '/Users/username/Desktop/amia19'
+video_dir = '/Users/username/Desktop/pyforav'
 ~~~
 {: .language-python}
 To:
@@ -241,7 +241,7 @@ mov_list = glob.glob(os.path.join(video_dir, '**', '*' + args.extension))
 
 Finally, we do the same for the script output with `args.output`. From:
 ~~~
-with open('/Users/amia19/Desktop/script_output.csv', 'w') as f:
+with open('/Users/pyforav/Desktop/script_output.csv', 'w') as f:
 ~~~
 {: .language-python}
 To:
