@@ -41,7 +41,7 @@ File paths are a series of text-based breadcrumbs that describe the location of 
 
 Alice uses macOS. For her, the root directory is the slash character `/`. Every absolute file path will start with `/`.
 
-The absolute file path to a specific file located on Alice's desktop would look something like: `/Users/alice/Desktop/amia19/on_demand/catexhibit_0001.mov` That path will always lead to that  file, no matter where she's working from (her current working directory).
+The absolute file path to a specific file located on Alice's desktop would look something like: `/Users/alice/Desktop/pyforav/on_demand/catexhibit_0001.mov` That path will always lead to that  file, no matter where she's working from (her current working directory).
 
 > ## Root Directories on Windows vs Mac/Linux
 >
@@ -57,14 +57,14 @@ The absolute file path to a specific file located on Alice's desktop would look 
 
 Some parts of that path, for example, `Desktop`, might be as familiar to you as the folders you see in a GUI.
 A file path encodes the same hierarchy of folders that we click through, expressing it as series of folder names divided by slashes.
-We know that `amia19` is a subdirectory stored inside of `Desktop`.
-We can also see that `amia19` is a subdirectory of `alice`, which is a subdirectory of `Users` which is a subdirectory of root.
+We know that `pyforav` is a subdirectory stored inside of `Desktop`.
+We can also see that `pyforav` is a subdirectory of `alice`, which is a subdirectory of `Users` which is a subdirectory of root.
 
 You may not see folders like `Users` on a regular basis.
 Often, we spend time working from a folder like `Desktop` and thinking about the locations of files relative to that folder.
-The relative file path to `catexhibit_0001.mov` from Alice's `Desktop` is `amia19/on_demand/catexhibit_0001.mov`.
+The relative file path to `catexhibit_0001.mov` from Alice's `Desktop` is `pyforav/on_demand/catexhibit_0001.mov`.
 That path only works in relation to the `Desktop` folder.
-If we try to access `amia19/on_demand/catexhibit_0001.mov` from the root folder, our computer will report an error, explaining that it cannot find anything at that path.
+If we try to access `pyforav/on_demand/catexhibit_0001.mov` from the root folder, our computer will report an error, explaining that it cannot find anything at that path.
 
 This distinction will become important as we begin using Python to find and do things to different kinds of files.
 **Our first step will always be gathering up file paths based upon a chosen quality, say, for example, filename extension (.mov, .mkv, .mp4, etc.).**
@@ -215,18 +215,18 @@ os.listdir('Desk')
 ~~~
 {: .language-python}
 
-We're curious about the contents of the `amia19` folder, so let's examine that.
+We're curious about the contents of the `pyforav` folder, so let's examine that.
 Because we will use this path repeatedly, first we will store it with what's called a "variable."
 
 On macOS:
 ~~~
-video_dir = '/Users/username/Desktop/amia19'
+video_dir = '/Users/username/Desktop/pyforav'
 ~~~
 {: .language-python}
 
 On Windows:
 ~~~
-video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+video_dir = 'C:\\Users\\username\\Desktop\\pyforav'
 ~~~
 {: .language-python}
 
@@ -382,7 +382,7 @@ project_folders
 > For reference, in a Unix environment, you might run something like this.
 > 
 > ~~~
-> $ find Desktop/amia19 -type f 
+> $ find Desktop/pyforav -type f 
 > ~~~
 > {: .language-bash} 
 >
@@ -409,11 +409,11 @@ glob.glob('Desktop/*19')
 {: .language-python}
 
 ~~~
-['Desktop/amia19', <maybe additional files depending on your Desktop>]
+['Desktop/pyforav', <maybe additional files depending on your Desktop>]
 ~~~
 {: .output}
 
-We'd like to search for all of the `mov` files stored within our video directory (amia19), so we'll need to construct a glob-pattern for those paths.
+We'd like to search for all of the `mov` files stored within our video directory (pyforav), so we'll need to construct a glob-pattern for those paths.
 For this, we'll use two wildcard characters.
 * `*` - a wildcard for part or all of a file name or folder
 * `**` - a wildcard for nested folders
@@ -423,9 +423,9 @@ For this, we'll use two wildcard characters.
 > What would be a glob-pattern for filenames ending in `mov` in the nested folders of `video_dir`?
 > 
 > > ## Solution
-> > `C:\Users\username\Desktop\amia19\**\*mov`
+> > `C:\Users\username\Desktop\pyforav\**\*mov`
 > > or
-> > `/Users/username/Desktop/amia19/**/*mov`
+> > `/Users/username/Desktop/pyforav/**/*mov`
 > {: .solution}
 {: .challenge}
 
@@ -467,7 +467,7 @@ os.path.relpath(video_dir)
 {: .language-python}
 
 ~~~
-'amia19'
+'pyforav'
 ~~~
 {: .output}
 
@@ -479,7 +479,7 @@ os.path.abspath(relpath)
 {: .language-python}
 
 ~~~
-'/Users/username/Desktop/amia19'
+'/Users/username/Desktop/pyforav'
 ~~~
 {: .output}
 
@@ -502,7 +502,7 @@ os.path.join(video_dir, 'nonexistent_file.gif')
 {: .language-python}
 
 ~~~
-('/Users/username/Desktop/amia19/nonexistent_file.gif')
+('/Users/username/Desktop/pyforav/nonexistent_file.gif')
 ~~~
 {: .output}
 
@@ -527,9 +527,9 @@ False
 > > ~~~
 > > {: .language-python}
 > > Depending on your system, you should see
-> > `C:\Users\username\Desktop\amia19\**\*mov`
+> > `C:\Users\username\Desktop\pyforav\**\*mov`
 > > or
-> > `/Users/username/Desktop/amia19/**/*mov`
+> > `/Users/username/Desktop/pyforav/**/*mov`
 > {: .solution}
 {: .challenge}
 
@@ -540,7 +540,7 @@ False
 > However, functions often do have rules regarding what they will or will not accept.
 > For example, using a list as an argument in `os.path.join` will return an error.
 > ~~~
-> os.path.join(['Desktop', 'amia19'])
+> os.path.join(['Desktop', 'pyforav'])
 > ~~~
 > {: .language-python}
 >
@@ -553,7 +553,7 @@ False
 > But using the same strings not enclosed in square brackets returns the results we're after.
 >
 > ~~~
-> os.path.join('Desktop', 'amia19')
+> os.path.join('Desktop', 'pyforav')
 > ~~~
 > {: .language-python}
 {: .callout}
