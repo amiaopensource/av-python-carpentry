@@ -181,7 +181,7 @@ Then in Anaconda Navigator, click on the Environment tab on left side of the win
 
 Click on the `Import` tile at the bottom.
 
-Name the environment `amia19`.
+Name the environment `pyforav`.
 
 Browse to the environment file you downloaded. It will probably be in your Downloads folders as `***_env.yaml`.
 
