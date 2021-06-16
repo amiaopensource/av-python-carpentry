@@ -12,7 +12,7 @@ keypoints:
 - ""
 ---
 
-Alice has heard good things about saving space by using lossless compression on preservation master files. Perhaps she could use Python to generate new, lossless preservation masters. Alice is taking a big leap, copying code from all over the Internet (Stack Exchange, ffmprovisr, random forums). This is something people at all levels of coding skill do. While this code may initially not make sense, as you continue to work with it, it will make more sense.
+Alice has heard good things about saving space by using lossless compression on preservation master files. Perhaps she could find a way to use Python to generate new, lossless preservation masters. Alice is taking a big leap, copying code from all over the Internet (Stack Exchange, ffmprovisr, random forums). This is something that people with all levels of coding skill do on a regular basis, and while this code may initially not make sense, as you continue to work with it, things will become more clear.
 
 ## Python, FFmpeg, and Lossless Transcoding
 
@@ -34,6 +34,6 @@ CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/amia19/fed
 ~~~
 {: .output}
 
-Check out your Desktop. Check out the file size of napl_0371_pres.mkv.
+Check out your Desktop. Take a look at the file size of napl_0371_pres.mkv, and compare to napl_0371_pres.mov .
 
-Super cool, but also very annoying to type out that file path for each file. How do we do this for all of the files that we have. We need a list.
+Super cool, but also very annoying to type out the file path for each inidividual file. How do we do this for all of the files that we have? The first thing we'll need is a list, so let's start there.
