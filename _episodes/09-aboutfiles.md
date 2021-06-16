@@ -62,13 +62,13 @@ Just to make sure we're setup right, here is the code for creating our digital s
 
 On Mac:
 ~~~
-video_dir = '/Users/username/Desktop/amia19'
+video_dir = '/Users/username/Desktop/pyforav'
 ~~~
 {: .language-python}
 
 On Windows:
 ~~~
-video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+video_dir = 'C:\\Users\\username\\Desktop\\pyforav'
 ~~~
 {: .language-python}
 
@@ -244,14 +244,14 @@ First, open a console Terminal tab in Jupyter by clicking on the `+` sign in the
 
 When the terminal opens, it should look like the following.
 ~~~
-(amia19)username@computername >
+(pyforav)username@computername >
 ~~~
 {: .language-bash}
 
-If it doesn't, you need to activate the `amia19` environment.
+If it doesn't, you need to activate the `pyforav` environment.
 
 ~~~
-conda activate amia19
+conda activate pyforav
 ~~~
 {: .language-bash}
 
@@ -263,7 +263,7 @@ pip --version
 {: .language-bash}
 
 ~~~
-pip 19.1.1 from /usr/local/lib/pytpip 19.3.1 from /opt/anaconda3/envs/amia19/lib/python3.7/site-packages/pip (python 3.7)
+pip 19.1.1 from /usr/local/lib/pytpip 19.3.1 from /opt/anaconda3/envs/pyforav/lib/python3.7/site-packages/pip (python 3.7)
 Note: you may need to restart the kernel to use updated packages.hon3.7/site-packages/pip (python 3.7)
 ~~~
 {: .output}
