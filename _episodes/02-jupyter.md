@@ -59,7 +59,7 @@ For this workshop, we call JupyterLab from the Anaconda Navigator.
 
 On Windows, click on Start and then Anaconda Navigator in the program list (or search for Anaconda in the search bar and select Anaconda Navigator). On a Mac, open up a Finder window and double click on Anaconda-Navigator in the Applications folder.
 
-At the top of the screen, change the environment from `base` to `amia19`. Then click `Launch` on the JupyterLab tile.
+At the top of the screen, change the environment from `base` to `pyforav`. Then click `Launch` on the JupyterLab tile.
 
 ## The JupyterLab Interface
 
