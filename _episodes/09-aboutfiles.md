@@ -178,7 +178,7 @@ totalsize/(1000 ** 4)
 Here, `**` is the Python notation for an exponent, so `1000 ** 4` means 1,000,000,000,000 and `16.255932760371` is the number of terabytes
 
 
-### TB vs. TiB (sidetrackkkkkkkk)
+### TB vs. TiB
 If you're wondering why we're using `1000` instead of `1024` for our math, you're asking good question.
 And the answer points to a long, and honestly, quite frustrating history, but it is worth taking a quick tangent.
 
