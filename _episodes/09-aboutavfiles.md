@@ -19,11 +19,11 @@ keypoints:
 > Remember: press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute the contents of the cell.
 >
 > ~~~
-> video_dir = '/Users/username/Desktop/amia19'
+> video_dir = '/Users/username/Desktop/pyforav'
 >
 > or
 >
-> video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+> video_dir = 'C:\\Users\\username\\Desktop\\pyforav'
 > 
 > MAKE SURE TO CHANGE USERNAME TO YOUR USERNAME
 > ~~~
