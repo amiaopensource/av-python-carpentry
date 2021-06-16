@@ -25,12 +25,12 @@ Leaning again on [ffmprovisr](https://amiaopensource.github.io/ffmprovisr/), we 
 And as an experiment, let's choose a random file in the `federal_grant` folder.
 
 ~~~
-subprocess.run(['ffmpeg', '-i', 'amia19/federal_grant/napl_0371_pres.mov', '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', ~/Desktop/napl_0371_pres.mkv'])
+subprocess.run(['ffmpeg', '-i', 'pyforav/federal_grant/napl_0371_pres.mov', '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', ~/Desktop/napl_0371_pres.mkv'])
 ~~~
 {: .language-python}
 
 ~~~
-CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/amia19/federal_grant/napl_0371_pres.mov', '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', 'Desktop/amia19/mkv/napl_0371_pres.mkv'], returncode=0)
+CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/pyforav/federal_grant/napl_0371_pres.mov', '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', 'Desktop/pyforav/mkv/napl_0371_pres.mkv'], returncode=0)
 ~~~
 {: .output}
 
