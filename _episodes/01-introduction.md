@@ -102,7 +102,7 @@ As a bonus, once she has Python scripts available to her, Alice will be able to 
 
 > ## Exploring the Digitization Projects
 > Take a few minutes to browse through the files you downloaded for this class.
-> They're probably in a folder on your Desktop called `amia19`.
+> They're probably in a folder on your Desktop called `pyforav`.
 >
 > What kind of files are you finding?
 > How would you describe their organization? 
