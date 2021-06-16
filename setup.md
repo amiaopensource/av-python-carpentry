@@ -90,11 +90,11 @@ pyenv local 3.9.4
 To install all of the other needed programs, we'll run a series of `pipenv` commands:
 
 ```
-pip env Jupyter
-pip env pymediainfo
-pip env matplotlib
-pip env hurry.filesize
-pip env pandas
+pipenv jupyter
+pipenv pymediainfo
+pipenv matplotlib
+pipenv hurry.filesize
+pipenv pandas
 TBD
 ```
 ## Testing your Installation
