@@ -601,7 +601,7 @@ for root, dirs, files in os.walk(video_dir):
 
 We don't need to fully understand this code right now.
 It uses concepts like `for` loops and `if` conditionals that will be covered in upcoming lessons.
-For now, it's a useful exercise to see if you can interpret the gist of what is happening.
+For now, it's a useful exercise to see if you can get the gist of what's happening.
 
 > ## What does the above code do?
 >

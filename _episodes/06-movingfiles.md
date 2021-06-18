@@ -99,7 +99,7 @@ service_folder
 
 This folder doesn't actually exist yet.
 It's just a string. 
-If we try to copy anything to this folder, we won't get the results we're after.
+If we try to copy anything to this non-existent folder, nothing good will happen.
 
 ~~~
 shutil.copy(mov_list[0], service_folder)
