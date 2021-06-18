@@ -103,7 +103,7 @@ TBD
 
 ## Downloading the Workshop Files
 
-Download the pyforav.zip from [Google Drive](https://drive.google.com/drive/u/0/folders/1QqII7T8oRvwAVdBmZjcNh5DlDc93tR6s), unzip it, and move tht folder to your Desktop.
+Download the pyforav.zip from [Google Drive](https://drive.google.com/drive/u/0/folders/1QqII7T8oRvwAVdBmZjcNh5DlDc93tR6s), unzip it, and move the `pyforav` folder to your Desktop.
 
 ## Summary
 
