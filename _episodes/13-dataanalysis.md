@@ -62,7 +62,7 @@ for root, dirs, files in os.walk(video_dir):
 And let's make a new landing pad for our new MKVs:
 
 ~~~
-new_mkv_folder = os.path.join('Desktop/amia19/new_mkvs')
+new_mkv_folder = os.path.join('Desktop/pyforav/new_mkvs')
 if not os.path.exists(new_mkv_folder):
 	os.makedirs(new_mkv_folder)
 ~~~
@@ -104,7 +104,7 @@ for item in mov_list:
 > >
 > > The len of mov_list counts the list of full file paths that we created for the MOVs.
 > >
-> > The len of new_mkv_folder returns the number of characters in the relative path 'Desktop/amia19/new_mkvs'
+> > The len of new_mkv_folder returns the number of characters in the relative path 'Desktop/pyforav/new_mkvs'
 > >
 > > Annoying, to be sure, but to get the results we're after, we'll need to take another os.walk around the block.
 > > 

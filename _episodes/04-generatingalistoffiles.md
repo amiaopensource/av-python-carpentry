@@ -1,5 +1,5 @@
 ---
-title: "Finding Files"
+title: "4. Finding Files"
 teaching: 20
 exercises: 10
 questions:
@@ -19,7 +19,7 @@ keypoints:
 
 ## The First Step: Finding Files
 
-Before Alice can manipulate files with Python, she needs to be able to direct Python to the locations of those files.
+Before Alice can manipulate groups of files with Python, she needs to direct Python to the locations of those files.
 
 ## Navigating filenames, file paths, and file systems
 
@@ -33,7 +33,7 @@ File systems have different rules, regulations, and ways of behaving; in your wo
 * HFS+ (old macOS, aka Mac OS Extended)
 * APFS (new macOS as of 2019)
 
-If you've used a program like Windows Explorer or macOS Finder, you probably have an intuitive sense of how to navigate within file systems simply by clicking or double-clicking on folders or file icons. When we use scripts, we use a similar logic to express the location of a particular object within the larger hierarchical system structure -- the file path.
+If you've used a program like Windows Explorer or macOS Finder, you probably have an intuitive sense of how to navigate within file systems simply by clicking or double-clicking on folders or file icons. When we use scripts, we're using a similar logic to express the location of a particular object within the larger hierarchical system structure -- the file path.
 
 File paths are a series of text-based breadcrumbs that describe the location of a particular file or directory. There are two types of file paths: 
 * absolute, or full file paths, which include what's called the root directory, or the top-most level of your file system
@@ -41,7 +41,7 @@ File paths are a series of text-based breadcrumbs that describe the location of 
 
 Alice uses macOS. For her, the root directory is the slash character `/`. Every absolute file path will start with `/`.
 
-The absolute file path to a file on Alice's desktop would look something like: `/Users/alice/Desktop/amia19/on_demand/catexhibit_0001.mov` That path will always lead to that particular file, no matter where she's working from (her current working directory).
+The absolute file path to a specific file located on Alice's desktop would look something like: `/Users/alice/Desktop/pyforav/on_demand/catexhibit_0001.mov` That path will always lead to that  file, no matter where she's working from (her current working directory).
 
 > ## Root Directories on Windows vs Mac/Linux
 >
@@ -57,14 +57,14 @@ The absolute file path to a file on Alice's desktop would look something like: `
 
 Some parts of that path, for example, `Desktop`, might be as familiar to you as the folders you see in a GUI.
 A file path encodes the same hierarchy of folders that we click through, expressing it as series of folder names divided by slashes.
-We know that `amia19` is a subdirectory stored inside of `Desktop`.
-We can also see that `amia19` is a subdirectory of `alice`, which is a subdirectory of `Users` which is a subdirectory of root.
+We know that `pyforav` is a subdirectory stored inside of `Desktop`.
+We can also see that `pyforav` is a subdirectory of `alice`, which is a subdirectory of `Users` which is a subdirectory of root.
 
 You may not see folders like `Users` on a regular basis.
 Often, we spend time working from a folder like `Desktop` and thinking about the locations of files relative to that folder.
-The relative file path to `catexhibit_0001.mov` from Alice's `Desktop` is `amia19/on_demand/catexhibit_0001.mov`.
+The relative file path to `catexhibit_0001.mov` from Alice's `Desktop` is `pyforav/on_demand/catexhibit_0001.mov`.
 That path only works in relation to the `Desktop` folder.
-If we try to access `amia19/on_demand/catexhibit_0001.mov` from the root folder, our computer will report an error, explaining that it cannot find anything at that path.
+If we try to access `pyforav/on_demand/catexhibit_0001.mov` from the root folder, our computer will report an error, explaining that it cannot find anything at that path.
 
 This distinction will become important as we begin using Python to find and do things to different kinds of files.
 **Our first step will always be gathering up file paths based upon a chosen quality, say, for example, filename extension (.mov, .mkv, .mp4, etc.).**
@@ -135,8 +135,8 @@ This is instructs python to load the `os` module.
 
 Modules, or code libraries designed to expand Python's functionality, can be a little tricky. There are a few kinds of modules within Python: 
 * standard distribution modules, which are built into Python itself;
-* third-party modules, which you load, often at the start of your script;
-* home-made modules, which you create for yourself to meet your own specific needs.
+* third-party modules, which are installed through a separate process;
+* home-made modules, which are created by you to meet your own specific needs.
 
 There are two ways to figure out which modules you have pre-installed.
 
@@ -154,8 +154,8 @@ pip list
 ~~~
 {: .language-bash}
 
-The base python environment only has a few functions built-in.
-In order to power up, you need to import modules with the abilities that you need.
+The base python environment only has a few built-in functions.
+In order to power up, you'll need to import modules with the abilities that you need.
 You only need to load a module once per script.
 To make sure we load every module that we need, typically we put all of our import statements at the very top of a script.
 
@@ -191,7 +191,7 @@ In our case that's the home folder.
 > Each module can contain functions and submodules, which themselves can contain functions and submodules.
 > The `.` syntax works like the slash in a filepath.
 > It clarifies that we want to use a function defined in a specific module.
-> If we don't include the parent modules, the Python interpreter will not know where to find the function we want to run.
+> If we don't include the parent modules, the Python interpreter won't know where to find the function we want to run.
 {: .callout}
 
 > ## Python Syntax: Functions and ()
@@ -215,18 +215,18 @@ os.listdir('Desk')
 ~~~
 {: .language-python}
 
-We're curious about the contents of the `amia19` folder, so let's examine that.
+We're curious about the contents of the `pyforav` folder, so let's examine that.
 Because we will use this path repeatedly, first we will store it with what's called a "variable."
 
 On macOS:
 ~~~
-video_dir = '/Users/username/Desktop/amia19'
+video_dir = '/Users/username/Desktop/pyforav'
 ~~~
 {: .language-python}
 
 On Windows:
 ~~~
-video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+video_dir = 'C:\\Users\\username\\Desktop\\pyforav'
 ~~~
 {: .language-python}
 
@@ -273,7 +273,7 @@ For example,
 ~~~
 {: .output}
 
-Notice that we're using the dot-notation mention aboved to call a function.
+Notice that we're using the dot-notation mentioned aboved to call a function.
 In this case, the replace function uses the string itself as an argument.
 These types of functions - ones that are attached to objects - are called methods.
 
@@ -378,15 +378,11 @@ project_folders
 
 ## Listing all the files in a directory
 
-If you're asking yourself: are we ever gonna get to finding some damn AV files?
-We're here!
-Our time is now!
-
 > ## Finding files with Bash
 > For reference, in a Unix environment, you might run something like this.
 > 
 > ~~~
-> $ find Desktop/amia19 -type f 
+> $ find Desktop/pyforav -type f 
 > ~~~
 > {: .language-bash} 
 >
@@ -398,7 +394,7 @@ Our time is now!
 > It does not have to replace the way you do things.
 {: .callout}
 
-With `os.listdir()` we could list all the files in a directory of our choosing, but if we have a nested set of folders as in Alice's case, we would have to run `os.listdir` over and over again.
+With `os.listdir()` we could list all the files in a directory of our choosing, but if we have a nested set of folders, as in Alice's case, we would have to run `os.listdir` over and over again.
 Instead, we will use a function from the `glob` module and a function from the `os.path` submodule.
 
 `glob` is a module that lets you use wildcards like `*` in filepaths.
@@ -413,11 +409,11 @@ glob.glob('Desktop/*19')
 {: .language-python}
 
 ~~~
-['Desktop/amia19', <maybe additional files depending on your Desktop>]
+['Desktop/pyforav', <maybe additional files depending on your Desktop>]
 ~~~
 {: .output}
 
-We'd like to search for all of the `mov` files stored within our video directory (amia19), so we'll need to construct a glob-pattern for those paths.
+We'd like to search for all of the `mov` files stored within our video directory (pyforav), so we'll need to construct a glob-pattern for those paths.
 For this, we'll use two wildcard characters.
 * `*` - a wildcard for part or all of a file name or folder
 * `**` - a wildcard for nested folders
@@ -427,9 +423,9 @@ For this, we'll use two wildcard characters.
 > What would be a glob-pattern for filenames ending in `mov` in the nested folders of `video_dir`?
 > 
 > > ## Solution
-> > `C:\Users\username\Desktop\amia19\**\*mov`
+> > `C:\Users\username\Desktop\pyforav\**\*mov`
 > > or
-> > `/Users/username/Desktop/amia19/**/*mov`
+> > `/Users/username/Desktop/pyforav/**/*mov`
 > {: .solution}
 {: .challenge}
 
@@ -471,7 +467,7 @@ os.path.relpath(video_dir)
 {: .language-python}
 
 ~~~
-'amia19'
+'pyforav'
 ~~~
 {: .output}
 
@@ -483,7 +479,7 @@ os.path.abspath(relpath)
 {: .language-python}
 
 ~~~
-'/Users/username/Desktop/amia19'
+'/Users/username/Desktop/pyforav'
 ~~~
 {: .output}
 
@@ -506,7 +502,7 @@ os.path.join(video_dir, 'nonexistent_file.gif')
 {: .language-python}
 
 ~~~
-('/Users/username/Desktop/amia19/nonexistent_file.gif')
+('/Users/username/Desktop/pyforav/nonexistent_file.gif')
 ~~~
 {: .output}
 
@@ -531,9 +527,9 @@ False
 > > ~~~
 > > {: .language-python}
 > > Depending on your system, you should see
-> > `C:\Users\username\Desktop\amia19\**\*mov`
+> > `C:\Users\username\Desktop\pyforav\**\*mov`
 > > or
-> > `/Users/username/Desktop/amia19/**/*mov`
+> > `/Users/username/Desktop/pyforav/**/*mov`
 > {: .solution}
 {: .challenge}
 
@@ -544,7 +540,7 @@ False
 > However, functions often do have rules regarding what they will or will not accept.
 > For example, using a list as an argument in `os.path.join` will return an error.
 > ~~~
-> os.path.join(['Desktop', 'amia19'])
+> os.path.join(['Desktop', 'pyforav'])
 > ~~~
 > {: .language-python}
 >
@@ -557,7 +553,7 @@ False
 > But using the same strings not enclosed in square brackets returns the results we're after.
 >
 > ~~~
-> os.path.join('Desktop', 'amia19')
+> os.path.join('Desktop', 'pyforav')
 > ~~~
 > {: .language-python}
 {: .callout}

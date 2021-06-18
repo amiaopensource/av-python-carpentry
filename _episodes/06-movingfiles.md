@@ -19,11 +19,11 @@ keypoints:
 > Remember: press <kbd>Shift</kbd>+<kbd>Return</kbd> to execute the contents of the cell.
 >
 > ~~~
-> video_dir = '/Users/username/Desktop/amia19'
+> video_dir = '/Users/username/Desktop/pyforav'
 >
 > or
 >
-> video_dir = 'C:\\Users\\username\\Desktop\\amia19'
+> video_dir = 'C:\\Users\\username\\Desktop\\pyforav'
 > 
 > MAKE SURE TO CHANGE USERNAME TO YOUR USERNAME
 > ~~~
@@ -84,16 +84,16 @@ help(shutil.copy)
 
 `shutil.copy()` takes two arguments, `src` (path to source file) and `dest` (path to destination). The source path we can pull from our `mov_list`. But the destination path we'll have to create anew.
 
-Let's make a single subfolder within the `amia19` directory to hold copies of those service files.
+Let's make a single subfolder within the `pyforav` directory to hold copies of those service files.
 
 ~~~
-service_folder = os.path.join('Desktop', 'amia19', 'service')
+service_folder = os.path.join('Desktop', 'pyforav', 'service')
 service_folder
 ~~~
 {: .language-python}
 
 ~~~
-'Desktop/amia19/service'
+'Desktop/pyforav/service'
 ~~~
 {: .output}
 
@@ -324,7 +324,7 @@ subprocess.run(['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv4
 {: language-python}
 
 ~~~
-CompletedProcess(['ffmpeg', '-i', 'Desktop/amia19/federal_grant/napl1777.mov', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', 'Desktop/amia19/service/napl1777.mp4'], returncode=0)
+CompletedProcess(['ffmpeg', '-i', 'Desktop/pyforav/federal_grant/napl1777.mov', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', 'Desktop/pyforav/service/napl1777.mp4'], returncode=0)
 ~~~
 {: .output}
 
