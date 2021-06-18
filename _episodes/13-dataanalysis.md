@@ -1,5 +1,5 @@
 ---
-title: "Analysis and Visualization"
+title: "Data Analysis and Visualization (Bonus)"
 teaching: 20
 exercises: 10
 questions:

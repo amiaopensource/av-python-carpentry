@@ -1,5 +1,5 @@
 ---
-title: "Checksums (Bonus)"
+title: "Checksums"
 teaching: 0
 exercises: 0
 questions:

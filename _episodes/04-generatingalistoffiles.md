@@ -1,5 +1,5 @@
 ---
-title: "4. Finding Files"
+title: "Generating a List of Files"
 teaching: 20
 exercises: 10
 questions:
