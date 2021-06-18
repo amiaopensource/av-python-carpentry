@@ -43,7 +43,7 @@ A folder can be loaded as a bag by sending it's path to `bagit.Bag()`.
 Once loaded, the bag object has a function to validate itself.
 For example:
 ~~~
-bag = bagit.bag(os.path.join('Desktop', 'pyforav', '120th anniversary', '1143'))
+bag = bagit.Bag(os.path.join('Desktop', 'pyforav', '120th_anniversary', '1143'))
 bag.validate()
 ~~~
 {: .language-python}
