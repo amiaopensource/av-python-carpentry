@@ -40,12 +40,12 @@ Let’s go through the installation instructions for the two common package mana
 ### Homebrew (macOS/Linux)
 1. Open a macOS Terminal window or Linux shell prompt.
 2. Go [here](https://brew.sh/) and copy the long line of code under the heading "Installation."  
-  ```
+  ```sh
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   ```
 3. Paste that into the macOS Terminal or Linux shell prompt and hit Return when prompted. You may be prompted for a password. Enter your login password at this point.
 4. Check your installation.  
-  ```
+  ```sh
   brew --version
   ```
 
@@ -53,17 +53,17 @@ Let’s go through the installation instructions for the two common package mana
 
 1. Open a Powershell Administrator session by typing `powershell` into Start Menu, right-clicking on the icon, and choosing Administrator.
 2. Check that you have the necessary security permissions to install chocolatery.  
-  ```
+  ```powershell
   Get-ExecutionPolicy
   ```
   * If it returns Restricted, then run `Set-ExecutionPolicy Bypass -Scope Process`.
 4. Copy the following from the [Chocolatey instructions](https://chocolatey.org/install).  
-  ```
+  ```powershell
   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
   ```
 5. Paste that into the Powershell window and hit Return when prompted.
 6. Check your installation.  
-  ```
+  ```powershell
   choco --version
   ```
 
