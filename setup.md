@@ -40,14 +40,16 @@ Let’s go through the installation instructions for the two common package mana
 ### Homebrew (macOS/Linux)
 1. Open a macOS Terminal window or Linux shell prompt.
 2. Go [here](https://brew.sh/) and copy the long line of code under the heading "Installation."  
-  ```
+  ~~~
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  ```
+  ~~~
+  {: .language-python}
 3. Paste that into the macOS Terminal or Linux shell prompt and hit Return when prompted. You may be prompted for a password. Enter your login password at this point.
 4. Check your installation.  
-  ```
+  ~~~
   brew --version
-  ```
+  ~~~
+  {: .language-python}
 
 ### Chocolatey (Windows)
 
