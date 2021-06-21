@@ -86,13 +86,13 @@ You can use the same Terminal/shell session from the previous step or open a new
 3. Update your Terminal/shell profile to use pyenv. This step changes depending on if your Terminal uses bash or zsh.
   ```
   #If your Terminal session says zsh in the title bar, run the following.  
-
+   
   echo 'eval "$(pyenv init)"' >> ~/.zshrc
   source ~/.zshrc
   ```
   ```
   #If your Terminal session says bash in the title bar.  
-
+  
   echo 'eval "$(pyenv init)"' >> ~/.bash_profile
   source ~/.bash_profile
   ```
