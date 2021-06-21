@@ -75,7 +75,7 @@ Now that you've got a package manager up and running, it's time to get pyenv ins
 
 ### macOS/Linux
 
-You can use the same Terminal/shell session from the previous step or open a new window.
+You can use the same Terminal or shell session from the previous step or open a new window.
 
 1. Check your current system version of Python.
   ```
@@ -85,7 +85,7 @@ You can use the same Terminal/shell session from the previous step or open a new
   ```
   brew install pyenv
   ```
-3. Update your Terminal/shell profile to use pyenv. This step changes depending on if your Terminal uses bash or zsh.
+3. Update your Terminal or shell profile to use pyenv. This step changes depending on if your Terminal uses bash or zsh.
 ```
 #If your Terminal session says zsh in the title bar, run the following.  
 
