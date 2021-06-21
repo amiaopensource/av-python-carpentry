@@ -93,7 +93,7 @@ CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/pyforav/fe
 > ## How Much Compression Did We Get?
 > How would you calculate the file size difference between the original and transcoded file?
 > > ## Solution
-> > Browse to the folders for each file, collect their file informtion and compare them.
+> > Browse to the folders for each file, collect their file information and compare them.
 > >
 > > Later we will learn how to collect file size information with Python. Here's a preview.
 > > ~~~
