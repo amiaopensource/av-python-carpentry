@@ -84,18 +84,17 @@ You can use the same Terminal/shell session from the previous step or open a new
   brew install pyenv
   ```
 3. Update your Terminal/shell profile to use pyenv. This step changes depending on if your Terminal uses bash or zsh.
-  ```
-  #If your Terminal session says zsh in the title bar, run the following.  
-   
-  echo 'eval "$(pyenv init)"' >> ~/.zshrc
-  source ~/.zshrc
-  ```
-  ```
-  #If your Terminal session says bash in the title bar.  
-  
-  echo 'eval "$(pyenv init)"' >> ~/.bash_profile
-  source ~/.bash_profile
-  ```
+```
+#If your Terminal session says zsh in the title bar, run the following.  
+
+echo 'eval "$(pyenv init)"' >> ~/.zshrc
+source ~/.zshrc
+
+#If your Terminal session says bash in the title bar.  
+
+echo 'eval "$(pyenv init)"' >> ~/.bash_profile
+source ~/.bash_profile
+```
 4. Check that pyenv was installed.
   ```
   pyenv versions
@@ -173,11 +172,11 @@ We will use a virtual environment to install a set of Python just for this works
   ```
 4. Install the Python modules we'll use in this workshop.
   ```
-  pipenv jupyterlab
-  pipenv pymediainfo
-  pipenv matplotlib
-  pipenv hurry.filesize
-  pipenv pandas
+  pipenv install jupyterlab
+  pipenv install pymediainfo
+  pipenv install matplotlib
+  pipenv install hurry.filesize
+  pipenv install pandas
   ```
 
 ## Testing your Installation
