@@ -114,20 +114,21 @@ You can use the same Powershell session from the previous step or open a new win
   ```
   ```
   #If you don't anything installed, you will see red text. This is fine.
-  #If you do have a version installed, you will see a version number like 3.5.4. Save this number and check where this version is installed.
+  
+  #If you do have a version installed, you will see a version number like 3.5.4. Save this number.
+  # Then check where this version is installed. Save the filepath from this command.
   
   Get-Command python | Select-Object -ExpandProperty Definition
   ```
-  Save the output of this command
 2. Install pyenv
   ```
   choco install pyenv
   ```
-4. Check that pyenv was installed.
+3. Check that pyenv was installed.
   ```
   pyenv versions
   ```
-5. If you had a version of python install, register it with pyenv. In the following command, replace `#.#.#` with the number from 1.1 and `path\to\version` with the output from 1.2
+4. If you had a version of python install, register it with pyenv. In the following command, replace `#.#.#` with the number from 1.1 and `path\to\version` with the output from 1.2
   ```
   cmd /c mklink /D %USERPROFILE%\.pyenv\pyenv-win\versions\#.#.# path\to\versions
   pyenv global #.#.#
