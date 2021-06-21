@@ -65,4 +65,4 @@ CompletedProcess(args=['ffmpeg', '-i', 'napl_0371_pres.mov', '-map', '0', '-dn',
 
 Take a peek inside the Federal Grant folder and compare the file sizes of napl_0371_pres.mov and napl_0371_pres.mkv. One's much smaller, right?
 
-Super cool, but it's also a little tedious to type out the file path for each inidividual file. How can we do this for all of the files that we have within our different directories? The first thing we'll need is a list, so let's start there.
+Super cool, but it's also a little tedious to type out the file path for each individual file. How can we do this for all of the files that we have within our different directories? The first thing we'll need is a list, so let's start there.
