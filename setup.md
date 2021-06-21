@@ -84,16 +84,17 @@ You can use the same Terminal/shell session from the previous step or open a new
   brew install pyenv
   ```
 3. Update your Terminal/shell profile to use pyenv. This will depend if your Terminal uses `bash` or `zsh`
-  1. If your Terminal session says `zsh` in the title bar, run the following.  
-    ```
-    echo 'eval "$(pyenv init)"' >> ~/.zshrc
-    source ~/.zshrc
-    ```
-  2. If your Terminal session says `bash` in the title bar.  
-    ```
-    echo 'eval "$(pyenv init)"' >> ~/.bash_profile
-    source ~/.bash_profile
-    ```
+  ```
+  #If your Terminal session says `zsh` in the title bar, run the following.  
+
+  echo 'eval "$(pyenv init)"' >> ~/.zshrc
+  source ~/.zshrc
+
+  #If your Terminal session says `bash` in the title bar.  
+
+  echo 'eval "$(pyenv init)"' >> ~/.bash_profile
+  source ~/.bash_profile
+  ```
 4. Check that pyenv was installed.
   ```
   pyenv versions
@@ -111,25 +112,26 @@ You can use the same Powershell session from the previous step or open a new win
   ```
   python --version
   ```
-  1. If you don't anything installed, you will see red text. This is fine.
-  2. If you do have a version installed, you will see a version number like 3.5.4. Save this number and check where this version is installed.
   ```
+  #If you don't anything installed, you will see red text. This is fine.
+  #If you do have a version installed, you will see a version number like 3.5.4. Save this number and check where this version is installed.
+  
   Get-Command python | Select-Object -ExpandProperty Definition
   ```
   Save the output of this command
 2. Install pyenv
-```
-choco install pyenv
-```
+  ```
+  choco install pyenv
+  ```
 4. Check that pyenv was installed.
-```
-pyenv versions
-```
+  ```
+  pyenv versions
+  ```
 5. If you had a version of python install, register it with pyenv. In the following command, replace `#.#.#` with the number from 1.1 and `path\to\version` with the output from 1.2
-```
-cmd /c mklink /D %USERPROFILE%\.pyenv\pyenv-win\versions\#.#.# path\to\versions
-pyenv global #.#.#
-```
+  ```
+  cmd /c mklink /D %USERPROFILE%\.pyenv\pyenv-win\versions\#.#.# path\to\versions
+  pyenv global #.#.#
+  ```
 
 
 ## Creating a workshop folder and installing Python 3.9.4
@@ -141,17 +143,17 @@ We'll be installing Python 3.9.4 and various other programs/packages in one spec
 1. Create a folder called `workshoppython` on your Desktop now.
 2. Open terminal or command prompt.
 3. Navigate to the directory you created
-```
-cd ~/Desktop/workshoppython
-```
+  ```
+  cd ~/Desktop/workshoppython
+  ```
 4. Run the following command to install Python 3.9.4
-```
-pyenv install 3.9.4
-```
+  ```
+  pyenv install 3.9.4
+  ```
 5. Set 3.9.4 as the default version for this folder.
-```
-pyenv local 3.9.4
-```
+  ```
+  pyenv local 3.9.4
+  ```
 
 ## Installing other Jupyter Lab and other AV-centric programs
 
@@ -159,25 +161,33 @@ We will use a virtual environment to install a set of Python just for this works
 
 1. Open terminal or command prompt.
 2. Navigate to the directory you created
-```
-cd ~/Desktop/workshoppython
-```
+  ```
+  cd ~/Desktop/workshoppython
+  ```
 3. Install pipenv
-```
-python -m pip install pipenv
-```
+  ```
+  python -m pip install pipenv
+  ```
 4. Install the Python modules we'll use in this workshop.
-```
-pipenv jupyterlab
-pipenv pymediainfo
-pipenv matplotlib
-pipenv hurry.filesize
-pipenv pandas
-```
+  ```
+  pipenv jupyterlab
+  pipenv pymediainfo
+  pipenv matplotlib
+  pipenv hurry.filesize
+  pipenv pandas
+  ```
 
 ## Testing your Installation
 
-TBD
+1. Open terminal or command prompt.
+2. Navigate to the directory you created
+  ```
+  cd ~/Desktop/workshoppython
+  ```
+3. Run Jupyter Lab, the Python interpreter we use for the workshop.
+  ```
+  pipenv shell jupyter lab
+  ```
 
 ## Install ffmpeg
 
