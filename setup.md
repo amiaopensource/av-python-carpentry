@@ -111,13 +111,8 @@ You can use the same Powershell session from the previous step or open a new win
   ```powershell
   python --version
   ```
+2. If you don't anything installed, you will see red text. This is fine. If you do have a version installed, you will see a version number like 3.5.4. Save this number. Then check where this version is installed. Save the filepath from this command.
   ```powershell
-  #If you don't anything installed, you will see red text. This is fine.
-  ```
-  ```powershell
-  #If you do have a version installed, you will see a version number like 3.5.4. Save this number.
-  # Then check where this version is installed. Save the filepath from this command.
-  
   Get-Command python | Select-Object -ExpandProperty Definition
   ```
 2. Install pyenv
