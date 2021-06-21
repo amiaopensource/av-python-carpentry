@@ -23,27 +23,27 @@ You will be able to:
 * Use a package manager like Homebrew (masOS/Linux) or Chocolatey (Windows)
 * Use pyenv, the simple Python version management system
 * Use pipenv, a Python virtual environment manager
-* Add packages to yopur Python environment
+* Add packages to your Python environment
 * Launch Jupyter Lab
 
 ## Computer Prerequisites
-You’re going to need a computer. It should be running a recent (last 4-5 years) version of MacOS, Windows or Linux, and ideally it should have 8Gb of RAM and at least 20Gb free hard drive space. You'll need to be able to install software to this computer (administrative privileges).
+You’re going to need a computer running a recent (last 4-5 years) version of MacOS, Windows or Linux, with ideally 8Gb of RAM and at least 20Gb free hard drive space. You'll need to be able to install software to this computer (administrative privileges).
 
 Assuming you have a computer that meets the requirements, let’s start by getting pyenv installed.
 
 ## Installing Homebrew or Scoop
 
-The easiest way to get create a self-contained working environment for Python and Jupyter Lab is to install pyenv, a version management system which allows you to toggle between multiple versions of Python. To do this, we'll first need to install a package manager. We also want to make sure that we don't disrupt any current installations of Python on your computer.
+The easiest way to create a self-contained working environment for Python and Jupyter Lab is to install pyenv, a version management system which allows you to toggle between multiple versions of Python. To do this, we'll first need to install a package manager. We also want to make sure that we don't disrupt any current installations of Python on your computer.
 
-Let’s go through the installation instructions for the two common package managers - Homebrew (macOS/Linux) and Scoop (Windows).
+Let’s go through the installation instructions for the two common package managers - Homebrew (macOS/Linux) and Chocolatey (Windows).
 
 ### Homebrew (macOS/Linux)
 1. Open a macOS Terminal window or Linux shell prompt.
-2. Go [here](https://brew.sh/) and copy the long line of code under the heading "Installation."  
+2. Copy this line of code: 
   ```sh
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   ```
-3. Paste that into the macOS Terminal or Linux shell prompt and hit Return when prompted. You may be prompted for a password. Enter your login password at this point.
+3. Paste it into the macOS Terminal or Linux shell prompt and hit Return. You may be prompted for a password. Enter your login password at this point.
 4. Check your installation.  
   ```sh
   brew --version
@@ -137,7 +137,7 @@ You can use the same Powershell session from the previous step or open a new win
 
 ## Creating a workshop folder and installing Python 3.9.4
 
-The value of working with pyenv is two-fold: (1) it reduces the headaches associated with multiple, possibly conflicting Python installations, and grants us a greater degree of control; and (2) it allows us to easily remove  installations at the close of the workshop, leaving your computer in an untouched, original state.
+The value of working with pyenv is two-fold: (1) it reduces the headaches associated with multiple, possibly conflicting Python installations, giving a greater degree of control; and (2) it allows us to easily remove  installations at the close of the workshop, leaving your computer in an untouched, original state.
 
 We'll be installing Python 3.9.4 and various other programs/packages in one specific folder on your Desktop, so let's go ahead and make that now.
 
