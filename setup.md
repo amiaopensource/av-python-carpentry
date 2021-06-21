@@ -39,12 +39,12 @@ Let’s go through the installation instructions for the two common package mana
 
 ### Homebrew (macOS/Linux)
 1. Open a macOS Terminal window or Linux shell prompt.
-2. Go [here](https://brew.sh/) and copy the long line of code under the heading "Installation."
+2. Go [here](https://brew.sh/) and copy the long line of code under the heading "Installation."  
   ```
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   ```
 3. Paste that into the macOS Terminal or Linux shell prompt and hit Return when prompted. You may be prompted for a password. Enter your login password at this point.
-4. Check your installation
+4. Check your installation.  
   ```
   brew --version
   ```
@@ -52,17 +52,17 @@ Let’s go through the installation instructions for the two common package mana
 ### Chocolatey (Windows)
 
 1. Open a Powershell Administrator session by typing `powershell` into Start Menu, right-clicking on the icon, and choosing Administrator.
-2. Check that you have the necessary security permissions to install chocolatery
+2. Check that you have the necessary security permissions to install chocolatery.  
   ```
   Get-ExecutionPolicy
   ```
   * If it returns Restricted, then run `Set-ExecutionPolicy Bypass -Scope Process`.
-4. Copy the following from the [Chocolatey instructions](https://chocolatey.org/install) 
+4. Copy the following from the [Chocolatey instructions](https://chocolatey.org/install).  
   ```
   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
   ```
 5. Paste that into the Powershell window and hit Return when prompted.
-6. Check your installation
+6. Check your installation.  
   ```
   choco --version
   ```
@@ -75,21 +75,21 @@ Now that you've got a package manager up and running, it's time to get pyenv ins
 
 You can use the same Terminal/shell session from the previous step or open a new window.
 
-1. Check your current system version of Python
+1. Check your current system version of Python.  
   ```
   python --version
   ```
-2. Install pyenv
+2. Install pyenv.  
   ```
   brew install pyenv
   ```
 3. Update your Terminal/shell profile to use pyenv. This will depend if your Terminal uses `bash` or `zsh`
-  1. If your Terminal session says `zsh` in the title bar, run the following.
+  1. If your Terminal session says `zsh` in the title bar, run the following.  
     ```
     echo 'eval "$(pyenv init)"' >> ~/.zshrc
     source ~/.zshrc
     ```
-  2. If your Terminal session says `bash` in the title bar
+  2. If your Terminal session says `bash` in the title bar.  
     ```
     echo 'eval "$(pyenv init)"' >> ~/.bash_profile
     source ~/.bash_profile
