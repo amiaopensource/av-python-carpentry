@@ -84,17 +84,18 @@ You can use the same Terminal/shell session from the previous step or open a new
   brew install pyenv
   ```
 3. Update your Terminal/shell profile to use pyenv. This will depend if your Terminal uses bash or zsh.  
-```
-#If your Terminal session says zsh in the title bar, run the following.  
+  ```
+  #If your Terminal session says zsh in the title bar, run the following.  
 
-echo 'eval "$(pyenv init)"' >> ~/.zshrc
-source ~/.zshrc
+  echo 'eval "$(pyenv init)"' >> ~/.zshrc
+  source ~/.zshrc
+  ```
+  ```
+  #If your Terminal session says bash in the title bar.  
 
-#If your Terminal session says bash in the title bar.  
-
-echo 'eval "$(pyenv init)"' >> ~/.bash_profile
-source ~/.bash_profile
-```
+  echo 'eval "$(pyenv init)"' >> ~/.bash_profile
+  source ~/.bash_profile
+  ```
 4. Check that pyenv was installed.
   ```
   pyenv versions
@@ -114,7 +115,8 @@ You can use the same Powershell session from the previous step or open a new win
   ```
   ```
   #If you don't anything installed, you will see red text. This is fine.
-  
+  ```
+  ```
   #If you do have a version installed, you will see a version number like 3.5.4. Save this number.
   # Then check where this version is installed. Save the filepath from this command.
   
