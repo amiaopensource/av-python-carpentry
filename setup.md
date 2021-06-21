@@ -84,17 +84,21 @@ You can use the same Terminal or shell session from the previous step or open a 
   brew install pyenv
   ```
 3. Update your Terminal or shell profile for pyenv, adjusting on zsh or bash.
-```
-#If your Terminal session says zsh in the title bar, run the following.  
-
-echo 'eval "$(pyenv init)"' >> ~/.zshrc
-source ~/.zshrc
-```
-4. Check that pyenv was installed.
+4. If your Terminal session says zsh in the title bar, run the following.
+  ```
+  echo 'eval "$(pyenv init)"' >> ~/.zshrc
+  source ~/.zshrc
+  ```
+5. If your Terminal session says bash in the title bar, run the following.
+  ```
+  echo 'eval "$(pyenv init)"' >> ~/.bash_profile
+  source ~/.bash_profile
+  ```
+6. Check that pyenv was installed.
   ```
   pyenv versions
   ```
-5. Check your current python version.
+7. Check your current python version.
   ```
   python --version
   ```
