@@ -172,10 +172,8 @@ We will use a virtual environment to install a set of Python just for this works
 4. Install the Python modules we'll use in this workshop.
   ```
   pipenv install jupyterlab
-  pipenv install pymediainfo
-  pipenv install matplotlib
   pipenv install hurry.filesize
-  pipenv install pandas
+  pipenv install bagit
   ```
 
 ## Testing your Installation
