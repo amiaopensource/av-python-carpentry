@@ -117,7 +117,7 @@ You can use the same Powershell session from the previous step or open a new win
   ```
 2. Install pyenv
   ```powershell
-  choco install pyenv
+  choco install pyenv-win
   ```
 3. Check that pyenv was installed.
   ```powershell
