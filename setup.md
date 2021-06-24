@@ -170,6 +170,12 @@ We will use a virtual environment to install a set of Python just for this works
   pipenv install hurry.filesize
   pipenv install bagit
   ```
+  
+If you are having issues with pipenv, try running
+```sh
+pyenv rehash
+```
+and then start with step 3 again.
 
 ## Testing your Installation
 
