@@ -183,6 +183,7 @@ We will use a virtual environment to install a set of Python just for this works
   ```sh
   pipenv shell jupyter lab
   ```
+4. Email your instructors to let them know you have a successful installation.
 
 ## Install ffmpeg
 
