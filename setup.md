@@ -86,7 +86,7 @@ You can use the same Terminal or shell session from the previous step or open a 
 3. Update your Terminal or shell profile for pyenv, adjusting on zsh or bash.
 4. If your Terminal session says zsh in the title bar, run the following.
   ```sh
-  echo 'export PATH="$HOME/.pyenv/bin:$PATH"
+  echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
   echo 'eval "$(pyenv init -)"' >> ~/.zshrc
   source ~/.zshrc
   ```
