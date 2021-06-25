@@ -186,7 +186,7 @@ and then start with step 3 again.
   ```
 3. Run Jupyter Lab, the Python interpreter we use for the workshop.
   ```sh
-  pipenv shell jupyter lab
+  pipenv run jupyter lab
   ```
 4. Email your instructors to let them know you have a successful installation.
 
