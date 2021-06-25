@@ -233,7 +233,7 @@ We’ll touch upon many of the different ways that Python + MediaInfo can assist
 
 This is the realm of package management, and if any macOS users are familiar with Homebrew, the program pip plays a similar role within Python, allowing users to install “packages,” or specialized code libraries designed to perform specific, not-handled-by-default tasks.
 
-So we’re back to importing modules, as it were, though these outside modules first require a separate installation step (via pip) before we can import and use them in our code.
+So we’re back to importing modules, as it were, though these outside modules first require a separate installation step (via pipenv) before we can import and use them in our code.
 As we’ve all installed Python3 via Anaconda, we’ll have pip available to us.
 But, to check our installation, we can do the following.
 First, open a console Terminal tab in Jupyter by clicking on the `+` sign in the sidebar and clicking on the `Terminal` tiles in the main area.
@@ -244,55 +244,23 @@ First, open a console Terminal tab in Jupyter by clicking on the `+` sign in the
 
 When the terminal opens, it should look like the following.
 ~~~
-(pyforav)username@computername >
+username@computername >
 ~~~
 {: .language-bash}
 
-If it doesn't, you need to activate the `pyforav` environment.
-
-~~~
-conda activate pyforav
-~~~
-{: .language-bash}
-
-Then type the following:
-
-~~~
-pip --version
-~~~
-{: .language-bash}
-
-~~~
-pip 19.1.1 from /usr/local/lib/pytpip 19.3.1 from /opt/anaconda3/envs/pyforav/lib/python3.7/site-packages/pip (python 3.7)
-Note: you may need to restart the kernel to use updated packages.hon3.7/site-packages/pip (python 3.7)
-~~~
-{: .output}
-
-pip offers a lot of features, but the ones most relevant to us are related to this process of searching for, installing/uninstalling, and listing packages located in what’s called the Python Package Index, or PyPI (remember too that pip -h will direct you to handy help pages).
-
-Let’s begin our pipping with a search, specifically a search for the `pymediainfo` package.
-
-~~~
-pip search pymediainfo
-~~~
-{: .language-bash}
+pipenv offers a lot of features, but the one most relevant to us is related to this process or installing/uninstalling, and listing packages located in what’s called the Python Package Index, or PyPI (remember too that pip -h will direct you to handy help pages).
 
 And to install pymediainfo, we do the following:
 
 ~~~
-pip install pymediainfo
+pipenv install pymediainfo
 ~~~
 {: .language-bash}
 
 To check that we’ve installed `pymediainfo` properly, we can list all of the packages that we’ve installed via pip:
 
-~~~
-pip list
-~~~
-{: .language-bash}
-
 > ## Already installed
-> Your `pip install` command may report that pymediainfo has already been installed.
+> Your `pipenv install` command may report that pymediainfo has already been installed.
 > We weren't sure how well the Internet would work during this workshop, so we pre-installed it during the setup.
 {: .callout}
 
