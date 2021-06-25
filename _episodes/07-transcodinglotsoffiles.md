@@ -61,7 +61,7 @@ First, we'll need a place to put our newly created mkv files. Do you remember ho
 > > ## Solution
 > >
 ~~~
-mkv_folder = os.path.join('Desktop', 'pyforav', 'mkv')
+mkv_folder = os.path.join(video_dir, 'mkv')
 if not os.path.exists(mkv_folder):
 	os.makedirs(mkv_folder)
 ~~~
@@ -86,7 +86,7 @@ subprocess.run(['ffmpeg', '-i', sorted(mov_list)[42], '-map', '0', '-dn', '-c:v'
 {: .language-python}
 
 ~~~
-CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/pyforav/federal_grant/napl_0371_pres.mov', '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', 'Desktop/pyforav/mkv/napl_0371_pres.mkv'], returncode=0)
+CompletedProcess(args=['ffmpeg', '-i', '/Users/benjaminturkus/Desktop/pyforav/federal_grant/napl_0371_pres.mov', '-map', '0', '-dn', '-c:v', 'ffv1', '-level', '3', '-g', '1', '-slicecrc', '1', '-slices', '16', '-c:a', 'copy', '/Users/benjaminturkus/Desktop/pyforav/mkv/napl_0371_pres.mkv'], returncode=0)
 ~~~
 {: .output}
 
