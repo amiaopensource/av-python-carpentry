@@ -56,7 +56,7 @@ The result of `validate()` will be `True` or `False`.
 > First you will need to create a list of all the subfolders of `120th anniversary`
 > > ## Solution
 > > ~~~
-> > bag_paths = glob.glob(os.path.join('Desktop', 'pyforav', '120th anniversary', '*'))
+> > bag_paths = glob.glob(os.path.join('Desktop', 'pyforav', '120th_anniversary', '*'))
 > > 
 > > for bag_path in bag_paths:
 > >     bag = bagit.bag(bag_path)
