@@ -87,13 +87,13 @@ help(shutil.copy)
 Let's make a single subfolder within the `pyforav` directory to hold copies of those service files.
 
 ~~~
-service_folder = os.path.join('Desktop', 'pyforav', 'service')
+service_folder = os.path.join(video_dir, 'service')
 service_folder
 ~~~
 {: .language-python}
 
 ~~~
-'Desktop/pyforav/service'
+'/User/benjaminturkus/Desktop/pyforav/service'
 ~~~
 {: .output}
 
@@ -324,7 +324,7 @@ subprocess.run(['ffmpeg', '-i', input_file, '-c:v', 'libx264', '-pix_fmt', 'yuv4
 {: language-python}
 
 ~~~
-CompletedProcess(['ffmpeg', '-i', 'Desktop/pyforav/federal_grant/napl1777.mov', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', 'Desktop/pyforav/service/napl1777.mp4'], returncode=0)
+CompletedProcess(['ffmpeg', '-i', '/User/benjaminturkus/Desktop/pyforav/federal_grant/napl1777.mov', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '/User/benjaminturkus/Desktop/pyforav/service/napl1777.mp4'], returncode=0)
 ~~~
 {: .output}
 
