@@ -30,9 +30,10 @@ cd Desktop/pyforav/federal_grant/
 ~~~
 {: .language-python}
 
-We can double check that we're in the right place by again running the `getcwd()` command:
+We can double check that we're in the right place by using Python's `getcwd()` command. This is part of the `os` module in Python so we'll need to load the module first.:
 
 ~~~
+import os
 os.getcwd()
 ~~~
 {: .language-python}
