@@ -59,7 +59,7 @@ The result of `validate()` will be `True` or `False`.
 > > bag_paths = glob.glob(os.path.join('Desktop', 'pyforav', '120th_anniversary', '*'))
 > > 
 > > for bag_path in bag_paths:
-> >     bag = bagit.bag(bag_path)
+> >     bag = bagit.Bag(bag_path)
 > >     result = bag.validate()
 > >     print(bag_path, result)
 > > ~~~
