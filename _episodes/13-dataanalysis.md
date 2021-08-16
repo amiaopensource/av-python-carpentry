@@ -40,7 +40,7 @@ After learning to work with FFmpeg, and testing the integrity and losslessness o
 Alice can demonstrate checksum comparisons, and she can speak anecdotally about file size savings and ease-of-use, but she has a sense that overarching numbers and, even better, visualizations in the form of charts and graphs, might be more convincing to her supervisors who are too busy for the nitty-gritty.
 
 Why a scatterplot? Why not? 
-The combination of pandas and matplotlib can generate nearly any form of visualization--including pie charts, bar charts, heat maps, line graphs, histograms--but there is something unique to scatterlots that can highlight the variance inherent in FFV1 compression. 
+The combination of pandas and matplotlib can generate nearly any form of visualization--including pie charts, bar charts, heat maps, line graphs, histograms--but there is something unique to scatterplots that can highlight the variance inherent in FFV1 compression. 
 Bottom line: FFV1 is smart and adaptive, and not all video content compresses in exactly the same way, to the exact same degree. 
 With a scatterplot, we can visualize these differences, and possibly learn how to better predict compression ratios in the future. 
 
