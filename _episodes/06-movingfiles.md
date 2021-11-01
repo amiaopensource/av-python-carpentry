@@ -193,7 +193,7 @@ Now we have all of the tools to automate the copying:
 Putting those tools together, we can write code like this.
 
 ~~~
-mp4_list = glob.glob(os.path.join(video_dir, '**', '*mp4')), recursive=True)
+mp4_list = glob.glob(os.path.join(video_dir, '**', '*mp4'), recursive=True)
 for item in mp4_list:
 	shutil.copy(item, service_folder)
 ~~~
